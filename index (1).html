@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PL-900 Study Hub — Microsoft Power Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ms-blue: #0078D4;
+    --ms-blue-dark: #005A9E;
+    --ms-blue-light: #EFF6FC;
+    --ms-blue-mid: #C7E0F4;
+    --text-primary: #201F1E;
+    --text-secondary: #484644;
+    --text-muted: #797775;
+    --border: #EDEBE9;
+    --bg: #FAF9F8;
+    --white: #FFFFFF;
+    --shadow-sm: 0 1px 4px rgba(0,0,0,0.08), 0 0 1px rgba(0,0,0,0.06);
+    --shadow-hover: 0 4px 20px rgba(0,120,212,0.15), 0 1px 4px rgba(0,0,0,0.08);
+    --radius: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 52px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .ms-squares {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5px;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+  .ms-squares span {
+    border-radius: 1px;
+  }
+  .ms-squares span:nth-child(1) { background: #F25022; }
+  .ms-squares span:nth-child(2) { background: #7FBA00; }
+  .ms-squares span:nth-child(3) { background: #00A4EF; }
+  .ms-squares span:nth-child(4) { background: #FFB900; }
+
+  .header-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .header-divider {
+    width: 1px;
+    height: 20px;
+    background: var(--border);
+    margin: 0 4px;
+  }
+
+  .header-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  header .badge-exam {
+    margin-left: auto;
+    background: var(--ms-blue-light);
+    color: var(--ms-blue-dark);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.03em;
+    border: 1px solid var(--ms-blue-mid);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #0078D4 0%, #004E8C 100%);
+    color: white;
+    padding: 4rem 2rem 3.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 12px;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 strong {
+    font-weight: 700;
+    display: block;
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    color: rgba(255,255,255,0.82);
+    max-width: 540px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+
+  .hero-stats {
+    display: inline-flex;
+    gap: 2px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 40px;
+    padding: 4px;
+  }
+
+  .hero-stat {
+    padding: 6px 20px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    border-radius: 36px;
+    font-weight: 500;
+  }
+
+  .hero-stat.active {
+    background: white;
+    color: var(--ms-blue-dark);
+  }
+
+  /* ── MAIN CONTENT ── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── CARDS GRID ── */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 16px;
+    margin-bottom: 3rem;
+  }
+
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.5rem 1.25rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--card-accent, var(--ms-blue));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.22s ease;
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+    border-color: var(--ms-blue-mid);
+  }
+
+  .card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .card-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+    background: var(--icon-bg, #EFF6FC);
+  }
+
+  .session-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .card h2 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    flex: 1;
+  }
+
+  .card-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .topic-tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--icon-bg, #EFF6FC);
+    color: var(--tag-color, var(--ms-blue-dark));
+    font-weight: 500;
+    border: 1px solid var(--tag-border, var(--ms-blue-mid));
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    margin-top: 2px;
+  }
+
+  .card-weight {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .card-link {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ms-blue);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap 0.15s ease;
+  }
+
+  .card:hover .card-link {
+    gap: 7px;
+  }
+
+  /* ── QUIZ BANNER ── */
+  .quiz-banner {
+    background: linear-gradient(135deg, #0a0c10 0%, #0d1117 60%, #0a0f1e 100%);
+    border: 1px solid #1e2535;
+    border-radius: var(--radius);
+    padding: 1.5rem 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    text-decoration: none;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .quiz-banner::before {
+    content: '';
+    position: absolute;
+    top: -40px; left: 50%; transform: translateX(-50%);
+    width: 400px; height: 160px;
+    background: radial-gradient(ellipse, rgba(0,212,255,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .quiz-banner:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,212,255,0.12), 0 4px 12px rgba(0,0,0,0.2);
+  }
+  .quiz-icon-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: rgba(0,212,255,0.1);
+    border: 1px solid rgba(0,212,255,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+  .quiz-content { flex: 1; }
+  .quiz-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #00d4ff;
+    margin-bottom: 4px;
+  }
+  .quiz-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #e8eaf0;
+    margin-bottom: 5px;
+    letter-spacing: -0.01em;
+  }
+  .quiz-desc {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.5;
+  }
+  .quiz-meta {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .quiz-tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 4px;
+    background: rgba(0,212,255,0.08);
+    border: 1px solid rgba(0,212,255,0.2);
+    color: #00d4ff;
+    letter-spacing: 0.04em;
+  }
+  .quiz-cta {
+    font-size: 13px;
+    font-weight: 700;
+    color: #00d4ff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: gap 0.15s ease;
+  }
+  .quiz-banner:hover .quiz-cta { gap: 10px; }
+
+  /* ── RESOURCES STRIP ── */
+  .resources {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .resource-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+    padding: 8px;
+    border-radius: 6px;
+    transition: background 0.15s;
+  }
+
+  .resource-item:hover {
+    background: var(--ms-blue-light);
+  }
+
+  .resource-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: var(--ms-blue-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+    border: 1px solid var(--ms-blue-mid);
+  }
+
+  .resource-text strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1px;
+  }
+
+  .resource-text span {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--white);
+  }
+
+  footer a { color: var(--ms-blue); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ── ANIMATIONS ── */
+  .card {
+    animation: fadeUp 0.4s ease both;
+  }
+  .card:nth-child(1) { animation-delay: 0.05s; }
+  .card:nth-child(2) { animation-delay: 0.10s; }
+  .card:nth-child(3) { animation-delay: 0.15s; }
+  .card:nth-child(4) { animation-delay: 0.20s; }
+  .card:nth-child(5) { animation-delay: 0.25s; }
+  .card:nth-child(6) { animation-delay: 0.30s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 2.5rem 1.25rem 2rem; }
+    .hero-stats { flex-direction: column; gap: 4px; }
+    main { padding: 2rem 1rem 4rem; }
+    header { padding: 0 1rem; }
+    .header-sub { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-logo">
+    <div class="ms-squares">
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <span class="header-title">Microsoft Power Platform</span>
+    <div class="header-divider"></div>
+    <span class="header-sub">Study Hub</span>
+  </div>
+  <span class="badge-exam">PL-900 Exam Prep</span>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Microsoft Certification</p>
+  <h1>Power Platform Fundamentals<strong>Study Guide Collection</strong></h1>
+  <p class="hero-desc">Six interactive study guides covering every topic on the PL-900 exam. Built from the official Microsoft course by Barbara Andrews.</p>
+  <div class="hero-stats">
+    <div class="hero-stat active">6 Sessions</div>
+    <div class="hero-stat active">229 Practice Qs</div>
+    <div class="hero-stat">Passing score: 700</div>
+    <div class="hero-stat">~45 min exam</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main>
+
+  <p class="section-label">Course Sessions</p>
+
+  <div class="cards">
+
+    <!-- Session 1 -->
+    <a class="card" href="microsoft_power_platform_study_guide.html"
+       style="--card-accent:#0078D4; --icon-bg:#EFF6FC; --tag-color:#004E8C; --tag-border:#C7E0F4;">
+      <div class="card-header">
+        <div class="card-icon" style="--icon-bg:#EFF6FC;">🏗️</div>
+        <span class="session-tag">Session 1</span>
+      </div>
+      <h2>Platform Overview &amp; Business Value</h2>
+      <p class="card-desc">Introduction to the Power Platform ecosystem, all core tools, connectors, Dataverse, and how Copilot and AI enhance every layer.</p>
+      <div class="card-topics">
+        <span class="topic-tag">Power Apps</span>
+        <span class="topic-tag">Power Automate</span>
+        <span class="topic-tag">Power BI</span>
+        <span class="topic-tag">Power Pages</span>
+        <span class="topic-tag">Dataverse</span>
+        <span class="topic-tag">Connectors</span>
+        <span class="topic-tag">Copilot</span>
+      </div>
+      <div class="card-footer">
+        <span class="card-weight">Exam weight: 15–20%</span>
+        <span class="card-link">Open guide →</span>
+      </div>
+    </a>
+
+    <!-- Session 2 -->
+    <a class="card" href="power_platform_admin_governance_study_guide.html"
+       style="--card-accent:#107C10; --icon-bg:#EFF8EF; --tag-color:#0B5A0B; --tag-border:#9FD89F;">
+      <div class="card-header">
+        <div class="card-icon" style="background:#EFF8EF;">⚙️</div>
+        <span class="session-tag">Session 2</span>
+      </div>
+      <h2>Administration &amp; Governance</h2>
+      <p class="card-desc">Dataverse architecture, environment types, security roles, DLP policies, ALM, managed vs. unmanaged solutions, and admin portals.</p>
+      <div class="card-topics">
+        <span class="topic-tag" style="background:#EFF8EF;color:#0B5A0B;border-color:#9FD89F;">Dataverse</span>
+        <span class="topic-tag" style="background:#EFF8EF;color:#0B5A0B;border-color:#9FD89F;">Environments</span>
+        <span class="topic-tag" style="background:#EFF8EF;color:#0B5A0B;border-color:#9FD89F;">DLP Policies</span>
+        <span class="topic-tag" style="background:#EFF8EF;color:#0B5A0B;border-color:#9FD89F;">ALM</span>
+        <span class="topic-tag" style="background:#EFF8EF;color:#0B5A0B;border-color:#9FD89F;">Security Roles</span>
+      </div>
+      <div class="card-footer">
+        <span class="card-weight">Exam weight: 15–20%</span>
+        <span class="card-link" style="color:#107C10;">Open guide →</span>
+      </div>
+    </a>
+
+    <!-- Session 3 -->
+    <a class="card" href="power_pages_study_guide.html"
+       style="--card-accent:#8764B8; --icon-bg:#F4F0FA; --tag-color:#5C2D91; --tag-border:#C9B8E8;">
+      <div class="card-header">
+        <div class="card-icon" style="background:#F4F0FA;">🌐</div>
+        <span class="session-tag">Session 3</span>
+      </div>
+      <h2>Power Pages</h2>
+      <p class="card-desc">Building secure external-facing websites with Design Studio, Copilot site creation, page/table permissions, identity providers, and the lab walkthrough.</p>
+      <div class="card-topics">
+        <span class="topic-tag" style="background:#F4F0FA;color:#5C2D91;border-color:#C9B8E8;">Design Studio</span>
+        <span class="topic-tag" style="background:#F4F0FA;color:#5C2D91;border-color:#C9B8E8;">Security</span>
+        <span class="topic-tag" style="background:#F4F0FA;color:#5C2D91;border-color:#C9B8E8;">Copilot</span>
+        <span class="topic-tag" style="background:#F4F0FA;color:#5C2D91;border-color:#C9B8E8;">Forms &amp; Lists</span>
+      </div>
+      <div class="card-footer">
+        <span class="card-weight">Exam weight: 10–15%</span>
+        <span class="card-link" style="color:#8764B8;">Open guide →</span>
+      </div>
+    </a>
+
+    <!-- Session 4 -->
+    <a class="card" href="power_apps_study_guide_session4.html"
+       style="--card-accent:#D83B01; --icon-bg:#FFF0EB; --tag-color:#A52A00; --tag-border:#F7B89A;">
+      <div class="card-header">
+        <div class="card-icon" style="background:#FFF0EB;">📱</div>
+        <span class="session-tag">Session 4</span>
+      </div>
+      <h2>Power Apps — Canvas Apps</h2>
+      <p class="card-desc">Canvas app fundamentals, Power Apps Studio elements, galleries, forms, input controls, AI Builder controls, Power Fx functions, and containers.</p>
+      <div class="card-topics">
+        <span class="topic-tag" style="background:#FFF0EB;color:#A52A00;border-color:#F7B89A;">Canvas Apps</span>
+        <span class="topic-tag" style="background:#FFF0EB;color:#A52A00;border-color:#F7B89A;">Galleries</span>
+        <span class="topic-tag" style="background:#FFF0EB;color:#A52A00;border-color:#F7B89A;">Power Fx</span>
+        <span class="topic-tag" style="background:#FFF0EB;color:#A52A00;border-color:#F7B89A;">AI Builder</span>
+        <span class="topic-tag" style="background:#FFF0EB;color:#A52A00;border-color:#F7B89A;">Copilot Controls</span>
+      </div>
+      <div class="card-footer">
+        <span class="card-weight">Exam weight: 25–30% (combined)</span>
+        <span class="card-link" style="color:#D83B01;">Open guide →</span>
+      </div>
+    </a>
+
+    <!-- Session 5 -->
+    <a class="card" href="model_driven_apps_study_guide_session5.html"
+       style="--card-accent:#B4009E; --icon-bg:#FCF0FB; --tag-color:#820094; --tag-border:#E5A8E4;">
+      <div class="card-header">
+        <div class="card-icon" style="background:#FCF0FB;">🏛️</div>
+        <span class="session-tag">Session 5</span>
+      </div>
+      <h2>Power Apps — Model-Driven Apps</h2>
+      <p class="card-desc">Model-driven app design process, all component types, form types (Main/Card/Quick Create/Quick View), view types, App Designer, and the event management lab.</p>
+      <div class="card-topics">
+        <span class="topic-tag" style="background:#FCF0FB;color:#820094;border-color:#E5A8E4;">Model-Driven</span>
+        <span class="topic-tag" style="background:#FCF0FB;color:#820094;border-color:#E5A8E4;">App Designer</span>
+        <span class="topic-tag" style="background:#FCF0FB;color:#820094;border-color:#E5A8E4;">Forms &amp; Views</span>
+        <span class="topic-tag" style="background:#FCF0FB;color:#820094;border-color:#E5A8E4;">Sitemap</span>
+        <span class="topic-tag" style="background:#FCF0FB;color:#820094;border-color:#E5A8E4;">Dataverse</span>
+      </div>
+      <div class="card-footer">
+        <span class="card-weight">Exam weight: 25–30% (combined)</span>
+        <span class="card-link" style="color:#B4009E;">Open guide →</span>
+      </div>
+    </a>
+
+    <!-- Session 6 -->
+    <a class="card" href="power_automate_study_guide_session6.html"
+       style="--card-accent:#0078D4; --icon-bg:#EFF6FC; --tag-color:#004E8C; --tag-border:#C7E0F4;">
+      <div class="card-header">
+        <div class="card-icon" style="background:#EFF6FC;">⚡</div>
+        <span class="session-tag">Session 6</span>
+      </div>
+      <h2>Power Automate</h2>
+      <p class="card-desc">Flow types (cloud, desktop, RPA), triggers, actions, connectors, dynamic content, loops &amp; branching, approval actions, Flow Checker, sharing, and process mining.</p>
+      <div class="card-topics">
+        <span class="topic-tag">Cloud Flows</span>
+        <span class="topic-tag">Desktop/RPA</span>
+        <span class="topic-tag">Approvals</span>
+        <span class="topic-tag">Triggers</span>
+        <span class="topic-tag">Process Mining</span>
+      </div>
+      <div class="card-footer">
+        <span class="card-weight">Exam weight: 15–20%</span>
+        <span class="card-link">Open guide →</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- QUIZ BANNER -->
+  <p class="section-label">Practice Quiz</p>
+  <a class="quiz-banner" href="pl900_quiz.html">
+    <div class="quiz-icon-wrap">🧠</div>
+    <div class="quiz-content">
+      <div class="quiz-eyebrow">229 Questions · Exam-style</div>
+      <div class="quiz-title">PL-900 Practice Quiz</div>
+      <div class="quiz-desc">MCQ, hotspot, and matching questions covering all exam domains — with reveal-on-demand answers and progress tracking.</div>
+      <div class="quiz-meta">
+        <span class="quiz-tag">MCQ</span>
+        <span class="quiz-tag">Hotspot</span>
+        <span class="quiz-tag">Matching</span>
+        <span class="quiz-tag">Power BI</span>
+        <span class="quiz-tag">Power Apps</span>
+        <span class="quiz-tag">Power Automate</span>
+        <span class="quiz-tag">Dataverse</span>
+      </div>
+    </div>
+    <span class="quiz-cta">Start quiz →</span>
+  </a>
+
+  <!-- RESOURCES -->
+  <p class="section-label">Additional Resources</p>
+  <div class="resources">
+    <a class="resource-item" href="https://learn.microsoft.com/credentials/certifications/exams/pl-900/practice/assessment?assessment-type=practice&assessmentId=34" target="_blank" rel="noopener">
+      <div class="resource-icon">✅</div>
+      <div class="resource-text">
+        <strong>Official Practice Assessment</strong>
+        <span>Free on Microsoft Learn — mirrors real exam</span>
+      </div>
+    </a>
+    <a class="resource-item" href="https://learn.microsoft.com/credentials/certifications/resources/study-guides/pl-900" target="_blank" rel="noopener">
+      <div class="resource-icon">📋</div>
+      <div class="resource-text">
+        <strong>Official PL-900 Study Guide</strong>
+        <span>Exam skills breakdown &amp; objectives</span>
+      </div>
+    </a>
+    <a class="resource-item" href="https://aka.ms/learn" target="_blank" rel="noopener">
+      <div class="resource-icon">🎓</div>
+      <div class="resource-text">
+        <strong>Microsoft Learn</strong>
+        <span>Free self-paced learning paths</span>
+      </div>
+    </a>
+    <a class="resource-item" href="https://examtopics.com/exams/microsoft/pl-900" target="_blank" rel="noopener">
+      <div class="resource-icon">📝</div>
+      <div class="resource-text">
+        <strong>ExamTopics Practice Questions</strong>
+        <span>Community-verified exam questions</span>
+      </div>
+    </a>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p>PL-900 Study Hub &nbsp;·&nbsp; Based on the Microsoft Power Platform Fundamentals course by Barbara Andrews &nbsp;·&nbsp; <a href="https://learn.microsoft.com/credentials/certifications/power-platform-fundamentals/" target="_blank">Certification details</a></p>
+</footer>
+
+</body>
+</html>
