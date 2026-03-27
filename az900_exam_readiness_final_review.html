@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AZ-900 — Exam Readiness &amp; Final Review</title>
+<style>
+
+:root{--blue:#0078D4;--blue-dark:#005A9E;--blue-light:#EFF6FC;--blue-mid:#C7E0F4;--green:#107C10;--green-light:#EFF8EF;--green-mid:#9FD89F;--purple:#8764B8;--purple-light:#F4F0FA;--purple-mid:#C9B8E8;--orange:#D83B01;--orange-light:#FFF0EB;--orange-mid:#F7B89A;--pink:#B4009E;--pink-light:#FCF0FB;--pink-mid:#E5A8E4;--text:#201F1E;--text2:#484644;--muted:#797775;--border:#EDEBE9;--bg:#FAF9F8;--white:#fff;--radius:8px;--info-bg:#EFF6FC;--info-text:#004E8C;--success-bg:#EAF3DE;--success-text:#173404;--warn-bg:#FAEEDA;--warn-text:#412402;--danger-bg:#FCEBEB;--danger-text:#501313;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-text-size-adjust:100%;}
+header{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.25rem;display:flex;align-items:center;gap:10px;height:52px;position:sticky;top:0;z-index:100;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;white-space:nowrap;}
+.back:hover{text-decoration:underline;}
+.htitle{font-size:13px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.hbadge{margin-left:auto;font-size:11px;padding:2px 9px;border-radius:10px;font-weight:600;background:var(--blue-light);color:var(--blue-dark);border:1px solid var(--blue-mid);white-space:nowrap;flex-shrink:0;}
+.exam-banner{background:var(--info-bg);border-left:3px solid var(--blue);padding:10px 14px;margin-bottom:16px;font-size:13px;color:var(--info-text);line-height:1.5;}
+.exam-banner strong{font-weight:600;}
+main{max-width:900px;margin:0 auto;padding:2rem 1.25rem 4rem;}
+h1{font-size:clamp(1.3rem,3vw,1.8rem);font-weight:300;margin-bottom:6px;letter-spacing:-0.01em;}
+h1 strong{font-weight:700;}
+.subtitle{font-size:13px;color:var(--muted);margin-bottom:1.5rem;}
+.tabs{display:flex;gap:0;flex-wrap:wrap;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+.tab-btn{padding:8px 14px;font-size:13px;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s;border-radius:0;}
+.tab-btn:hover{color:var(--text);}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:600;}
+.tab{display:none;}.tab.active{display:block;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:12px;}
+.card-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;}
+.card-body{font-size:13px;color:var(--text2);line-height:1.7;}
+.kv{display:flex;flex-direction:column;}
+.r{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+.r:last-child{border-bottom:none;}
+.rk{font-size:13px;font-weight:600;color:var(--text);min-width:165px;flex-shrink:0;}
+.rv{font-size:13px;color:var(--text2);line-height:1.6;}
+table{width:100%;font-size:13px;border-collapse:collapse;margin-bottom:4px;}
+th{text-align:left;padding:8px 12px;font-weight:600;color:var(--text);font-size:12px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border);}
+td{padding:9px 12px;color:var(--text2);border-bottom:1px solid var(--border);vertical-align:top;line-height:1.55;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:var(--bg);}
+.acc{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:8px;}
+.acc-q{padding:12px 16px;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .15s;}
+.acc-q:hover{background:var(--bg);}
+.arr{transition:transform .2s;font-size:12px;color:var(--muted);flex-shrink:0;margin-left:10px;}
+.acc-q.open .arr{transform:rotate(180deg);}
+.acc-a{display:none;padding:12px 16px;font-size:13px;color:var(--text2);line-height:1.7;background:var(--bg);border-top:1px solid var(--border);}
+.acc-a.open{display:block;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.mc{padding:12px 14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--white);}
+.mc h4{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px;}
+.mc p,.mc li{font-size:13px;color:var(--text2);line-height:1.6;}
+.mc ul{padding-left:14px;}
+.why{background:var(--bg);border-left:3px solid var(--blue);padding:10px 14px;margin-top:10px;font-size:13px;color:var(--text2);line-height:1.5;}
+.why strong{color:var(--text);font-weight:600;}
+.scen{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:10px;}
+.scen-q{padding:11px 14px;background:var(--bg);font-size:13px;font-weight:600;color:var(--text);}
+.scen-a{padding:11px 14px;font-size:13px;color:var(--text2);line-height:1.6;border-top:1px solid var(--border);}
+.ans{font-weight:600;color:var(--blue);}
+.badge{font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600;display:inline-block;}
+.bi{background:var(--info-bg);color:var(--info-text);}
+.bg{background:var(--success-bg);color:var(--success-text);}
+.ba{background:var(--warn-bg);color:var(--warn-text);}
+.br{background:var(--danger-bg);color:var(--danger-text);}
+.prog-bar{height:4px;background:var(--border);border-radius:2px;margin-bottom:4px;}
+.prog-fill{height:100%;background:var(--blue);border-radius:2px;transition:width .4s;}
+.prog-label{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.layer{display:flex;gap:12px;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);align-items:flex-start;margin-bottom:6px;}
+.lnum{font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;flex-shrink:0;margin-top:1px;}
+.lbody h4{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;}
+.lbody p{font-size:12px;color:var(--text2);line-height:1.55;}
+@media(max-width:600px){
+  .two-col,.three-col{grid-template-columns:1fr;}
+  .rk{min-width:110px;}
+  .tabs{overflow-x:auto;flex-wrap:nowrap;}
+  .tab-btn{white-space:nowrap;padding:8px 10px;font-size:12px;}
+  table{font-size:12px;}
+  th,td{padding:7px 8px;}
+}
+@media(max-width:400px){.r{flex-direction:column;gap:4px;}}
+
+.check-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text2);line-height:1.5;cursor:pointer;}
+.check-item:last-child{border-bottom:none;}
+.check-box{width:16px;height:16px;border:1px solid var(--border);border-radius:3px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .15s;background:var(--white);}
+.check-box.checked{background:var(--blue);border-color:var(--blue);}
+.check-box.checked::after{content:'\2713';color:white;font-size:10px;font-weight:700;}
+.check-text.done{text-decoration:line-through;opacity:.55;}
+.trap{border:1px solid var(--border);border-radius:var(--radius);padding:11px 14px;margin-bottom:8px;}
+.trap h4{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:6px;}
+.trap p{font-size:13px;color:var(--text2);line-height:1.55;}
+.tlabel{font-size:10px;font-weight:700;padding:1px 6px;border-radius:3px;background:var(--warn-bg);color:var(--warn-text);}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.bar-label{font-size:13px;color:var(--text2);min-width:0;flex:1;}
+.bar-bg{width:160px;height:8px;background:var(--border);border-radius:4px;overflow:hidden;flex-shrink:0;}
+.bar-fill{height:100%;border-radius:4px;}
+.bar-pct{font-size:12px;font-weight:600;color:var(--muted);min-width:36px;text-align:right;}
+.step{display:flex;gap:12px;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:8px;}
+.step-num{padding:10px 14px;font-size:12px;font-weight:600;color:var(--muted);background:var(--bg);min-width:64px;display:flex;align-items:center;border-right:1px solid var(--border);}
+.step-body{padding:10px 14px;font-size:13px;color:var(--text2);line-height:1.5;}
+.step-body strong{color:var(--text);font-weight:600;}
+@media(max-width:480px){
+  .bar-bg{width:80px;}
+  .bar-label{font-size:12px;}
+}
+
+  /* ── MOBILE FIXES ── */
+  .nav-tabs { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { white-space: nowrap; flex-shrink: 0; }
+
+  .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .compare-table { min-width: 500px; }
+
+  @media (max-width: 600px) {
+    .tool-grid { grid-template-columns: 1fr; }
+    .summary-grid { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .kv-row, .r { flex-direction: column; gap: 4px; }
+    .kv-key, .rk { min-width: unset; font-size: 12px; }
+    .term { flex-direction: column; gap: 3px; }
+    .term-word { min-width: unset; }
+    .card { padding: 0.875rem 1rem; }
+    .layer { padding: 10px 13px; }
+    .qa-question { padding: 10px 13px; font-size: 13px; }
+    .qa-answer { padding: 10px 13px; }
+    .tab-btn { padding: 7px 11px; font-size: 12px; }
+    .compare-table th, .compare-table td { padding: 7px 10px; font-size: 12px; }
+  }
+  @media (max-width: 400px) {
+    .card-title { font-size: 14px; }
+    .card-body { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="az900_index.html">Back</a>
+  <span class="htitle">Exam Readiness &amp; Final Review</span>
+  <span class="hbadge">All domains</span>
+</header>
+<main>
+<div class="exam-banner"><strong>Course complete.</strong> This guide ties everything together — exam blueprint, common traps, key comparison tables, and an interactive study checklist. Review this the night before your exam.</div>
+<div class="prog-bar"><div class="prog-fill" id="prog" style="width:20%"></div></div>
+<div class="prog-label" id="prog-label">1 of 5 sections visited</div>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="r1">Exam Blueprint</button>
+  <button class="tab-btn" data-tab="r2">Common Traps</button>
+  <button class="tab-btn" data-tab="r3">Key Comparisons</button>
+  <button class="tab-btn" data-tab="r4">Study Checklist</button>
+  <button class="tab-btn" data-tab="r5">Next Steps</button>
+</div>
+
+<div class="tab active" id="r1">
+<div class="card"><div class="card-title">Exam at a glance</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Passing score</div><div class="rv">700 out of 1000 points (70%)</div></div>
+<div class="r"><div class="rk">Question types</div><div class="rv">Multiple choice, multiple select, hotspot (click image), drag-and-drop matching, scenario-based. No coding, no hands-on labs.</div></div>
+<div class="r"><div class="rk">What you need</div><div class="rv">Define and describe Azure services. Know which service fits a scenario. Know how services compare. Understand when NOT to use something.</div></div>
+</div></div></div>
+<div class="card"><div class="card-title">Domain weights</div><div class="card-body" style="margin-bottom:12px;">
+<div class="bar-row"><div class="bar-label">Domain 1: Describe cloud concepts</div><div class="bar-bg"><div class="bar-fill" style="width:27%;background:var(--blue);"></div></div><div class="bar-pct">25–30%</div></div>
+<div class="bar-row"><div class="bar-label">Domain 2: Azure architecture and services</div><div class="bar-bg"><div class="bar-fill" style="width:38%;background:#854F0B;"></div></div><div class="bar-pct">35–40%</div></div>
+<div class="bar-row"><div class="bar-label">Domain 3: Azure management and governance</div><div class="bar-bg"><div class="bar-fill" style="width:32%;background:#3B6D11;"></div></div><div class="bar-pct">30–35%</div></div>
+</div></div>
+<div class="card"><div class="card-title">Domain 1 topics — Cloud Concepts (25–30%)</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Cloud computing</div><div class="rv">Definition, three resource types (compute/network/storage), third-party data centers.</div></div>
+<div class="r"><div class="rk">Cloud models</div><div class="rv">Private / Public / Hybrid — control, cost, use cases, analogies.</div></div>
+<div class="r"><div class="rk">CapEx vs OpEx</div><div class="rv">Cloud = OpEx. Consumption-based model. No idle hardware cost.</div></div>
+<div class="r"><div class="rk">8 cloud benefits</div><div class="rv">High availability, Scalability, Elasticity, Reliability, Predictability, Security, Governance, Manageability.</div></div>
+<div class="r"><div class="rk">IaaS / PaaS / SaaS</div><div class="rv">Shared responsibility model. Data + devices + user accounts are ALWAYS yours.</div></div>
+</div></div></div>
+<div class="card"><div class="card-title">Domain 2 topics — Architecture and Services (35–40%)</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Azure architecture</div><div class="rv">Regions (60+), availability zones (3 per region), region pairs (300+ miles), sovereign regions.</div></div>
+<div class="r"><div class="rk">Management hierarchy</div><div class="rv">Management groups → subscriptions → resource groups → resources. Policies inherit downward. Tags do NOT inherit.</div></div>
+<div class="r"><div class="rk">Compute</div><div class="rv">VMs, Scale Sets, Availability Sets, Virtual Desktop, App Service, Functions, ACI, Container Apps, AKS.</div></div>
+<div class="r"><div class="rk">Networking</div><div class="rv">VNets, NSGs, VNet peering (non-transitive), VPN Gateway (encrypted over internet), ExpressRoute (private, never touches internet).</div></div>
+<div class="r"><div class="rk">Storage</div><div class="rv">Blob, Files, Queue, Table, Disk. Redundancy: LRS/ZRS/GRS/GZRS. Access tiers: Hot/Cool/Cold/Archive.</div></div>
+<div class="r"><div class="rk">Identity</div><div class="rv">Entra ID, authentication vs authorization, MFA, SSO, Conditional Access, B2B vs B2C, RBAC 4 roles.</div></div>
+<div class="r"><div class="rk">Security</div><div class="rv">Defense in depth (7 layers), Zero Trust (3 principles), Defender for Cloud.</div></div>
+</div></div></div>
+<div class="card"><div class="card-title">Domain 3 topics — Management and Governance (30–35%)</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Cost factors</div><div class="rv">Resource type, consumption, geography, network traffic, billing zones, subscription type. Reserved Capacity = up to 72% savings.</div></div>
+<div class="r"><div class="rk">Cost tools</div><div class="rv">Pricing Calculator (before), Cost Management (after), TCO Calculator (migration decision). Tags for cost tracking — NOT inherited.</div></div>
+<div class="r"><div class="rk">Governance</div><div class="rv">Azure Policy (enforce config, inherited, deny is absolute), Resource Locks (Delete or Read-only, override RBAC, Contributor cannot remove), Microsoft Purview, Service Trust Portal.</div></div>
+<div class="r"><div class="rk">Deployment</div><div class="rv">Azure Portal, Cloud Shell, PowerShell, CLI, Azure Arc (extend to non-Azure), ARM (single control plane), ARM templates (JSON, IaC), Bicep (simpler, recommended).</div></div>
+<div class="r"><div class="rk">Monitoring</div><div class="rv">Azure Advisor (5 categories, proactive), Azure Status (global public), Service Health (personalized), Resource Health (individual), Azure Monitor (metrics, logs, alerts, action groups).</div></div>
+</div></div></div>
+</div>
+
+<div class="tab" id="r2">
+<div class="card"><div class="card-title">11 concepts that trip up most candidates</div><div class="card-body">Study these carefully — the exam regularly tests these exact distinctions.</div></div>
+<div class="trap"><h4><span class="tlabel">TRAP 1</span> Scalability vs Elasticity</h4><p>Scalability = the ability to adjust resources (can be manual). Vertical = resize one resource. Horizontal = add/remove instances. Elasticity = automatic scaling with no manual action. All elastic systems are scalable; not all scalable systems are elastic.</p></div>
+<div class="trap"><h4><span class="tlabel">TRAP 2</span> Availability Zones vs Availability Sets vs Region Pairs</h4><p>Availability Sets: rack-level failure protection within one data center (update + fault domains). Availability Zones: entire data center outage protection (3 separate buildings, same region). Region Pairs: region-wide disaster protection (two regions 300+ miles apart). Three completely different levels of protection.</p></div>
+<div class="trap"><h4><span class="tlabel">TRAP 3</span> Authentication vs Authorization</h4><p>Authentication (AuthN) = proving WHO you are (passport check). Authorization (AuthZ) = determining WHAT you can do (boarding pass check). Entra ID handles authentication. RBAC handles authorization. You always authenticate first.</p></div>
+<div class="trap"><h4><span class="tlabel">TRAP 4</span> Azure Policy vs Resource Locks</h4><p>Azure Policy: controls what resources CAN BE CREATED and how they must be configured. Resource Locks: prevent modification or deletion of EXISTING resources. Policy = configuration governance. Locks = deletion/modification protection. Both are inherited downward.</p></div>
+<div class="trap"><h4><span class="tlabel">TRAP 5</span> Tags are NOT inherited</h4><p>Unlike policies, RBAC, and resource locks — tags do NOT flow down the hierarchy. A tag on a resource group does NOT appear on resources inside it. Must be applied explicitly at each level, or Azure Policy must enforce auto-tagging.</p></div>
+<div class="trap"><h4><span class="tlabel">TRAP 6</span> Pricing Calculator vs Cost Management vs TCO Calculator</h4><p>Pricing Calculator: estimate BEFORE deployment (planning). Cost Management: monitor and control AFTER deployment (ongoing). TCO Calculator: compare on-premises vs Azure costs (migration decision). Three different tools for three different stages.</p></div>
+<div class="trap"><h4><span class="tlabel">TRAP 7</span> VPN Gateway vs ExpressRoute</h4><p>VPN Gateway: encrypted connection over the PUBLIC internet. Variable latency. Lower cost. ExpressRoute: PRIVATE dedicated circuit — never touches the public internet. Predictable low latency. Higher cost. "Never traverse the public internet" = ExpressRoute.</p></div>
+<div class="trap"><h4><span class="tlabel">TRAP 8</span> Azure Status vs Service Health vs Resource Health</h4><p>Azure Status: global, public, ALL Azure services/regions, no auth required. Service Health: authenticated, only YOUR services/regions, personalized, configurable alerts. Resource Health: health of YOUR specific individual resource instance. These are three scopes within Azure Service Health.</p></div>
+<div class="trap"><h4><span class="tlabel">TRAP 9</span> IaaS vs PaaS vs SaaS responsibility</h4><p>IaaS: provider manages physical hardware only. PaaS: provider manages hardware AND OS/middleware. SaaS: provider manages everything. Data + user accounts + devices are ALWAYS the customer's regardless of model — this never transfers to the provider.</p></div>
+<div class="trap"><h4><span class="tlabel">TRAP 10</span> Contributor cannot manage resource locks</h4><p>Contributor can create and manage all Azure resources but does NOT have the Microsoft.Authorization/locks/* permission. A Contributor cannot create or remove resource locks — only Owner and User Access Administrator can. A Contributor cannot delete a locked resource even if they have delete permission on it.</p></div>
+<div class="trap"><h4><span class="tlabel">TRAP 11</span> LRS vs ZRS vs GRS vs GZRS</h4><p>LRS: 3 copies in 1 data center — survives hardware failure only. ZRS: 3 copies across 3 zones — survives data center outage, not region failure. GRS: LRS primary + secondary region — survives region failure, not zone failure in primary. GZRS: ZRS primary + secondary region — survives BOTH zone and region failure (Microsoft recommended).</p></div>
+</div>
+
+<div class="tab" id="r3">
+<div class="card"><div class="card-title">Cloud models comparison</div><div class="card-body">
+<div class="table-wrap"><table><tr><th>Factor</th><th>Private</th><th>Public</th><th>Hybrid</th></tr>
+<tr><td>Owned by</td><td>The organization</td><td>Third-party provider</td><td>Both</td></tr>
+<tr><td>Cost model</td><td>High CapEx</td><td>Pay-as-you-go OpEx</td><td>Mix</td></tr>
+<tr><td>Control</td><td>Maximum</td><td>Limited</td><td>Mixed</td></tr>
+<tr><td>Scalability</td><td>Limited (buy hardware)</td><td>Near-instant</td><td>Flexible</td></tr>
+<tr><td>Analogy</td><td>Own a car</td><td>Take the bus</td><td>Drive to station, take the train</td></tr>
+</table></div></div></div>
+<div class="card"><div class="card-title">Shared responsibility — IaaS vs PaaS vs SaaS</div><div class="card-body">
+<div class="table-wrap"><table><tr><th>Layer</th><th>On-premises</th><th>IaaS</th><th>PaaS</th><th>SaaS</th></tr>
+<tr><td>Physical infrastructure</td><td>You</td><td>Provider</td><td>Provider</td><td>Provider</td></tr>
+<tr><td>Operating system</td><td>You</td><td>You</td><td>Provider</td><td>Provider</td></tr>
+<tr><td>Applications</td><td>You</td><td>You</td><td>You</td><td>Provider</td></tr>
+<tr><td>Data</td><td>You</td><td>You</td><td>You</td><td><strong>You — always</strong></td></tr>
+<tr><td>User accounts</td><td>You</td><td>You</td><td>You</td><td><strong>You — always</strong></td></tr>
+<tr><td>Devices</td><td>You</td><td>You</td><td>You</td><td><strong>You — always</strong></td></tr>
+</table></div></div></div>
+<div class="card"><div class="card-title">Storage redundancy — choose the right option</div><div class="card-body">
+<div class="table-wrap"><table><tr><th>Scenario</th><th>Best choice</th><th>Why</th></tr>
+<tr><td>Lowest cost, basic hardware protection only</td><td>LRS</td><td>3 copies in 1 data center, cheapest</td></tr>
+<tr><td>Survive a data center outage, stay in one region</td><td>ZRS</td><td>3 copies across 3 availability zones</td></tr>
+<tr><td>Survive a complete region failure</td><td>GRS</td><td>Secondary region copy (LRS in primary)</td></tr>
+<tr><td>Maximum: survive both zone AND region failure</td><td>GZRS</td><td>ZRS primary + secondary region — Microsoft recommended</td></tr>
+</table></div></div></div>
+<div class="card"><div class="card-title">Compute options — choose the right service</div><div class="card-body">
+<div class="table-wrap"><table><tr><th>Service</th><th>Model</th><th>Choose when</th></tr>
+<tr><td>Virtual Machines</td><td>IaaS</td><td>Full OS control, lift-and-shift, custom software</td></tr>
+<tr><td>VM Scale Sets</td><td>IaaS</td><td>Auto-scaling identical VMs under load, up to 1,000</td></tr>
+<tr><td>App Service</td><td>PaaS</td><td>Web apps / REST APIs — focus on code, not servers</td></tr>
+<tr><td>Azure Functions</td><td>PaaS (serverless)</td><td>Short event-driven tasks, pay per execution</td></tr>
+<tr><td>ACI</td><td>PaaS</td><td>Simplest container deployment, no orchestration</td></tr>
+<tr><td>Container Apps</td><td>PaaS (serverless)</td><td>Microservices, scale-to-zero containers</td></tr>
+<tr><td>AKS</td><td>PaaS</td><td>Production Kubernetes, team has K8s expertise</td></tr>
+</table></div></div></div>
+<div class="card"><div class="card-title">Governance tools comparison</div><div class="card-body">
+<div class="table-wrap"><table><tr><th>Tool</th><th>Purpose</th><th>Inherited?</th><th>Can Contributor bypass?</th></tr>
+<tr><td>Azure Policy</td><td>Enforce resource configuration standards</td><td>Yes</td><td>No — deny is absolute</td></tr>
+<tr><td>Delete lock</td><td>Prevent deletion of existing resources</td><td>Yes</td><td>No — cannot manage locks</td></tr>
+<tr><td>Read-only lock</td><td>Prevent modification AND deletion</td><td>Yes</td><td>No — cannot manage locks</td></tr>
+<tr><td>RBAC roles</td><td>Control what actions identities can perform</td><td>Yes</td><td>Overridden by locks</td></tr>
+<tr><td>Resource tags</td><td>Metadata for cost tracking and organization</td><td>No</td><td>N/A — not a security control</td></tr>
+</table></div></div></div>
+<div class="card"><div class="card-title">Monitoring tools comparison</div><div class="card-body">
+<div class="table-wrap"><table><tr><th>Tool</th><th>Use it when</th><th>Personalized?</th><th>Requires login?</th></tr>
+<tr><td>Azure Advisor</td><td>Want proactive optimization recommendations</td><td>Yes — your resources</td><td>Yes</td></tr>
+<tr><td>Azure Status</td><td>Check for widespread global Azure outage</td><td>No — all Azure</td><td>No (public)</td></tr>
+<tr><td>Service Health</td><td>Check if YOUR services/regions are affected</td><td>Yes — your services</td><td>Yes</td></tr>
+<tr><td>Resource Health</td><td>Check if a SPECIFIC resource is healthy</td><td>Yes — individual resource</td><td>Yes</td></tr>
+<tr><td>Azure Monitor</td><td>Collect metrics/logs, set alerts, automate responses</td><td>Yes — configurable</td><td>Yes</td></tr>
+</table></div></div></div>
+</div>
+
+<div class="tab" id="r4">
+<div class="card"><div class="card-title">Study checklist — click each item when you feel confident</div>
+<div class="card-body" id="checklist-body">
+<div id="checklist">
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I can define cloud computing and explain why organizations move to cloud</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I can distinguish Private, Public, and Hybrid cloud and give a use case for each</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I can explain CapEx vs OpEx and why cloud = OpEx (consumption-based)</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I know all 8 cloud benefits and can distinguish scalability from elasticity</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I understand IaaS / PaaS / SaaS and the shared responsibility model</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I can explain Azure regions, availability zones, region pairs, and sovereign regions</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I know the 4-level hierarchy and how policies/permissions inherit downward</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I can choose the right compute service for a given scenario</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I know VM Scale Sets vs Availability Sets and when to use each</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I understand VNets, NSGs, VNet peering, and can explain VPN Gateway vs ExpressRoute</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I know all 5 Azure storage services and when to use each</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I can choose the right redundancy option (LRS / ZRS / GRS / GZRS) for a scenario</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I know the 4 blob access tiers, their tradeoffs, and what Archive rehydration means</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I can explain Azure Migrate, Data Box, AzCopy, Storage Explorer, and File Sync</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I understand Entra ID, authentication vs authorization, MFA, SSO, Conditional Access</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I know the 4 RBAC roles and their exact distinctions (especially Contributor limitations)</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I can explain defense in depth (7 layers), Zero Trust (3 principles), Defender for Cloud</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I know the 6 Azure cost factors and savings strategies including Reserved Capacity</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I can distinguish Pricing Calculator, Cost Management, and TCO Calculator</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I understand resource tags and know that tags are NOT inherited</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I can explain Azure Policy (enforce config, inherited, initiatives, deny effect)</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I know resource locks (Delete vs Read-only, inherited, Contributor cannot remove)</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I understand Azure Arc (extends Azure management to non-Azure environments)</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I know ARM (single control plane), ARM templates (JSON IaC), and Bicep (simpler DSL)</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I can distinguish Azure Advisor, Azure Status, Service Health, Resource Health, and Azure Monitor</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I have completed the Microsoft Learn AZ-900 learning path (aka.ms/learn)</div></div>
+<div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-text">I have scored 70%+ on the official Microsoft free practice assessment</div></div>
+</div>
+<div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:13px;color:var(--text2);">
+  Progress: <span id="chk-count" style="font-weight:600;color:var(--text);">0</span> / 27 topics confident
+</div>
+</div></div>
+</div>
+
+<div class="tab" id="r5">
+<div class="card"><div class="card-title">Exam essentials before you book</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Passing score</div><div class="rv">700 out of 1000 (70%). Scaled scoring — not all questions carry equal weight.</div></div>
+<div class="r"><div class="rk">Question types</div><div class="rv">Multiple choice, multiple select, hotspot (click on image/diagram), drag-and-drop, case study scenarios. No coding required.</div></div>
+<div class="r"><div class="rk">Retake policy</div><div class="rv">If you fail: retake 24 hours after first attempt. Subsequent retakes require longer wait periods. No penalty for attempting — better to book and try than wait for "perfect."</div></div>
+<div class="r"><div class="rk">Registration tip</div><div class="rv">Register with a personal Microsoft Account (MSA), not a work/school Azure AD account. If you leave your organization, certification records tied to an organizational account may become inaccessible.</div></div>
+</div></div></div>
+<div class="card"><div class="card-title">Recommended study sequence</div><div class="card-body">
+<div class="step"><div class="step-num">Step 1</div><div class="step-body"><strong>Review all 6 study guides.</strong> Pay extra attention to the Review Q&amp;A tabs and Common Traps. Aim to explain every concept aloud without notes.</div></div>
+<div class="step"><div class="step-num">Step 2</div><div class="step-body"><strong>Complete the Microsoft Learn AZ-900 learning path</strong> at aka.ms/learn — free and structured around the same exam objectives. Knowledge checks align with exam question style.</div></div>
+<div class="step"><div class="step-num">Step 3</div><div class="step-body"><strong>Take the official free Microsoft practice assessment</strong> at learn.microsoft.com — shows actual question style, difficulty, and identifies gaps.</div></div>
+<div class="step"><div class="step-num">Step 4</div><div class="step-body"><strong>Practice on ExamTopics</strong> (examtopics.com/exams/microsoft/az-900) — community-verified questions. Read discussions on each question even when you get it right.</div></div>
+<div class="step"><div class="step-num">Step 5</div><div class="step-body"><strong>Review the Common Traps tab the night before.</strong> These are the distinctions most candidates miss. Fresh in memory = fewer mistakes on test day.</div></div>
+<div class="step"><div class="step-num">Step 6</div><div class="step-body"><strong>Book your exam</strong> at learn.microsoft.com. Available online proctored or testing center. Arrive rested. You've got this.</div></div>
+</div></div>
+<div class="card"><div class="card-title">After AZ-900 — what to study next</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">AZ-104</div><div class="rv">Azure Administrator — deep dive into managing Azure subscriptions, resources, networking, storage, compute, and identities. Next step for IT professionals managing Azure environments.</div></div>
+<div class="r"><div class="rk">AZ-204</div><div class="rv">Azure Developer — building cloud solutions, implementing APIs, managing Azure Functions, containers, and AI/cognitive services. For developers building on Azure.</div></div>
+<div class="r"><div class="rk">AI-900</div><div class="rv">Azure AI Fundamentals — foundational AI and ML concepts on Azure. Pairs well with AZ-900 as another fundamentals certification.</div></div>
+<div class="r"><div class="rk">SC-900</div><div class="rv">Security, Compliance and Identity Fundamentals — deeper focus on Microsoft security services. Builds on AZ-900 security topics.</div></div>
+</div></div></div>
+<div class="card"><div class="card-title">Key URLs to bookmark</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Microsoft Learn</div><div class="rv">aka.ms/learn — free self-paced learning paths</div></div>
+<div class="r"><div class="rk">Practice assessment</div><div class="rv">learn.microsoft.com/credentials/certifications/exams/az-900/practice/assessment</div></div>
+<div class="r"><div class="rk">Azure infrastructure map</div><div class="rv">datacenters.microsoft.com — interactive 3D globe of all Azure regions</div></div>
+<div class="r"><div class="rk">Pricing Calculator</div><div class="rv">azure.microsoft.com/pricing/calculator</div></div>
+<div class="r"><div class="rk">Service Trust Portal</div><div class="rv">servicetrust.microsoft.com — compliance documentation and audit reports</div></div>
+<div class="r"><div class="rk">ExamTopics</div><div class="rv">examtopics.com/exams/microsoft/az-900</div></div>
+</div></div></div>
+</div>
+
+</main>
+<script>
+const tabs=document.querySelectorAll('.tab-btn');
+const panels=document.querySelectorAll('.tab');
+const prog=document.getElementById('prog');
+const progLabel=document.getElementById('prog-label');
+const visited=new Set(['r1']);
+tabs.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    tabs.forEach(b=>b.classList.remove('active'));
+    panels.forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    const id=btn.dataset.tab;
+    document.getElementById(id).classList.add('active');
+    visited.add(id);
+    const pct=Math.round(visited.size/tabs.length*100);
+    prog.style.width=pct+'%';
+    progLabel.textContent=visited.size+' of '+tabs.length+' sections visited';
+  });
+});
+document.querySelectorAll('.acc-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    q.classList.toggle('open');
+    q.nextElementSibling.classList.toggle('open');
+  });
+});
+function chk(item){
+  const box=item.querySelector('.check-box');
+  const text=item.querySelector('.check-text');
+  box.classList.toggle('checked');
+  text.classList.toggle('done');
+  document.getElementById('chk-count').textContent=document.querySelectorAll('.check-box.checked').length;
+}
+</script>
+</body>
+</html>

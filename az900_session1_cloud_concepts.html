@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AZ-900 Session 1 — Cloud Concepts</title>
+<style>
+:root{--blue:#0078D4;--blue-dark:#005A9E;--blue-light:#EFF6FC;--blue-mid:#C7E0F4;--green:#107C10;--green-light:#EFF8EF;--green-mid:#9FD89F;--purple:#8764B8;--purple-light:#F4F0FA;--purple-mid:#C9B8E8;--orange:#D83B01;--orange-light:#FFF0EB;--orange-mid:#F7B89A;--pink:#B4009E;--pink-light:#FCF0FB;--pink-mid:#E5A8E4;--text:#201F1E;--text2:#484644;--muted:#797775;--border:#EDEBE9;--bg:#FAF9F8;--white:#fff;--radius:8px;--info-bg:#EFF6FC;--info-text:#004E8C;--success-bg:#EAF3DE;--success-text:#173404;--warn-bg:#FAEEDA;--warn-text:#412402;--danger-bg:#FCEBEB;--danger-text:#501313;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-text-size-adjust:100%;}
+header{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.25rem;display:flex;align-items:center;gap:10px;height:52px;position:sticky;top:0;z-index:100;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;white-space:nowrap;}
+.back:hover{text-decoration:underline;}
+.htitle{font-size:13px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.hbadge{margin-left:auto;font-size:11px;padding:2px 9px;border-radius:10px;font-weight:600;background:var(--blue-light);color:var(--blue-dark);border:1px solid var(--blue-mid);white-space:nowrap;flex-shrink:0;}
+.exam-banner{background:var(--info-bg);border-left:3px solid var(--blue);padding:10px 14px;margin-bottom:16px;font-size:13px;color:var(--info-text);line-height:1.5;}
+.exam-banner strong{font-weight:600;}
+main{max-width:900px;margin:0 auto;padding:2rem 1.25rem 4rem;}
+h1{font-size:clamp(1.3rem,3vw,1.8rem);font-weight:300;margin-bottom:6px;letter-spacing:-0.01em;}
+h1 strong{font-weight:700;}
+.subtitle{font-size:13px;color:var(--muted);margin-bottom:1.5rem;}
+.tabs{display:flex;gap:0;flex-wrap:wrap;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+.tab-btn{padding:8px 14px;font-size:13px;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s;border-radius:0;}
+.tab-btn:hover{color:var(--text);}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:600;}
+.tab{display:none;}.tab.active{display:block;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:12px;}
+.card-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;}
+.card-body{font-size:13px;color:var(--text2);line-height:1.7;}
+.kv{display:flex;flex-direction:column;}
+.r{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+.r:last-child{border-bottom:none;}
+.rk{font-size:13px;font-weight:600;color:var(--text);min-width:165px;flex-shrink:0;}
+.rv{font-size:13px;color:var(--text2);line-height:1.6;}
+table{width:100%;font-size:13px;border-collapse:collapse;margin-bottom:4px;}
+th{text-align:left;padding:8px 12px;font-weight:600;color:var(--text);font-size:12px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border);}
+td{padding:9px 12px;color:var(--text2);border-bottom:1px solid var(--border);vertical-align:top;line-height:1.55;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:var(--bg);}
+.acc{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:8px;}
+.acc-q{padding:12px 16px;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .15s;}
+.acc-q:hover{background:var(--bg);}
+.arr{transition:transform .2s;font-size:12px;color:var(--muted);flex-shrink:0;margin-left:10px;}
+.acc-q.open .arr{transform:rotate(180deg);}
+.acc-a{display:none;padding:12px 16px;font-size:13px;color:var(--text2);line-height:1.7;background:var(--bg);border-top:1px solid var(--border);}
+.acc-a.open{display:block;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.mc{padding:12px 14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--white);}
+.mc h4{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px;}
+.mc p,.mc li{font-size:13px;color:var(--text2);line-height:1.6;}
+.mc ul{padding-left:14px;}
+.why{background:var(--bg);border-left:3px solid var(--blue);padding:10px 14px;margin-top:10px;font-size:13px;color:var(--text2);line-height:1.5;}
+.why strong{color:var(--text);font-weight:600;}
+.scen{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:10px;}
+.scen-q{padding:11px 14px;background:var(--bg);font-size:13px;font-weight:600;color:var(--text);}
+.scen-a{padding:11px 14px;font-size:13px;color:var(--text2);line-height:1.6;border-top:1px solid var(--border);}
+.ans{font-weight:600;color:var(--blue);}
+.badge{font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600;display:inline-block;}
+.bi{background:var(--info-bg);color:var(--info-text);}
+.bg{background:var(--success-bg);color:var(--success-text);}
+.ba{background:var(--warn-bg);color:var(--warn-text);}
+.br{background:var(--danger-bg);color:var(--danger-text);}
+.prog-bar{height:4px;background:var(--border);border-radius:2px;margin-bottom:4px;}
+.prog-fill{height:100%;background:var(--blue);border-radius:2px;transition:width .4s;}
+.prog-label{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.layer{display:flex;gap:12px;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);align-items:flex-start;margin-bottom:6px;}
+.lnum{font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;flex-shrink:0;margin-top:1px;}
+.lbody h4{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;}
+.lbody p{font-size:12px;color:var(--text2);line-height:1.55;}
+@media(max-width:600px){
+  .two-col,.three-col{grid-template-columns:1fr;}
+  .rk{min-width:110px;}
+  .tabs{overflow-x:auto;flex-wrap:nowrap;}
+  .tab-btn{white-space:nowrap;padding:8px 10px;font-size:12px;}
+  table{font-size:12px;}
+  th,td{padding:7px 8px;}
+}
+@media(max-width:400px){.r{flex-direction:column;gap:4px;}}
+
+  /* ── MOBILE FIXES ── */
+  .nav-tabs { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { white-space: nowrap; flex-shrink: 0; }
+
+  .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .compare-table { min-width: 500px; }
+
+  @media (max-width: 600px) {
+    .tool-grid { grid-template-columns: 1fr; }
+    .summary-grid { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .kv-row, .r { flex-direction: column; gap: 4px; }
+    .kv-key, .rk { min-width: unset; font-size: 12px; }
+    .term { flex-direction: column; gap: 3px; }
+    .term-word { min-width: unset; }
+    .card { padding: 0.875rem 1rem; }
+    .layer { padding: 10px 13px; }
+    .qa-question { padding: 10px 13px; font-size: 13px; }
+    .qa-answer { padding: 10px 13px; }
+    .tab-btn { padding: 7px 11px; font-size: 12px; }
+    .compare-table th, .compare-table td { padding: 7px 10px; font-size: 12px; }
+  }
+  @media (max-width: 400px) {
+    .card-title { font-size: 14px; }
+    .card-body { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="az900_index.html">← Back</a>
+  <span class="htitle">Session 1 — Cloud Concepts</span>
+  <span class="hbadge">25–30% of exam</span>
+</header>
+<main>
+<h1>Cloud <strong>Concepts</strong></h1>
+<p class="subtitle">AZ-900 Session 1 · Covers the entire "Describe cloud concepts" domain</p>
+<div class="exam-banner"><strong>Exam domain: Describe cloud concepts — 25–30%.</strong> This session covers the full domain. Expect 8–12 questions on definitions, comparisons, and "which model fits" scenarios.</div>
+<div class="prog-bar"><div class="prog-fill" id="prog" style="width:17%"></div></div>
+<div class="prog-label" id="prog-label">1 of 6 sections visited</div>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="t1">Cloud Computing</button>
+  <button class="tab-btn" data-tab="t2">Cloud Models</button>
+  <button class="tab-btn" data-tab="t3">CapEx vs OpEx</button>
+  <button class="tab-btn" data-tab="t4">8 Benefits</button>
+  <button class="tab-btn" data-tab="t5">IaaS / PaaS / SaaS</button>
+  <button class="tab-btn" data-tab="t6">Review Q&amp;A</button>
+</div>
+
+<div class="tab active" id="t1">
+<div class="card"><div class="card-title">What is cloud computing?</div><div class="card-body">Cloud computing is the delivery of computing services over the internet — including compute, networking, and storage — enabling faster innovation, flexible resource allocation, and cost efficiency. Rather than owning and maintaining physical hardware, you rent infrastructure from a cloud provider whose data centers are operated worldwide.<div class="why"><strong>Exam tip:</strong> The three core resource types are compute (the brain — CPU/processing), networking (the circulatory system — data flow), and storage (the warehouse — data retention). Hosted by third-party providers in globally distributed data centers.</div></div></div>
+<div class="card"><div class="card-title">Why organizations move to the cloud</div><div class="card-body">Before cloud, owning and operating your own data center was the only option — large upfront hardware purchases, staff to maintain equipment, managing physical security, power and cooling, and full cost of upgrades. The cloud removes all of that overhead, allowing organizations of any size to access enterprise-grade infrastructure on demand, pay only for what they use, and focus on building products rather than maintaining servers.</div></div>
+</div>
+
+<div class="tab" id="t2">
+<div class="card"><div class="card-title">The three cloud deployment models</div><div class="card-body">
+<div class="table-wrap"><table><tr><th>Factor</th><th>Private</th><th>Public</th><th>Hybrid</th></tr>
+<tr><td>Owned by</td><td>The organization</td><td>Third-party provider</td><td>Both</td></tr>
+<tr><td>Cost model</td><td>High upfront CapEx</td><td>Pay-as-you-go OpEx</td><td>Mix of both</td></tr>
+<tr><td>Control</td><td>Maximum</td><td>Limited — no hardware access</td><td>Mixed</td></tr>
+<tr><td>Scalability</td><td>Limited — buy more hardware</td><td>Near-instant</td><td>Flexible — burst to public</td></tr>
+<tr><td>Best for</td><td>Regulated industries, data sovereignty</td><td>Variable workloads, startups</td><td>Migration phase, compliance split</td></tr>
+<tr><td>Analogy</td><td>Owning a car</td><td>Taking a bus</td><td>Drive to station, take the train</td></tr>
+</table></div>
+</div></div>
+<div class="card"><div class="card-title">Private cloud — deep dive</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Who controls it</div><div class="rv">The organization itself — full control over all hardware, software, access policies, and data governance.</div></div>
+<div class="r"><div class="rk">Cost structure</div><div class="rv">High upfront capital expenditure. Must purchase hardware, cables, racks, cooling, and security systems. Ongoing maintenance is also the organization's responsibility.</div></div>
+<div class="r"><div class="rk">Technical expertise</div><div class="rv">Required. The organization must hire and retain staff to set up, maintain, and troubleshoot all infrastructure. No "panic button" — if something breaks, your team fixes it.</div></div>
+<div class="r"><div class="rk">Best use cases</div><div class="rv">Highly regulated industries (defense, government, banking) where data sovereignty is non-negotiable. Organizations with consistent, predictable workloads that justify the investment.</div></div>
+<div class="r"><div class="rk">Key disadvantage</div><div class="rv">High overhead and responsibility. Scaling requires additional hardware purchases. Technology becomes obsolete. No elasticity — provision for peak and pay for idle capacity.</div></div>
+</div></div></div>
+<div class="card"><div class="card-title">Public cloud — deep dive</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Who controls it</div><div class="rv">The cloud provider (Microsoft, in the case of Azure). They manage all physical infrastructure, power, cooling, hardware maintenance, and data center security.</div></div>
+<div class="r"><div class="rk">Cost structure</div><div class="rv">Operational expenditure (OpEx). Pay-as-you-go — charged based on actual usage. No upfront hardware investment needed.</div></div>
+<div class="r"><div class="rk">Best use cases</div><div class="rv">Variable or unpredictable workloads, startups, development/test environments, applications needing global scale quickly, disaster recovery targets.</div></div>
+<div class="r"><div class="rk">Key advantage</div><div class="rv">No CapEx, instant scalability, global reach, no maintenance overhead. Resources can be provisioned in minutes and decommissioned just as quickly.</div></div>
+</div></div></div>
+<div class="card"><div class="card-title">Hybrid cloud — deep dive</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Real-world example</div><div class="rv">An accounting firm hosts its public-facing website on Azure (public cloud) for speed and accessibility, while connecting it to a secure on-premises database (private cloud) to comply with data governance regulations.</div></div>
+<div class="r"><div class="rk">Key advantage</div><div class="rv">Maximum flexibility. Keep sensitive regulated data on-premises while bursting workloads to the public cloud during peak demand. Enables a gradual migration path to the cloud.</div></div>
+<div class="r"><div class="rk">Key disadvantage</div><div class="rv">Most complex to manage. Requires integration between private and public environments, consistent security policies across both, and staff capable of managing both.</div></div>
+<div class="r"><div class="rk">Best use cases</div><div class="rv">Organizations mid-migration to cloud, regulated industries needing data locality, companies with legacy systems that cannot yet move to cloud, seasonal burst capacity.</div></div>
+</div></div></div>
+</div>
+
+<div class="tab" id="t3">
+<div class="card"><div class="card-title">Capital expenditure (CapEx) vs operational expenditure (OpEx)</div><div class="card-body">This distinction is one of the most commonly tested concepts on AZ-900.<div class="why" style="margin-top:10px;"><strong>Exam rule:</strong> Cloud computing = OpEx. On-premises hardware = CapEx. Always.</div></div></div>
+<div class="two-col">
+<div class="mc" style="border-color:var(--blue-mid)"><h4>CapEx — Capital Expenditure</h4><p>Large upfront investment in physical infrastructure. The cost is incurred once and the asset is owned by the organization.</p><ul style="margin-top:8px;"><li>Buying server racks, cables, wires</li><li>Building a dedicated network</li><li>Purchasing company laptops outright</li><li>Buying a new car</li></ul><p style="margin-top:8px;">Risk: technology becomes obsolete. A server bought today may be underpowered in 3 years. You've already paid.</p></div>
+<div class="mc" style="border-color:var(--green-mid)"><h4>OpEx — Operational Expenditure</h4><p>Ongoing spending on services over time. No large upfront cost — pay periodically for what you consume.</p><ul style="margin-top:8px;"><li>Monthly Azure subscription bill</li><li>Renting a convention center</li><li>Leasing a company car</li><li>SaaS software subscription</li></ul><p style="margin-top:8px;">Advantage: pay only for actual usage. Scale up when needed, scale down (or stop) when not. No sunk cost in idle hardware.</p></div>
+</div>
+<div class="card"><div class="card-title">Why cloud = OpEx — the consumption-based model</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">No idle cost</div><div class="rv">If you don't use any IT resources this month, you pay nothing. With on-premises hardware, you pay for power, cooling, and maintenance whether or not servers are running workloads.</div></div>
+<div class="r"><div class="rk">No hardware purchase</div><div class="rv">You never buy servers, cables, racks, or storage drives. The provider owns all physical assets. You consume capacity on demand.</div></div>
+<div class="r"><div class="rk">No facility costs</div><div class="rv">No paying for electricity, physical security, heating/cooling, or building space. All that is the provider's cost, rolled into service pricing.</div></div>
+<div class="r"><div class="rk">Flexible billing</div><div class="rv">Pay based on actual consumption — compute hours used, gigabytes stored, data transferred. As usage rises, costs rise proportionally. As usage drops, costs drop immediately.</div></div>
+</div></div></div>
+</div>
+
+<div class="tab" id="t4">
+<div class="card"><div class="card-title">The 8 key advantages of cloud computing</div><div class="card-body" style="margin-bottom:12px;">Each is testable on AZ-900. Know the definition, the mechanism, and a real example.</div></div>
+<div class="two-col">
+<div class="mc"><h4>1 — High availability</h4><p>Ensures maximum uptime regardless of component failures. Azure delivers this through Service Level Agreements (SLAs) guaranteeing specific uptime percentages. Redundant systems pick up automatically if one component fails.</p></div>
+<div class="mc"><h4>2 — Scalability</h4><p>Ability to adjust resources to meet demand. <strong>Vertical:</strong> increase/decrease resource capabilities (add RAM to a VM). <strong>Horizontal:</strong> add or remove instances (run 3 VMs instead of 1). Can be manual.</p></div>
+<div class="mc"><h4>3 — Elasticity</h4><p>Automatic scaling in response to demand — no manual intervention required. A toy store website automatically adds compute during holidays and scales back in January. Pay only for what's actually running.</p></div>
+<div class="mc"><h4>4 — Reliability</h4><p>Ability to recover from failures and continue operating. Azure deploys across regions worldwide — if one region has a catastrophic event, others continue. Applications can automatically fail over, sometimes without any customer action.</p></div>
+<div class="mc"><h4>5 — Predictability</h4><p><strong>Performance predictability:</strong> knowing your app responds consistently even during traffic spikes (auto-scaling, load balancing). <strong>Cost predictability:</strong> track spending in real time, set budgets, forecast future bills — no surprise hardware replacement costs.</p></div>
+<div class="mc"><h4>6 — Security</h4><p>Azure provides enterprise-grade security: data encryption at rest and in transit, identity and access management, continuous AI-powered threat monitoring, and dedicated security teams. Organizations benefit from Microsoft's security investment that most businesses couldn't replicate alone.</p></div>
+<div class="mc"><h4>7 — Governance</h4><p>Predefined templates ensure deployed resources follow approved configurations. Azure Policy automatically audits, enforces, or remediates non-compliant resources. Software patches can be applied automatically — no manual patching cycles.</p></div>
+<div class="mc"><h4>8 — Manageability</h4><p>Deploy from preconfigured templates (no manual setup), track resource health in a unified dashboard, automatically replace faulty resources, and receive alerts when metrics cross thresholds. Accessible via Portal, CLI, PowerShell, REST API, and mobile apps.</p></div>
+</div>
+<div class="why" style="margin-top:12px;"><strong>Exam trap:</strong> Scalability = manual resource adjustment. Elasticity = automatic scaling. All elastic systems are scalable — not all scalable systems are elastic. Also: reliability (failover/recovery) is different from high availability (uptime guarantees via SLA).</div>
+</div>
+
+<div class="tab" id="t5">
+<div class="card"><div class="card-title">The three cloud service models</div><div class="card-body">IaaS, PaaS, and SaaS represent different levels of abstraction. More provider management = less control, but easier to get started.<div class="why" style="margin-top:10px;"><strong>Pizza analogy:</strong> On-premises = cook from scratch. IaaS = ingredients delivered. PaaS = pizza delivered. SaaS = eat at a restaurant.</div></div></div>
+<div class="card"><div class="card-title">Shared responsibility model — who manages what</div><div class="card-body">
+<div class="table-wrap"><table><tr><th>Layer</th><th>On-premises</th><th>IaaS</th><th>PaaS</th><th>SaaS</th></tr>
+<tr><td>Physical data center</td><td>You</td><td>Provider</td><td>Provider</td><td>Provider</td></tr>
+<tr><td>Physical network</td><td>You</td><td>Provider</td><td>Provider</td><td>Provider</td></tr>
+<tr><td>Physical hosts / hardware</td><td>You</td><td>Provider</td><td>Provider</td><td>Provider</td></tr>
+<tr><td>Operating system</td><td>You</td><td>You</td><td>Provider</td><td>Provider</td></tr>
+<tr><td>Applications</td><td>You</td><td>You</td><td>You</td><td>Provider</td></tr>
+<tr><td>Data / information</td><td>You</td><td>You</td><td>You</td><td><strong>You — always</strong></td></tr>
+<tr><td>Devices (endpoints)</td><td>You</td><td>You</td><td>You</td><td><strong>You — always</strong></td></tr>
+<tr><td>User accounts</td><td>You</td><td>You</td><td>You</td><td><strong>You — always</strong></td></tr>
+</table></div>
+<div class="why" style="margin-top:10px;"><strong>Critical exam point:</strong> Data, user accounts, and devices are ALWAYS the customer's responsibility — regardless of IaaS, PaaS, or SaaS. These never transfer to the provider.</div>
+</div></div>
+<div class="card"><div class="card-title">IaaS — Infrastructure as a Service</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Provider manages</div><div class="rv">Physical hardware, data center security, power/cooling, and physical network connectivity. Everything you can touch in a data center.</div></div>
+<div class="r"><div class="rk">You manage</div><div class="rv">OS installation and patching, middleware, applications, network settings, storage management, database installations. Full control, full responsibility above the hardware layer.</div></div>
+<div class="r"><div class="rk">Best use cases</div><div class="rv">Lift-and-shift migrations, test/dev environments, high-performance computing, backup and disaster recovery, workloads needing specific OS configurations.</div></div>
+<div class="r"><div class="rk">Azure examples</div><div class="rv">Azure Virtual Machines, Azure Virtual Networks, Azure Disk Storage, Azure Load Balancer.</div></div>
+</div></div></div>
+<div class="card"><div class="card-title">PaaS — Platform as a Service</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Provider manages</div><div class="rv">Everything in IaaS, plus: the OS and its patches, middleware, runtime environments, database engines and licensing, development tools, and scaling infrastructure.</div></div>
+<div class="r"><div class="rk">You manage</div><div class="rv">Your application code, application configurations, and your data. No OS patching, no database engine licensing or patching.</div></div>
+<div class="r"><div class="rk">Best use cases</div><div class="rv">Web application development, API development, rapid prototyping. Supports full app lifecycle: development, testing, deployment, management, and updates.</div></div>
+<div class="r"><div class="rk">Azure examples</div><div class="rv">Azure App Service, Azure SQL Database, Azure Functions, Azure Kubernetes Service.</div></div>
+</div></div></div>
+<div class="card"><div class="card-title">SaaS — Software as a Service</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Provider manages</div><div class="rv">Everything — physical infrastructure, OS, application code, databases, updates, patches, availability, and scaling. The entire stack beneath your data.</div></div>
+<div class="r"><div class="rk">You manage</div><div class="rv">Only three things: the data you put into the system, the devices used to access it, and the user accounts and permissions you grant.</div></div>
+<div class="r"><div class="rk">Best use cases</div><div class="rv">Collaboration tools, email, CRM, HR systems, financial software — any situation where you need a fully functional application with no IT team to build it.</div></div>
+<div class="r"><div class="rk">Real examples</div><div class="rv">Microsoft 365 (Outlook, Word, Teams), Salesforce, Mailchimp, Dynamics 365, Dropbox, Zoom — all subscription-based, fully managed applications.</div></div>
+</div></div></div>
+</div>
+
+<div class="tab" id="t6">
+<div class="card"><div class="card-title">Key terms — flash reference</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Cloud computing</div><div class="rv">Delivery of computing services (compute, networking, storage) over the internet. Hosted by third-party providers in globally distributed data centers.</div></div>
+<div class="r"><div class="rk">Private cloud</div><div class="rv">Owned and operated exclusively by one organization. Full control, full responsibility, high CapEx. No external access required.</div></div>
+<div class="r"><div class="rk">Public cloud</div><div class="rv">Built and maintained by a third-party provider. Open to anyone. Pay-as-you-go OpEx. No infrastructure management for the customer.</div></div>
+<div class="r"><div class="rk">Hybrid cloud</div><div class="rv">Combines private and public cloud. Maximum flexibility, most complex to manage.</div></div>
+<div class="r"><div class="rk">CapEx</div><div class="rv">Capital expenditure — large upfront investment in physical assets. On-premises hardware = CapEx.</div></div>
+<div class="r"><div class="rk">OpEx</div><div class="rv">Operational expenditure — ongoing pay-as-you-go spending. Cloud = OpEx. Pay only for what you consume.</div></div>
+<div class="r"><div class="rk">High availability</div><div class="rv">Guaranteed uptime through SLAs. Redundant systems ensure service continues if components fail.</div></div>
+<div class="r"><div class="rk">Scalability</div><div class="rv">Manual resource adjustment. Vertical = resize. Horizontal = add/remove instances.</div></div>
+<div class="r"><div class="rk">Elasticity</div><div class="rv">Automatic scaling without manual intervention.</div></div>
+<div class="r"><div class="rk">Reliability</div><div class="rv">Recovery from failures via geographic distribution and automatic failover.</div></div>
+<div class="r"><div class="rk">IaaS</div><div class="rv">Provider manages hardware. You manage OS, apps, and data. Maximum control.</div></div>
+<div class="r"><div class="rk">PaaS</div><div class="rv">Provider manages hardware and OS. You manage app and data only.</div></div>
+<div class="r"><div class="rk">SaaS</div><div class="rv">Provider manages everything. You manage data, devices, user accounts only.</div></div>
+<div class="r"><div class="rk">Shared responsibility</div><div class="rv">Data + devices + user accounts are ALWAYS the customer's responsibility regardless of service model.</div></div>
+</div></div></div>
+<div class="scen"><div class="scen-q">A healthcare company must keep patient data on their own infrastructure for compliance, but wants to host their public appointment website on a faster platform. Which cloud model fits?</div><div class="scen-a"><span class="ans">Hybrid cloud.</span> Patient data stays in the private cloud (compliance). The public-facing website is hosted on Azure (public cloud) for speed and scalability. Hybrid connects the two environments.</div></div>
+<div class="scen"><div class="scen-q">A company is evaluating whether to build an on-premises data center or move to Azure. How would you explain the cost structure difference?</div><div class="scen-a"><span class="ans">On-premises = CapEx. Azure = OpEx.</span> Building on-premises requires large upfront capital — servers, racks, cables, facility. Azure operates on an operational expenditure model — pay monthly based on actual consumption. No upfront investment, no idle capacity cost.</div></div>
+<div class="scen"><div class="scen-q">A retail company has huge traffic spikes every December but normal traffic the rest of the year. Which cloud benefit is most relevant?</div><div class="scen-a"><span class="ans">Elasticity.</span> Elasticity automatically scales resources up during December spikes and back down in January — paying only for the additional capacity during the months it's actually used.</div></div>
+<div class="acc"><div class="acc-q">What is the difference between scalability and elasticity?<span class="arr">▼</span></div><div class="acc-a">Scalability is the ability to adjust resources to meet demand — but this can be manual. Vertical scaling = increasing or decreasing a single resource's capacity (e.g. giving a VM more RAM). Horizontal scaling = adding or removing instances (e.g. running 3 VMs instead of 1). Elasticity is automatic scalability — the system responds to demand changes without human intervention based on real-time metrics. All elastic systems are scalable; not all scalable systems are elastic. Azure VM Scale Sets provide elasticity; manually resizing a VM is scalability but not elasticity.</div></div>
+<div class="acc"><div class="acc-q">What three things are always the customer's responsibility in the shared responsibility model?<span class="arr">▼</span></div><div class="acc-a">Regardless of which service model (IaaS, PaaS, or SaaS) is used, customers are always responsible for: (1) Their data and information — classification, handling, and protection policies. (2) User accounts and identities — who has access, what permissions, and ensuring accounts are managed. (3) End-user devices — the laptops, phones, and tablets connecting to services. These never transfer to the provider under any model.</div></div>
+<div class="acc"><div class="acc-q">A startup wants to launch a mobile app backend paying only for API calls when users make requests. Which service model and compute type fits?<span class="arr">▼</span></div><div class="acc-a">PaaS — specifically Azure Functions (serverless). The startup doesn't want to manage servers or OS (eliminating IaaS). They don't need a fully ready-made application (eliminating SaaS). Azure Functions under PaaS lets them deploy code that triggers on API calls and charges only per execution. If no users call the API, they pay nothing — the perfect consumption-based OpEx model.</div></div>
+</div>
+</main>
+
+<script>
+const tabs=document.querySelectorAll('.tab-btn');
+const panels=document.querySelectorAll('.tab');
+const prog=document.getElementById('prog');
+const progLabel=document.getElementById('prog-label');
+const visited=new Set();
+tabs.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    tabs.forEach(b=>b.classList.remove('active'));
+    panels.forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    const id=btn.dataset.tab;
+    document.getElementById(id).classList.add('active');
+    visited.add(id);
+    if(prog){const pct=Math.round(visited.size/tabs.length*100);prog.style.width=pct+'%';progLabel.textContent=visited.size+' of '+tabs.length+' sections visited';}
+  });
+});
+if(tabs.length>0){visited.add(tabs[0].dataset.tab);}
+document.querySelectorAll('.acc-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    q.classList.toggle('open');
+    q.nextElementSibling.classList.toggle('open');
+  });
+});
+</script>
+
+</body>
+</html>
