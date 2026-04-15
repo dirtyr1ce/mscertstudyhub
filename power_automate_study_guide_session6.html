@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PL-900 — Session 6 — Power Automate</title>
+<style>
+
+:root{--blue:#0078D4;--blue-dark:#005A9E;--blue-light:#EFF6FC;--blue-mid:#C7E0F4;--text:#201F1E;--text2:#484644;--muted:#797775;--border:#EDEBE9;--bg:#FAF9F8;--white:#fff;--radius:8px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-text-size-adjust:100%;}
+header{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.25rem;display:flex;align-items:center;gap:10px;height:52px;position:sticky;top:0;z-index:100;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;white-space:nowrap;flex-shrink:0;}
+.back:hover{text-decoration:underline;}
+.htitle{font-size:13px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.hbadge{margin-left:auto;font-size:11px;padding:2px 9px;border-radius:10px;font-weight:600;background:var(--blue-light);color:var(--blue-dark);border:1px solid var(--blue-mid);white-space:nowrap;flex-shrink:0;}
+.content-wrap{max-width:900px;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+@media(max-width:480px){
+  .htitle{font-size:12px;}
+  .content-wrap{padding:1rem 1rem 3rem;}
+}
+
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="index.html">← Back</a>
+  <span class="htitle">PL-900 — Session 6 — Power Automate</span>
+  <span class="hbadge">Exam weight: 15–20%</span>
+</header>
+<div class="content-wrap">
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.container { padding: 1rem 0; font-family: 'Segoe UI', -apple-system, sans-serif; }
+.header { margin-bottom: 1.5rem; }
+.header h1 { font-size: 20px; font-weight: 500; color: var(--text); }
+.header p { font-size: 13px; color: var(--text2); margin-top: 4px; }
+.progress-bar { height: 4px; background: var(--border); border-radius: 2px; margin-top: 12px; }
+.progress-fill { height: 100%; background: #0078D4; border-radius: 2px; transition: width 0.4s ease; }
+.progress-label { font-size: 12px; color: var(--text2); margin-top: 4px; }
+.nav-tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 1.5rem; border-bottom: 0.5px solid var(--border); }
+.tab-btn { padding: 8px 14px; font-size: 13px; font-weight: 400; border: none; background: transparent; cursor: pointer; color: var(--text2); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.15s; border-radius: 0; }
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: #0078D4; border-bottom-color: #0078D4; font-weight: 500; }
+.section { display: none; }
+.section.active { display: block; }
+.card { background: var(--white); border: 0.5px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 12px; }
+.card-title { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+.card-body { font-size: 13px; color: var(--text2); line-height: 1.6; }
+.badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; display: inline-block; }
+.badge-blue { background: var(--blue-light); color: var(--blue-dark); }
+.badge-green { background: #EAF3DE; color: #173404; }
+.badge-amber { background: #FAEEDA; color: #412402; }
+.badge-red { background: #FCEBEB; color: #501313; }
+.key-terms { display: flex; flex-direction: column; }
+.term { display: flex; gap: 12px; padding: 10px 0; border-bottom: 0.5px solid var(--border); align-items: flex-start; }
+.term:last-child { border-bottom: none; }
+.term-word { font-size: 13px; font-weight: 500; color: var(--text); min-width: 160px; flex-shrink: 0; }
+.term-def { font-size: 13px; color: var(--text2); line-height: 1.5; }
+.compare-table { width: 100%; font-size: 13px; border-collapse: collapse; }
+.compare-table th { text-align: left; padding: 8px 12px; font-weight: 500; color: var(--text); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 0.5px solid var(--border); }
+.compare-table td { padding: 8px 12px; color: var(--text2); border-bottom: 0.5px solid var(--border); vertical-align: top; font-size: 13px; }
+.compare-table tr:last-child td { border-bottom: none; }
+.accordion-item { border: 0.5px solid var(--border); border-radius: 6px; overflow: hidden; margin-bottom: 8px; }
+.accordion-q { padding: 12px 16px; font-size: 14px; font-weight: 500; color: var(--text); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.15s; }
+.accordion-q:hover { background: var(--bg); }
+.accordion-q .arrow { transition: transform 0.2s; font-size: 12px; color: var(--text2); }
+.accordion-q.open .arrow { transform: rotate(180deg); }
+.accordion-a { display: none; padding: 12px 16px; font-size: 13px; color: var(--text2); line-height: 1.6; background: var(--bg); border-top: 0.5px solid var(--border); }
+.accordion-a.open { display: block; }
+.flow-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.flow-card { border-radius: 6px; padding: 12px 14px; border: 0.5px solid; }
+.flow-card h4 { font-size: 13px; font-weight: 500; margin-bottom: 5px; }
+.flow-card p { font-size: 12px; opacity: 0.8; line-height: 1.5; }
+.f-instant { background: #E6F1FB; border-color: #B5D4F4; color: #042C53; }
+.f-auto { background: #EAF3DE; border-color: #C0DD97; color: #173404; }
+.f-sched { background: #FAEEDA; border-color: #FAC775; color: #412402; }
+.f-desktop { background: #EEEDFE; border-color: #CECBF6; color: #26215C; }
+.f-gen { background: #E1F5EE; border-color: #9FE1CB; color: #04342C; }
+.step-list { display: flex; flex-direction: column; }
+.step-item { display: flex; gap: 14px; padding: 12px 0; border-bottom: 0.5px solid var(--border); align-items: flex-start; }
+.step-item:last-child { border-bottom: none; }
+.step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--blue-light); color: var(--blue-dark); font-size: 13px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-body h4 { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.step-body p { font-size: 13px; color: var(--text2); line-height: 1.5; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mini-card { padding: 12px 14px; border: 0.5px solid var(--border); border-radius: 6px; background: var(--white); }
+.mini-card h4 { font-size: 12px; font-weight: 500; color: var(--text2); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+.mini-card ul { padding-left: 14px; font-size: 13px; color: var(--text2); line-height: 1.7; }
+.approval-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ap-card { padding: 12px 14px; border: 0.5px solid var(--border); border-radius: 6px; }
+.ap-card h4 { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+.ap-card p { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+  /* ── MOBILE FIXES ── */
+  .nav-tabs { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { white-space: nowrap; flex-shrink: 0; }
+
+  .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .compare-table { min-width: 500px; }
+
+  @media (max-width: 600px) {
+    .tool-grid { grid-template-columns: 1fr; }
+    .summary-grid { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .kv-row, .r { flex-direction: column; gap: 4px; }
+    .kv-key, .rk { min-width: unset; font-size: 12px; }
+    .term { flex-direction: column; gap: 3px; }
+    .term-word { min-width: unset; }
+    .card { padding: 0.875rem 1rem; }
+    .layer { padding: 10px 13px; }
+    .qa-question { padding: 10px 13px; font-size: 13px; }
+    .qa-answer { padding: 10px 13px; }
+    .tab-btn { padding: 7px 11px; font-size: 12px; }
+    .compare-table th, .compare-table td { padding: 7px 10px; font-size: 12px; }
+  }
+  @media (max-width: 400px) {
+    .card-title { font-size: 14px; }
+    .card-body { font-size: 12px; }
+  }
+</style>
+
+<div class="container">
+  <div class="header">
+    <h1>Microsoft Power Automate</h1>
+    <p>Session 6 (Final) — Based on the course by Barbara Andrews, Lead Microsoft Technical Trainer</p>
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width:17%"></div></div>
+    <div class="progress-label" id="progress-label">1 of 6 sections visited</div>
+  </div>
+
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('overview',this)">Overview & Flow Types</button>
+    <button class="tab-btn" onclick="showTab('building',this)">Building Blocks</button>
+    <button class="tab-btn" onclick="showTab('advanced',this)">Advanced Features</button>
+    <button class="tab-btn" onclick="showTab('manage',this)">Test, Share & Monitor</button>
+    <button class="tab-btn" onclick="showTab('lab',this)">Lab Walkthrough</button>
+    <button class="tab-btn" onclick="showTab('review',this)">Review Q&A</button>
+  </div>
+
+  <!-- TAB 1: OVERVIEW & FLOW TYPES -->
+  <div id="tab-overview" class="section active">
+    <div class="card">
+      <div class="card-title">What is Microsoft Power Automate?</div>
+      <div class="card-body">A platform that empowers users to build repeatable flows that trigger automatically and execute business processes with precision. Accessible at <span style="font-family:'Consolas', 'Courier New', monospace;font-size:12px;">make.powerautomate.com</span>. Key capabilities: automate repetitive tasks, guide users through multi-step processes, connect to external data via hundreds of connectors/APIs, and automate desktop tasks using Robotic Process Automation (RPA).</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">5 Flow Types</div>
+      <div class="card-body" style="margin-bottom:12px;">According to Microsoft Learn, there are three primary types (Cloud, Desktop, Generative Actions) with Cloud flows having three subtypes.</div>
+      <div class="flow-grid">
+        <div class="flow-card f-instant"><h4>⚡ Instant (Cloud)</h4><p>Manually triggered via a button — in a mobile app, Power App, or physical IoT button. Perfect for on-demand tasks.</p></div>
+        <div class="flow-card f-auto"><h4>🔔 Automated (Cloud)</h4><p>Responds to events: new email, updated record, file added to SharePoint. Event-driven and hands-free.</p></div>
+        <div class="flow-card f-sched"><h4>📅 Scheduled (Cloud)</h4><p>Runs at set intervals (e.g., every 2 weeks on Tuesdays at 10am). Ideal for reports, data syncs, reminders.</p></div>
+        <div class="flow-card f-desktop"><h4>🖥️ Desktop (RPA)</h4><p>Replicates user actions on a desktop or browser. Essential for legacy systems lacking APIs. Can record and replay.</p></div>
+        <div class="flow-card f-gen"><h4>🤖 Generative Actions (Preview)</h4><p>User specifies intent; AI determines the optimal action sequence. Makes automation more accessible and intuitive.</p></div>
+      </div>
+      <div class="card-body" style="margin-top:4px;">Cloud flows also appear as <strong style="color:var(--text);">My Flows</strong> (single owner) or <strong style="color:var(--text);">Team Flows</strong> (shared ownership for collaboration).</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Process Mining in Power Automate</div>
+      <div class="card-body">Extracts event data from systems of record and visualizes end-to-end business processes. Enables users to customize reports, compare workflows, pinpoint inefficiencies, and monitor KPIs — without disrupting existing systems.
+        <div class="key-terms" style="margin-top:10px;">
+          <div class="term"><div class="term-word">Operational efficiency</div><div class="term-def">Identifies bottlenecks and streamlines tasks across workflows.</div></div>
+          <div class="term"><div class="term-word">Customer experience</div><div class="term-def">Eliminates pain points that slow down service delivery.</div></div>
+          <div class="term"><div class="term-word">Compliance</div><div class="term-def">Flags non-conforming processes and enables corrective action.</div></div>
+          <div class="term"><div class="term-word">Resource optimization</div><div class="term-def">Improves allocation through data-driven automation decisions. Example: warehouse managers monitor material flow and adjust stock levels proactively.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Flow Templates — Fast Starting Point</div>
+      <div class="card-body">The Power Automate homepage features a Templates section. Search by keyword or browse by category to find pre-built flows for common business scenarios. Each template shows which data sources it connects to. Example: "Save Office 365 Email Attachments to OneDrive for Business" — search → view details → Create Flow. Reduces manual effort and ensures consistent data storage.</div>
+    </div>
+  </div>
+
+  <!-- TAB 2: BUILDING BLOCKS -->
+  <div id="tab-building" class="section">
+    <div class="card">
+      <div class="card-title">The 3 Core Building Blocks</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Trigger</div><div class="term-def">The event that kicks off a flow. Examples: new email received, file added to SharePoint, item added to a list. Eliminates manual monitoring — flows respond instantly to real-world events.</div></div>
+          <div class="term"><div class="term-word">Action</div><div class="term-def">What happens after the trigger. Examples: create a file in OneDrive, send an approval request, update a record in Dynamics 365. Can be chained in sequence.</div></div>
+          <div class="term"><div class="term-word">Connector</div><div class="term-def">The bridge that binds Power Automate to external services (Outlook, Teams, SharePoint, Salesforce, Dataverse, and 1,400+ more). Enables triggers and actions to interact with data across platforms without writing code.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">3 Trigger Types</div>
+      <div class="card-body">
+        <div class="table-wrap"><table class="compare-table">
+          <tr><th>Trigger type</th><th>Activates when</th><th>Best for</th><th>Example</th></tr>
+          <tr><td>Data change</td><td>A record is added, modified, or deleted</td><td>Real-time updates and notifications</td><td>New item in SharePoint list → notify team in Teams</td></tr>
+          <tr><td>Scheduled</td><td>A set time interval is reached</td><td>Routine recurring tasks</td><td>Every morning, check for pending account renewals and send alerts</td></tr>
+          <tr><td>Button press</td><td>User manually triggers via mobile app, Power App, or IoT button</td><td>On-demand tasks for field workers</td><td>Technician taps a button to log a service request instantly</td></tr>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Dynamic Content</div>
+      <div class="card-body">Enables intelligent, responsive workflows that adapt to real-time inputs. Dynamic fields (like "Body," "Subject," or "Sender" from an email trigger) are mapped to actions — so each flow run uses live data from that specific trigger event.
+        <div class="key-terms" style="margin-top:10px;">
+          <div class="term"><div class="term-word">How it works</div><div class="term-def">Select relevant fields from triggers (using the lightning bolt icon or dynamic content panel) and map them to action parameters. Each action uses the actual live values from that specific flow run.</div></div>
+          <div class="term"><div class="term-word">Use cases</div><div class="term-def">Invoice approvals (subject/body from email), customer service automation (live ticket data), personalized marketing campaigns (recipient-specific data).</div></div>
+          <div class="term"><div class="term-word">Benefits</div><div class="term-def">Reduces human error, speeds up decision making, enhances scalability. Eliminates manual review of each item.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Desktop Flow Action Categories (Power Automate Desktop)</div>
+      <div class="card-body">
+        <div class="two-col">
+          <div class="mini-card"><h4>Core automation</h4><ul><li>File and folder actions — create, copy, move, delete</li><li>Web automation — browser tasks when APIs unavailable</li><li>UI automation — simulate clicks, text entry in desktop apps</li><li>Email actions — send/receive, approval notifications</li></ul></div>
+          <div class="mini-card"><h4>Data & logic</h4><ul><li>Excel actions — read/write spreadsheets, data migration</li><li>System actions — launch apps, restart PC</li><li>Conditionals and loops — decision making, repetition</li><li>Variables — store and transform data during execution</li></ul></div>
+          <div class="mini-card"><h4>Advanced</h4><ul><li>Scripting — Python or JavaScript for extended logic</li><li>Custom code — integrate specialized functionality</li><li>AI capabilities — generative actions, document processing</li></ul></div>
+          <div class="mini-card"><h4>Record with Copilot</h4><ul><li>Narrate and demonstrate a process once</li><li>Copilot watches, listens, generates a desktop flow</li><li>Review, edit, and customize before deploying</li><li>Ideal for legacy system automation and training</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: ADVANCED FEATURES -->
+  <div id="tab-advanced" class="section">
+    <div class="card">
+      <div class="card-title">Loops & Branching</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Loops</div><div class="term-def">Repeat actions across multiple items. Ideal for bulk operations: iterating a SharePoint list of leads to send tailored follow-ups, processing customer orders, or generating daily reports. Essential when working with large datasets.</div></div>
+          <div class="term"><div class="term-word">Branching (conditions)</div><div class="term-def">Introduces conditional logic — the flow makes decisions dynamically. Example: if an invoice amount exceeds a threshold, route to a manager; otherwise, proceed to payment. HR can route job applications based on location or qualifications.</div></div>
+          <div class="term"><div class="term-word">Combined power</div><div class="term-def">Loops + branching make workflows adaptive to real-world conditions. Example: loop through orders, branch per order based on status — approved orders trigger one path, rejected orders trigger another.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Approval Actions — 4 Types</div>
+      <div class="card-body">
+        <div class="approval-grid">
+          <div class="ap-card"><h4>✅ Everyone must approve</h4><p>All approvers must agree — a single rejection halts the process. Ideal for legal contracts, compliance reviews.</p></div>
+          <div class="ap-card"><h4>⚡ First to respond</h4><p>First approver's input finalizes the decision. Perfect for budget approvals or urgent requests where speed matters.</p></div>
+          <div class="ap-card"><h4>💬 Custom responses</h4><p>Tailored options beyond approve/reject — e.g., "request more information." Useful for IT or procurement teams needing detailed feedback.</p></div>
+          <div class="ap-card"><h4>⏳ Wait for responses</h4><p>Collects every approver's input. Ideal for hiring panels or cross-functional reviews where collective feedback is essential.</p></div>
+        </div>
+        <div class="key-terms" style="margin-top:12px;">
+          <div class="term"><div class="term-word">Key approval actions</div><div class="term-def">"Create an approval," "Start and wait for an approval," "Wait for an approval" — offer control over how approvals are initiated and tracked. The flow pauses until approval is received before executing downstream actions.</div></div>
+          <div class="term"><div class="term-word">Real-world example</div><div class="term-def">A flow saves email attachments to OneDrive only after a manager approves the request — the pause-and-resume capability prevents premature actions.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Copilot in Power Automate</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Build flows via natural language</div><div class="term-def">Describe what you want (e.g., "save email attachments to OneDrive") and Copilot generates the complete flow — triggers, actions, and parameters auto-configured. No need to know which connector to use.</div></div>
+          <div class="term"><div class="term-word">Troubleshoot failing flows</div><div class="term-def">Ask Copilot what went wrong in a failing flow — receive actionable suggestions like updating a connector or adjusting permissions. Reduces downtime.</div></div>
+          <div class="term"><div class="term-word">Answer product questions</div><div class="term-def">Built-in support resource for questions like "how do I access trial flows?" or "what licenses do I need?" — without leaving the interface.</div></div>
+          <div class="term"><div class="term-word">Record with Copilot (Desktop)</div><div class="term-def">Narrate and demonstrate a desktop task once — Copilot tracks mouse movements, keyboard inputs, and spoken instructions, then generates a reusable desktop flow. Review and edit before deployment.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Scheduled Flows & Compose Action</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Recurring flow setup</div><div class="term-def">Set interval (e.g., "2") + frequency (e.g., "Week") to run every two weeks. Specify exact day and time (e.g., Tuesdays at 10am Pacific). Interface provides a plain-language summary to confirm the configuration.</div></div>
+          <div class="term"><div class="term-word">Advanced options</div><div class="term-def">Set a "start no earlier than" date/time for precise scheduling (e.g., noon, February 16th).</div></div>
+          <div class="term"><div class="term-word">Compose action</div><div class="term-def">Under Data Operations — lets you reuse static data across multiple flow steps. Eliminates redundancy and improves maintainability in complex flows that reference the same values repeatedly.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 4: TEST, SHARE & MONITOR -->
+  <div id="tab-manage" class="section">
+    <div class="card">
+      <div class="card-title">Flow Checker — Catch Issues Early</div>
+      <div class="card-body">Built-in tool that analyzes your flow in real time as you build. Flags problems before deployment.
+        <div class="key-terms" style="margin-top:10px;">
+          <div class="term"><div class="term-word">Errors <span class="badge badge-red">Critical</span></div><div class="term-def">Problems that will cause the flow to fail. Examples: missing required field, invalid expression, misconfigured connector. Must be resolved before the flow will run.</div></div>
+          <div class="term"><div class="term-word">Warnings <span class="badge badge-amber">Non-critical</span></div><div class="term-def">Potential performance concerns or configuration quirks. Examples: a slow query, a condition that may not behave as expected. Don't prevent running but affect efficiency or reliability.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Testing Methods</div>
+      <div class="card-body">
+        <div class="table-wrap"><table class="compare-table">
+          <tr><th>Method</th><th>How it works</th><th>Best for</th><th>Example</th></tr>
+          <tr><td>Manual testing</td><td>Trigger the flow by performing the initiating action yourself (e.g., submit a form, add a file)</td><td>Straightforward flows; observing real-time behavior and validating under specific conditions</td><td>Submit a training registration to verify confirmation emails are sent correctly</td></tr>
+          <tr><td>Previous run data</td><td>Replay the flow using data from a past execution — no need to recreate original trigger conditions</td><td>Complex flows with conditional branching; fine-tuning logic; enterprise-grade flows across multiple systems</td><td>Refine certification tracking logic without re-triggering the whole upstream process</td></tr>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Monitoring Flow Performance</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Identify & resolve issues</div><div class="term-def">Built-in analytics pinpoint errors (e.g., missing connection) so you can resolve quickly and minimize disruption.</div></div>
+          <div class="term"><div class="term-word">Enhance performance</div><div class="term-def">Analyze flow performance to optimize trigger conditions and eliminate unnecessary actions.</div></div>
+          <div class="term"><div class="term-word">Security & compliance</div><div class="term-def">Track data usage to detect unauthorized access or improper handling of sensitive information.</div></div>
+          <div class="term"><div class="term-word">Usage analytics</div><div class="term-def">Reveal how flows are used across teams — adjust designs to balance workloads and improve cost effectiveness.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Sharing Flows — 3 Methods</div>
+      <div class="card-body">
+        <div class="table-wrap"><table class="compare-table">
+          <tr><th>Method</th><th>Access granted</th><th>Best for</th><th>Example</th></tr>
+          <tr><td>Co-ownership</td><td>Full edit and manage access</td><td>Team-based flows requiring collaborative maintenance</td><td>A shared contract approval flow maintained by the legal team</td></tr>
+          <tr><td>Run-only permissions</td><td>Execute the flow only — no visibility into the design</td><td>Frontline staff triggering automated tasks without needing to understand underlying logic</td><td>Customer service reps trigger a ticket routing flow with one click</td></tr>
+          <tr><td>Send a copy</td><td>Recipient gets their own copy to customize; original is unchanged</td><td>Training, templates, distributing standardized automation to other departments</td><td>IT sends a software request flow to a regional office to customize locally</td></tr>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Power Automate Mobile App</div>
+      <div class="card-body">After signing in, users land on the Activity Feed — a dashboard showing recent flow activity (successes and failures). Doesn't offer the full desktop experience but provides essential insights and control for on-the-go automation. Button flows are ideal for field technicians and sales reps needing quick one-tap access to automated tasks like logging service requests or sending approvals.</div>
+    </div>
+  </div>
+
+  <!-- TAB 5: LAB WALKTHROUGH -->
+  <div id="tab-lab" class="section">
+    <div class="card">
+      <div class="card-title">Lab 6 — Registration Notification Cloud Flow <span class="badge badge-blue">Contoso Consulting</span></div>
+      <div class="card-body">Build an automated cloud flow that sends a confirmation email to attendees when they register for an event session. Relies on tables built in Labs 2 and 5 (Event, Event Session, Session Registration, Contact). URL: make.powerautomate.com.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Step-by-Step Flow Build</div>
+      <div class="card-body">
+        <div class="step-list">
+          <div class="step-item"><div class="step-num">1</div><div class="step-body"><h4>Create an automated cloud flow</h4><p>In Power Automate, create a new Automated Cloud Flow. Name it "Registration Notification 6." Select trigger: Dataverse → "When a row is added, modified, or deleted." Rename the trigger step to "When a session registration is added." Set Change type = Added, Table = Session Registrations, Scope = Organization.</p></div></div>
+          <div class="step-item"><div class="step-num">2</div><div class="step-body"><h4>Step 2: Get event session details</h4><p>Add action: Dataverse → "Get a row by ID." Table = Event Sessions. Row ID = dynamic → select "Event Session" value from the trigger. Rename step to "Get event session."</p></div></div>
+          <div class="step-item"><div class="step-num">3</div><div class="step-body"><h4>Step 3: Get event details</h4><p>Add action: Dataverse → "Get a row by ID." Table = Events. Row ID = dynamic → select "Event" value from the "Get event session" step (use Show More to find it). Rename step to "Get event."</p></div></div>
+          <div class="step-item"><div class="step-num">4</div><div class="step-body"><h4>Step 4: Get participant (contact) details</h4><p>Add action: Dataverse → "Get a row by ID." Table = Contacts. Row ID = dynamic → select "Participant value" from the Session Registration trigger (use Show More). Rename step to "Get participant."</p></div></div>
+          <div class="step-item"><div class="step-num">5</div><div class="step-body"><h4>Step 5: Send confirmation email</h4><p>Add action: "Send an email notification (V2)." Sign in with admin account if prompted. Enable "Use dynamic content." Set To = participant email (from "Get participant"). Subject = "Registration Confirmation." Body = build using dynamic content: First Name (Get participant), Session Name (Get event session), Session Date (Get event session), Event Name (Get event), Duration Hours (Get event session), Speaker name. Save the flow.</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Flow Architecture — Data Sources Used</div>
+      <div class="card-body">
+        <div class="table-wrap"><table class="compare-table">
+          <tr><th>Step</th><th>Action</th><th>Table</th><th>Data retrieved</th></tr>
+          <tr><td>Trigger</td><td>When row is added</td><td>Session Registrations</td><td>New registration event; provides Session ID and Participant ID</td></tr>
+          <tr><td>Step 2</td><td>Get a row by ID</td><td>Event Sessions</td><td>Session name, date, duration, speaker</td></tr>
+          <tr><td>Step 3</td><td>Get a row by ID</td><td>Events</td><td>Event name, location, date</td></tr>
+          <tr><td>Step 4</td><td>Get a row by ID</td><td>Contacts</td><td>Participant first name, email address</td></tr>
+          <tr><td>Step 5</td><td>Send email notification V2</td><td>—</td><td>Composes and sends personalized confirmation email using dynamic values from all previous steps</td></tr>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">How This Flow Integrates with Lab 5</div>
+      <div class="card-body">The flow connects directly to the Contoso Event Management5 model-driven app built in Lab 5. When a user adds a Session Registration record in the app, the flow triggers automatically and sends a personalized confirmation email to the registered participant. The two work in conjunction — the app provides the UI for data entry; the flow handles the downstream automation. This demonstrates how Power Apps and Power Automate work together in the Power Platform ecosystem.</div>
+    </div>
+  </div>
+
+  <!-- TAB 6: REVIEW Q&A -->
+  <div id="tab-review" class="section">
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-title">Key Terms Flash Reference</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Trigger</div><div class="term-def">The event that starts a flow. Three types: data change, scheduled, button press.</div></div>
+          <div class="term"><div class="term-word">Action</div><div class="term-def">What the flow does after being triggered — create file, send email, update record, etc.</div></div>
+          <div class="term"><div class="term-word">Connector</div><div class="term-def">The bridge to external services (Outlook, Teams, SharePoint, Dataverse, Salesforce, 1,400+).</div></div>
+          <div class="term"><div class="term-word">Automated cloud flow</div><div class="term-def">Event-driven cloud flow triggered by a data change (new email, new record, file added).</div></div>
+          <div class="term"><div class="term-word">Instant cloud flow</div><div class="term-def">Manually triggered via button tap — mobile app, Power App, or IoT button.</div></div>
+          <div class="term"><div class="term-word">Scheduled cloud flow</div><div class="term-def">Runs at set time intervals — daily, weekly, etc.</div></div>
+          <div class="term"><div class="term-word">Desktop flow (RPA)</div><div class="term-def">Replicates user actions on a desktop or browser. Used for legacy systems without APIs.</div></div>
+          <div class="term"><div class="term-word">Dynamic content</div><div class="term-def">Real-time data values from triggers mapped into action parameters — personalizes each flow run.</div></div>
+          <div class="term"><div class="term-word">Flow Checker</div><div class="term-def">Real-time tool that flags errors (flow-breaking) and warnings (performance concerns) during flow design.</div></div>
+          <div class="term"><div class="term-word">Process mining</div><div class="term-def">Extracts event data from systems to visualize, analyze, and optimize end-to-end business processes.</div></div>
+          <div class="term"><div class="term-word">Co-ownership</div><div class="term-def">Sharing method that gives another user full edit and manage access to a flow.</div></div>
+          <div class="term"><div class="term-word">Run-only permissions</div><div class="term-def">Sharing method that lets users execute a flow without seeing or modifying its design.</div></div>
+          <div class="term"><div class="term-word">Compose action</div><div class="term-def">Data Operations action that stores reusable static data to reference across multiple flow steps.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:var(--text2);margin-bottom:10px;">Click to reveal answers ↓</p>
+    <div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the three primary flow types in Power Automate and what subtypes does one of them have?<span class="arrow">▼</span></div><div class="accordion-a">The three primary types are: Cloud flows (API-based, with three subtypes: Instant — manually triggered via button; Automated — event-driven by data changes; Scheduled — runs at set intervals), Desktop flows (RPA-based, replicates user actions on desktop or browser for legacy systems), and Generative Actions (preview — user states intent; AI determines the optimal action sequence).</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the three core building blocks of Power Automate and how do they work together?<span class="arrow">▼</span></div><div class="accordion-a">Trigger — the event that starts the flow (e.g., new email, new SharePoint item). Action — what happens after the trigger (e.g., create a file, send approval, update a record). Connector — the bridge to external services that enables triggers and actions to interact with data across platforms. Example: an Outlook connector detects a new email (trigger) → OneDrive connector saves the attachment (action) → Teams connector notifies a group (action), all without writing code.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the three trigger types and when is each used?<span class="arrow">▼</span></div><div class="accordion-a">Data change triggers — activate when a record is added, modified, or deleted; ideal for real-time notifications and updates. Scheduled triggers — run at set time intervals (daily, weekly, etc.); perfect for routine recurring tasks like sending reports or checking renewals. Button press triggers — user-initiated via mobile app, Power App, or IoT button; ideal for on-demand tasks for field workers or sales reps.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the four approval action types and when should each be used?<span class="arrow">▼</span></div><div class="accordion-a">Everyone must approve — all approvers must agree; one rejection halts the process (legal contracts, compliance). First to respond — first approver finalizes the decision; prioritizes speed (urgent budget requests). Custom responses — tailored options beyond approve/reject like "request more information" (IT, procurement). Wait for responses — collects all approvers' input; supports collective decision-making (hiring panels, cross-functional reviews).</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What is the difference between Flow Checker errors and warnings?<span class="arrow">▼</span></div><div class="accordion-a">Errors are critical problems that will cause the flow to fail entirely — examples include a missing required field, invalid expression, or misconfigured connector. They must be resolved before the flow can run. Warnings are non-critical flags about potential performance concerns or configuration quirks that won't break the flow but could affect its efficiency — for example, a slow query or a condition that may not behave as expected. Both should be addressed during the design phase.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the three sharing methods for flows and how do they differ?<span class="arrow">▼</span></div><div class="accordion-a">Co-ownership — gives full edit and manage access; ideal for team-based flows maintained collaboratively. Run-only permissions — lets users execute the flow without seeing or modifying its design; perfect for frontline staff who need to trigger tasks without understanding the logic. Send a copy — shares the flow design so the recipient gets their own editable copy while the original is unchanged; ideal for templates, training, and distributing standardized automation to other departments.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">In Lab 6, what was the flow trigger and what four "Get a row by ID" steps were chained together and why?<span class="arrow">▼</span></div><div class="accordion-a">Trigger: Dataverse "When a row is added" on the Session Registrations table (scope: Organization) — fires whenever a new registration is created. The four chained steps look up related data needed for the confirmation email: (1) Get event session — retrieves session name, date, duration, speaker using the Session ID from the trigger. (2) Get event — retrieves event name and details using the Event ID from step 1. (3) Get participant — retrieves the registrant's name and email using the Participant ID from the trigger. (4) Send email (V2) — uses dynamic values from all three lookup steps to send a personalized confirmation email.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What is "Record with Copilot" in Power Automate Desktop and what are its key benefits?<span class="arrow">▼</span></div><div class="accordion-a">Record with Copilot lets users build desktop flows by narrating and demonstrating a process once. Copilot tracks mouse movements, keyboard inputs, and spoken instructions, then generates a reusable desktop flow that can be reviewed, edited, and customized before deployment. Key benefits: makes automation accessible to non-technical users, reduces errors vs. manual configuration, accelerates onboarding, ensures consistency across workflows, and is especially valuable for automating legacy systems that lack APIs.</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const visited = new Set(['overview']);
+const total = 6;
+function showTab(name, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+  visited.add(name);
+  const pct = Math.round((visited.size / total) * 100);
+  document.getElementById('progress').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = visited.size + ' of ' + total + ' sections visited';
+}
+function toggleQ(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}
+</script>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>dhtspower — Microsoft Certification Study Hub</title>
+<style>
+:root {
+  --blue:#0078D4;--blue-dark:#005A9E;--blue-light:#EFF6FC;--blue-mid:#C7E0F4;
+  --lime:#16A34A;--lime-light:#F0FDF4;--lime-mid:#86EFAC;
+  --text:#201F1E;--text2:#484644;--muted:#797775;
+  --border:#EDEBE9;--bg:#FAF9F8;--white:#FFFFFF;
+  --shadow-sm:0 1px 4px rgba(0,0,0,0.08),0 0 1px rgba(0,0,0,0.06);
+  --shadow-hover:0 6px 24px rgba(0,0,0,0.1),0 1px 4px rgba(0,0,0,0.06);
+  --radius:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.5;-webkit-text-size-adjust:100%;}
+
+/* ── HEADER ── */
+header{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;gap:12px;height:56px;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm);}
+.ms-squares{display:grid;grid-template-columns:1fr 1fr;gap:3px;width:20px;height:20px;flex-shrink:0;}
+.ms-squares span{border-radius:1px;}
+.ms-squares span:nth-child(1){background:#F25022;}
+.ms-squares span:nth-child(2){background:#7FBA00;}
+.ms-squares span:nth-child(3){background:#00A4EF;}
+.ms-squares span:nth-child(4){background:#FFB900;}
+.site-name{font-size:15px;font-weight:700;color:var(--text);letter-spacing:-0.01em;}
+.site-sub{font-size:12px;color:var(--muted);}
+.header-divider{width:1px;height:20px;background:var(--border);}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,#0078D4 0%,#003A7A 100%);color:white;padding:4rem 1.5rem 3.5rem;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M50 50v-10h-4v10h-10v4h10v10h4v-10h10v-4h-10zm0-40V0h-4v10h-10v4h10v10h4V14h10v-4h-10zM10 50v-10H6v10H0v4h6v10h4v-10h10v-4H10zM10 10V0H6v10H0v4h6v10h4V14h10v-4H10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;pointer-events:none;}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:14px;}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:300;letter-spacing:-0.02em;line-height:1.1;margin-bottom:16px;}
+.hero h1 strong{font-weight:800;display:block;}
+.hero-desc{font-size:15px;color:rgba(255,255,255,0.8);max-width:520px;margin:0 auto 2rem;line-height:1.65;}
+.hero-pills{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:6px;}
+.hero-pill{font-size:12px;font-weight:600;padding:5px 16px;border-radius:20px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.85);}
+.hero-pill.active{background:white;color:var(--blue-dark);}
+
+/* ── MAIN ── */
+main{max-width:1060px;margin:0 auto;padding:3rem 1.5rem 5rem;}
+.section-label{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem;padding-bottom:10px;border-bottom:1px solid var(--border);}
+
+/* ── EXAM CARDS ── */
+.exam-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:20px;margin-bottom:3.5rem;}
+
+.exam-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;color:inherit;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);transition:box-shadow 0.2s,transform 0.2s,border-color 0.2s;overflow:hidden;position:relative;-webkit-tap-highlight-color:transparent;}
+.exam-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-3px);}
+.exam-card:active{transform:translateY(-1px);}
+
+.card-stripe{height:5px;width:100%;}
+.card-body-inner{padding:1.5rem 1.5rem 1.25rem;flex:1;display:flex;flex-direction:column;gap:12px;}
+
+.card-eyebrow{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
+.card-title{font-size:18px;font-weight:700;color:var(--text);line-height:1.25;letter-spacing:-0.01em;}
+.card-subtitle{font-size:13px;color:var(--text2);line-height:1.5;}
+.card-desc{font-size:13px;color:var(--muted);line-height:1.6;flex:1;}
+
+.card-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.tag{font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;}
+
+.card-footer-inner{padding:1rem 1.5rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.card-meta{font-size:12px;color:var(--muted);}
+.card-cta{font-size:13px;font-weight:700;display:flex;align-items:center;gap:5px;transition:gap 0.15s;}
+.exam-card:hover .card-cta{gap:8px;}
+
+/* PL-900 — Microsoft blue */
+.card-pl900 .card-stripe{background:linear-gradient(90deg,#0078D4,#00A4EF);}
+.card-pl900 .card-eyebrow{color:#0078D4;}
+.card-pl900 .card-cta{color:#0078D4;}
+.card-pl900:hover{border-color:var(--blue-mid);}
+
+/* AZ-900 — deep azure */
+.card-az900 .card-stripe{background:linear-gradient(90deg,#004E8C,#0078D4);}
+.card-az900 .card-eyebrow{color:#004E8C;}
+.card-az900 .card-cta{color:#004E8C;}
+.card-az900:hover{border-color:#85B7EB;}
+
+/* AB-731 — lime green */
+.card-ab731 .card-stripe{background:linear-gradient(90deg,#16A34A,#4ADE80);}
+.card-ab731 .card-eyebrow{color:#16A34A;}
+.card-ab731 .card-cta{color:#16A34A;}
+.card-ab731:hover{border-color:var(--lime-mid);}
+
+/* ── RESOURCES STRIP ── */
+.resources{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0.75rem;box-shadow:var(--shadow-sm);}
+.res-item{display:flex;align-items:flex-start;gap:10px;text-decoration:none;color:inherit;padding:8px;border-radius:8px;transition:background 0.15s;-webkit-tap-highlight-color:transparent;}
+.res-item:hover{background:var(--blue-light);}
+.res-icon{width:32px;height:32px;border-radius:8px;background:var(--blue-light);border:1px solid var(--blue-mid);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.res-text strong{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:1px;}
+.res-text span{font-size:11px;color:var(--muted);}
+
+/* ── FOOTER ── */
+footer{text-align:center;padding:1.5rem;border-top:1px solid var(--border);font-size:12px;color:var(--muted);background:var(--white);}
+footer a{color:var(--blue);text-decoration:none;}
+
+/* ── ANIMATIONS ── */
+.exam-card{animation:fadeUp 0.4s ease both;}
+.exam-card:nth-child(1){animation-delay:0.05s;}
+.exam-card:nth-child(2){animation-delay:0.1s;}
+.exam-card:nth-child(3){animation-delay:0.15s;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+@media(prefers-reduced-motion:reduce){.exam-card{animation:none;}}
+
+/* ── MOBILE ── */
+@media(max-width:480px){
+  .hero{padding:3rem 1.25rem 2.5rem;}
+  main{padding:2rem 1.25rem 4rem;}
+  .hero-pill:not(.active){display:none;}
+  .resources{grid-template-columns:1fr;}
+  header{padding:0 1.25rem;}
+  .site-sub,.header-divider{display:none;}
+}
+@media(max-width:360px){
+  .hero h1{font-size:1.7rem;}
+  .exam-grid{gap:14px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="ms-squares"><span></span><span></span><span></span><span></span></div>
+  <span class="site-name">dhtspower</span>
+  <div class="header-divider"></div>
+  <span class="site-sub">Microsoft Certification Study Hub</span>
+</header>
+
+<div class="hero">
+  <h1><strong>Microsoft Exam Study Hub</strong></h1>
+
+</div>
+
+<main>
+  <p class="section-label">Choose your certification</p>
+  <div class="exam-grid">
+
+    <!-- PL-900 -->
+    <a class="exam-card card-pl900" href="index.html">
+      <div class="card-stripe"></div>
+      <div class="card-body-inner">
+        <div>
+          <div class="card-eyebrow">PL-900</div>
+          <div class="card-title">Power Platform Fundamentals</div>
+          <div class="card-subtitle">Microsoft Power Platform</div>
+        </div>
+        <div class="card-desc">Six interactive study guides covering Power Apps, Power Automate, Power BI, Power Pages, Dataverse, and governance — plus a 229-question practice quiz with explanations.</div>
+        <div class="card-tags">
+          <span class="tag" style="background:var(--blue-light);color:var(--blue-dark);border:0.5px solid var(--blue-mid);">Power Apps</span>
+          <span class="tag" style="background:var(--blue-light);color:var(--blue-dark);border:0.5px solid var(--blue-mid);">Power Automate</span>
+          <span class="tag" style="background:var(--blue-light);color:var(--blue-dark);border:0.5px solid var(--blue-mid);">Power BI</span>
+          <span class="tag" style="background:var(--blue-light);color:var(--blue-dark);border:0.5px solid var(--blue-mid);">Dataverse</span>
+          <span class="tag" style="background:var(--blue-light);color:var(--blue-dark);border:0.5px solid var(--blue-mid);">229 Quiz Qs</span>
+        </div>
+      </div>
+      <div class="card-footer-inner">
+        <span class="card-meta">6 guides &middot; 229 practice questions</span>
+        <span class="card-cta" style="color:#0078D4;">Open hub →</span>
+      </div>
+    </a>
+
+    <!-- AZ-900 -->
+    <a class="exam-card card-az900" href="az900_index.html">
+      <div class="card-stripe"></div>
+      <div class="card-body-inner">
+        <div>
+          <div class="card-eyebrow">AZ-900</div>
+          <div class="card-title">Azure Fundamentals</div>
+          <div class="card-subtitle">Microsoft Azure</div>
+        </div>
+        <div class="card-desc">Six study guides covering cloud concepts, Azure architecture, compute, networking, storage, identity, security, governance, cost management, and monitoring.</div>
+        <div class="card-tags">
+          <span class="tag" style="background:#EFF0FC;color:#003A7A;border:0.5px solid #85B7EB;">Cloud Concepts</span>
+          <span class="tag" style="background:#EFF0FC;color:#003A7A;border:0.5px solid #85B7EB;">Azure Services</span>
+          <span class="tag" style="background:#EFF0FC;color:#003A7A;border:0.5px solid #85B7EB;">Security</span>
+          <span class="tag" style="background:#EFF0FC;color:#003A7A;border:0.5px solid #85B7EB;">Cost &amp; Governance</span>
+        </div>
+      </div>
+      <div class="card-footer-inner">
+        <span class="card-meta">6 guides &middot; exam readiness review</span>
+        <span class="card-cta" style="color:#004E8C;">Open hub →</span>
+      </div>
+    </a>
+
+    <!-- AB-731 -->
+    <a class="exam-card card-ab731" href="ab731_ai_transformation_leader.html">
+      <div class="card-stripe"></div>
+      <div class="card-body-inner">
+        <div>
+          <div class="card-eyebrow">AB-731</div>
+          <div class="card-title">AI Transformation Leader</div>
+          <div class="card-subtitle">Microsoft AI Certification</div>
+        </div>
+        <div class="card-desc">Comprehensive guide covering AI fundamentals, LLM model types, Copilot vs Agents, Azure AI Foundry, Responsible AI principles, business value frameworks, and cost optimisation.</div>
+        <div class="card-tags">
+          <span class="tag" style="background:var(--lime-light);color:#14532D;border:0.5px solid var(--lime-mid);">AI Fundamentals</span>
+          <span class="tag" style="background:var(--lime-light);color:#14532D;border:0.5px solid var(--lime-mid);">Responsible AI</span>
+          <span class="tag" style="background:var(--lime-light);color:#14532D;border:0.5px solid var(--lime-mid);">Copilot &amp; Agents</span>
+          <span class="tag" style="background:var(--lime-light);color:#14532D;border:0.5px solid var(--lime-mid);">Business Value</span>
+        </div>
+      </div>
+      <div class="card-footer-inner">
+        <span class="card-meta">8 sections &middot; scenario Q&amp;A</span>
+        <span class="card-cta" style="color:#16A34A;">Open hub →</span>
+      </div>
+    </a>
+
+  </div>
+
+  <p class="section-label">Resources</p>
+  <div class="resources">
+    <a class="res-item" href="https://aka.ms/learn" target="_blank" rel="noopener">
+      <div class="res-icon">🎓</div>
+      <div class="res-text"><strong>Microsoft Learn</strong><span>Free official learning paths</span></div>
+    </a>
+    <a class="res-item" href="https://learn.microsoft.com/credentials/certifications/exams/pl-900/practice/assessment" target="_blank" rel="noopener">
+      <div class="res-icon">✅</div>
+      <div class="res-text"><strong>PL-900 Practice Test</strong><span>Official free assessment</span></div>
+    </a>
+    <a class="res-item" href="https://learn.microsoft.com/credentials/certifications/exams/az-900/practice/assessment" target="_blank" rel="noopener">
+      <div class="res-icon">✅</div>
+      <div class="res-text"><strong>AZ-900 Practice Test</strong><span>Official free assessment</span></div>
+    </a>
+    <a class="res-item" href="https://azure.microsoft.com/pricing/calculator" target="_blank" rel="noopener">
+      <div class="res-icon">🧮</div>
+      <div class="res-text"><strong>Azure Pricing Calculator</strong><span>Estimate Azure costs</span></div>
+    </a>
+    <a class="res-item" href="https://servicetrust.microsoft.com" target="_blank" rel="noopener">
+      <div class="res-icon">🔒</div>
+      <div class="res-text"><strong>Service Trust Portal</strong><span>Compliance documentation</span></div>
+    </a>
+  </div>
+</main>
+
+<footer>
+  <p>dhtspower &nbsp;·&nbsp; Microsoft Certification Study Hub &nbsp;·&nbsp; <a href="https://aka.ms/learn" target="_blank">Microsoft Learn</a></p>
+</footer>
+
+</body>
+</html>

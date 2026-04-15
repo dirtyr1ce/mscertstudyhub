@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PL-900 — Session 4 — Power Apps: Canvas Apps</title>
+<style>
+
+:root{--blue:#0078D4;--blue-dark:#005A9E;--blue-light:#EFF6FC;--blue-mid:#C7E0F4;--text:#201F1E;--text2:#484644;--muted:#797775;--border:#EDEBE9;--bg:#FAF9F8;--white:#fff;--radius:8px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-text-size-adjust:100%;}
+header{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.25rem;display:flex;align-items:center;gap:10px;height:52px;position:sticky;top:0;z-index:100;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;white-space:nowrap;flex-shrink:0;}
+.back:hover{text-decoration:underline;}
+.htitle{font-size:13px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.hbadge{margin-left:auto;font-size:11px;padding:2px 9px;border-radius:10px;font-weight:600;background:var(--blue-light);color:var(--blue-dark);border:1px solid var(--blue-mid);white-space:nowrap;flex-shrink:0;}
+.content-wrap{max-width:900px;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+@media(max-width:480px){
+  .htitle{font-size:12px;}
+  .content-wrap{padding:1rem 1rem 3rem;}
+}
+
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="index.html">← Back</a>
+  <span class="htitle">PL-900 — Session 4 — Power Apps: Canvas Apps</span>
+  <span class="hbadge">Exam weight: 25–30% combined</span>
+</header>
+<div class="content-wrap">
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.container { padding: 1rem 0; font-family: 'Segoe UI', -apple-system, sans-serif; }
+.header { margin-bottom: 1.5rem; }
+.header h1 { font-size: 20px; font-weight: 500; color: var(--text); }
+.header p { font-size: 13px; color: var(--text2); margin-top: 4px; }
+.progress-bar { height: 4px; background: var(--border); border-radius: 2px; margin-top: 12px; }
+.progress-fill { height: 100%; background: #0078D4; border-radius: 2px; transition: width 0.4s ease; }
+.progress-label { font-size: 12px; color: var(--text2); margin-top: 4px; }
+.nav-tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 1.5rem; border-bottom: 0.5px solid var(--border); }
+.tab-btn { padding: 8px 14px; font-size: 13px; font-weight: 400; border: none; background: transparent; cursor: pointer; color: var(--text2); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.15s; border-radius: 0; }
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: #0078D4; border-bottom-color: #0078D4; font-weight: 500; }
+.section { display: none; }
+.section.active { display: block; }
+.card { background: var(--white); border: 0.5px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 12px; }
+.card-title { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+.card-body { font-size: 13px; color: var(--text2); line-height: 1.6; }
+.badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; display: inline-block; }
+.badge-blue { background: var(--blue-light); color: var(--blue-dark); }
+.badge-green { background: #EAF3DE; color: #173404; }
+.badge-amber { background: #FAEEDA; color: #412402; }
+.key-terms { display: flex; flex-direction: column; }
+.term { display: flex; gap: 12px; padding: 10px 0; border-bottom: 0.5px solid var(--border); align-items: flex-start; }
+.term:last-child { border-bottom: none; }
+.term-word { font-size: 13px; font-weight: 500; color: var(--text); min-width: 155px; flex-shrink: 0; }
+.term-def { font-size: 13px; color: var(--text2); line-height: 1.5; }
+.compare-table { width: 100%; font-size: 13px; border-collapse: collapse; }
+.compare-table th { text-align: left; padding: 8px 12px; font-weight: 500; color: var(--text); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 0.5px solid var(--border); }
+.compare-table td { padding: 8px 12px; color: var(--text2); border-bottom: 0.5px solid var(--border); vertical-align: top; font-size: 13px; }
+.compare-table tr:last-child td { border-bottom: none; }
+.accordion-item { border: 0.5px solid var(--border); border-radius: 6px; overflow: hidden; margin-bottom: 8px; }
+.accordion-q { padding: 12px 16px; font-size: 14px; font-weight: 500; color: var(--text); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.15s; }
+.accordion-q:hover { background: var(--bg); }
+.accordion-q .arrow { transition: transform 0.2s; font-size: 12px; color: var(--text2); }
+.accordion-q.open .arrow { transform: rotate(180deg); }
+.accordion-a { display: none; padding: 12px 16px; font-size: 13px; color: var(--text2); line-height: 1.6; background: var(--bg); border-top: 0.5px solid var(--border); }
+.accordion-a.open { display: block; }
+.feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.feat-card { border-radius: 6px; padding: 12px 14px; border: 0.5px solid; cursor: pointer; transition: all 0.15s; }
+.feat-card:hover { filter: brightness(0.97); }
+.feat-card h4 { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+.feat-card p { font-size: 12px; opacity: 0.8; line-height: 1.4; }
+.feat-detail { display: none; padding: 12px 14px; background: var(--bg); border-radius: 6px; margin-bottom: 10px; font-size: 13px; color: var(--text2); line-height: 1.6; }
+.feat-detail.open { display: block; }
+.feat-detail strong { color: var(--text); display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+.f-gallery { background: #E6F1FB; border-color: #B5D4F4; color: #042C53; }
+.f-forms { background: #EAF3DE; border-color: #C0DD97; color: #173404; }
+.f-controls { background: #FAEEDA; border-color: #FAC775; color: #412402; }
+.f-ai { background: #EEEDFE; border-color: #CECBF6; color: #26215C; }
+.f-functions { background: #E1F5EE; border-color: #9FE1CB; color: #04342C; }
+.f-containers { background: #FAECE7; border-color: #F5C4B3; color: #4A1B0C; }
+.f-copilot { background: #FBEAF0; border-color: #F4C0D1; color: #4B1528; }
+.f-checker { background: #F1EFE8; border-color: #D3D1C7; color: #2C2C2A; }
+.step-list { display: flex; flex-direction: column; }
+.step-item { display: flex; gap: 14px; padding: 12px 0; border-bottom: 0.5px solid var(--border); align-items: flex-start; }
+.step-item:last-child { border-bottom: none; }
+.step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--blue-light); color: var(--blue-dark); font-size: 13px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-body h4 { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.step-body p { font-size: 13px; color: var(--text2); line-height: 1.5; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mini-card { padding: 12px 14px; border: 0.5px solid var(--border); border-radius: 6px; background: var(--white); }
+.mini-card h4 { font-size: 12px; font-weight: 500; color: var(--text2); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+.mini-card ul { padding-left: 14px; font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+  /* ── MOBILE FIXES ── */
+  .nav-tabs { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { white-space: nowrap; flex-shrink: 0; }
+
+  .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .compare-table { min-width: 500px; }
+
+  @media (max-width: 600px) {
+    .tool-grid { grid-template-columns: 1fr; }
+    .summary-grid { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .kv-row, .r { flex-direction: column; gap: 4px; }
+    .kv-key, .rk { min-width: unset; font-size: 12px; }
+    .term { flex-direction: column; gap: 3px; }
+    .term-word { min-width: unset; }
+    .card { padding: 0.875rem 1rem; }
+    .layer { padding: 10px 13px; }
+    .qa-question { padding: 10px 13px; font-size: 13px; }
+    .qa-answer { padding: 10px 13px; }
+    .tab-btn { padding: 7px 11px; font-size: 12px; }
+    .compare-table th, .compare-table td { padding: 7px 10px; font-size: 12px; }
+  }
+  @media (max-width: 400px) {
+    .card-title { font-size: 14px; }
+    .card-body { font-size: 12px; }
+  }
+</style>
+
+<div class="container">
+  <div class="header">
+    <h1>Microsoft Power Apps</h1>
+    <p>Session 4 — Based on the course by Barbara Andrews, Lead Microsoft Technical Trainer</p>
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width:17%"></div></div>
+    <div class="progress-label" id="progress-label">1 of 6 sections visited</div>
+  </div>
+
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('overview',this)">App Types</button>
+    <button class="tab-btn" onclick="showTab('studio',this)">Studio Elements</button>
+    <button class="tab-btn" onclick="showTab('canvas',this)">Canvas Apps</button>
+    <button class="tab-btn" onclick="showTab('model',this)">Model-Driven Apps</button>
+    <button class="tab-btn" onclick="showTab('lab',this)">Lab Walkthrough</button>
+    <button class="tab-btn" onclick="showTab('review',this)">Review Q&A</button>
+  </div>
+
+  <!-- TAB 1: APP TYPES -->
+  <div id="tab-overview" class="section active">
+    <div class="card">
+      <div class="card-title">What is Microsoft Power Apps?</div>
+      <div class="card-body">A transformative low-code/no-code platform that empowers users to build apps using concepts similar to Excel formulas. Accessible at <span style="font-family:'Consolas', 'Courier New', monospace;font-size:12px;">make.powerapps.com</span>. Modernizes legacy paper forms and Excel workbooks, making processes accessible across PCs and mobile devices. Connects to data where it lives — SharePoint, Excel, Dataverse, and more.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Canvas Apps vs Model-Driven Apps</div>
+      <div class="card-body">
+        <div class="table-wrap"><table class="compare-table">
+          <tr><th>Feature</th><th>Canvas Apps</th><th>Model-Driven Apps</th></tr>
+          <tr><td>Starting point</td><td>Blank canvas — full control over layout</td><td>Data model in Microsoft Dataverse</td></tr>
+          <tr><td>UI generation</td><td>Manual drag-and-drop (like PowerPoint)</td><td>Automatically generated from data structure</td></tr>
+          <tr><td>Data sources</td><td>Multiple: SharePoint, Excel, Dataverse, and more</td><td>Microsoft Dataverse only</td></tr>
+          <tr><td>Device capabilities</td><td>GPS, camera, barcode scanner access</td><td>Responsive across devices, no hardware controls</td></tr>
+          <tr><td>Best for</td><td>Task-specific, custom UI, field workers, embedded forms/widgets</td><td>Data-centric, process-driven, enterprise CRM/ERP</td></tr>
+          <tr><td>Security trimming</td><td>Manual</td><td>Built-in — users only see what they're authorized to access</td></tr>
+          <tr><td>Embeddable</td><td>Yes — into SharePoint, Teams, other platforms</td><td>Standalone enterprise apps</td></tr>
+          <tr><td>User personalization</td><td>Limited</td><td>Yes — pinned records, collapsed sections, recent records</td></tr>
+          <tr><td>Examples</td><td>Incident reporting, field inspections, employee onboarding, real estate listing app</td><td>Fundraiser donation dashboard, sales pipeline, member relationship tracking</td></tr>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Copilot in Power Apps — Two Modes</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Build with Copilot</div><div class="term-def">Describe the app in natural language (e.g., "track hotel housekeeping tasks") and Copilot generates a Dataverse table and Canvas app. Refine by giving further instructions like "remove the room type column." Dramatically reduces time to get started.</div></div>
+          <div class="term"><div class="term-word">Assist with Copilot control</div><div class="term-def">Embed a Copilot control directly into your app so end users get an intelligent assistant inside the app. Users ask questions and get AI-generated answers based on connected data — ideal for customer service, field inspections, or internal operations.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Agent Builder in Power Apps</div>
+      <div class="card-body">Creates AI-driven agents directly within Canvas apps using Copilot Studio Agent Builder. Agents leverage existing app metadata (data sources, workflows, interactions) to align with specific goals.
+        <div class="key-terms" style="margin-top:10px;">
+          <div class="term"><div class="term-word">Metadata & goal alignment</div><div class="term-def">Agent behavior is tightly coupled with the app's purpose. Example: an IT support agent guides users through checking ticket statuses or submitting requests.</div></div>
+          <div class="term"><div class="term-word">Skill extraction</div><div class="term-def">Equips agents with step-by-step instructions, knowledge repositories, and event triggers derived from the app's structure. Example: an inventory agent alerts users when stock is low, recommends reorder quantities, and provides supplier contact details.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: STUDIO ELEMENTS -->
+  <div id="tab-studio" class="section">
+    <div class="card">
+      <div class="card-title">Power Apps Studio — Core Building Blocks</div>
+      <div class="card-body" style="margin-bottom:12px;">Web-based interface at make.powerapps.com — no downloads needed. Click each element for details ↓</div>
+      <div class="feat-grid">
+        <div class="feat-card f-gallery" onclick="showFeat('gallery',this)"><h4>📋 Galleries</h4><p>Display multiple records from a data source in lists, tables, or grids</p></div>
+        <div class="feat-card f-forms" onclick="showFeat('forms',this)"><h4>📝 Forms</h4><p>View, edit, or create individual records from a data table</p></div>
+        <div class="feat-card f-controls" onclick="showFeat('controls',this)"><h4>🎛️ Input Controls</h4><p>Text boxes, buttons, drop-downs, toggles, sliders, date pickers</p></div>
+        <div class="feat-card f-ai" onclick="showFeat('ai',this)"><h4>🤖 Intelligent Controls</h4><p>AI Builder + hardware controls (camera, barcode, GPS, microphone)</p></div>
+        <div class="feat-card f-functions" onclick="showFeat('functions',this)"><h4>𝑓𝑥 Functions</h4><p>Excel-like formulas for logic, calculations, data manipulation</p></div>
+        <div class="feat-card f-containers" onclick="showFeat('containers',this)"><h4>📐 Layout Containers</h4><p>Auto layout, manual, and flexible height — responsive design</p></div>
+        <div class="feat-card f-copilot" onclick="showFeat('copilotctrl',this)"><h4>💬 Copilot Controls</h4><p>Conversational AI embedded directly in the app for users</p></div>
+        <div class="feat-card f-checker" onclick="showFeat('checker',this)"><h4>✅ AppChecker & Accessibility</h4><p>Scan for formula errors, performance issues, and accessibility barriers</p></div>
+      </div>
+      <div class="feat-detail" id="feat-gallery"><strong>Galleries</strong>Dynamic visual containers that display multiple records from SharePoint, Excel, or Dataverse. Formats: vertical, horizontal, or flexible height. Each item is auto-generated from the data source — changes in the source reflect instantly. Users can tap/click items to view details, edit records, or trigger actions. Customizable: choose which fields to display and how they're laid out. Perfect for product catalogs, employee directories, real estate listings, or project tracking.</div>
+      <div class="feat-detail" id="feat-forms"><strong>Forms</strong>Focus on individual records — typically selected from a Gallery. Three modes: View (read-only), Edit (update existing record), New (create a new entry). Fields can be customized in the Properties panel including layout orientation and which fields appear. Supports image fields for visual context (e.g., thumbnail URLs for asset management). The Flow button integrates Power Automate directly into the form — trigger workflows without leaving the interface.</div>
+      <div class="feat-detail" id="feat-controls"><strong>Input Controls</strong>The building blocks of interactivity: text inputs, buttons, drop-downs, toggles, date pickers, sliders, and checkboxes. Embedded into Galleries, forms, and screens. Combined with Power Fx formulas, controls enable dynamic behavior without complex coding. Example: a checkbox for "include shipping" can trigger conditional logic or update related fields automatically.</div>
+      <div class="feat-detail" id="feat-ai"><strong>Intelligent Controls — two categories:</strong>AI Builder Controls: Business Card Reader (extracts contact details), Receipt Processor (expense tracking), Form Processor (structured data entry), Object Detector (identifies items in images for inventory), Text Recognizer (converts printed/handwritten text to digital). Hardware/Media Controls: Camera, Barcode Reader, Microphone, Measuring Camera, plus Image, Video, Audio, and Microsoft Stream for multimedia capture and playback.</div>
+      <div class="feat-detail" id="feat-functions"><strong>Functions (Power Fx)</strong>Excel-like formulas that take parameters, perform operations, and return values. Examples: Sqrt(25) = 5; SubmitForm(Form1) triggers form submission. Signals: real-time environment data like Location for GPS coordinates. Enumerators: predefined constants like Color.Red. Named operators: ThisItem or Parent to reference nested data in Galleries or forms. The Formula Bar shows the active formula for the selected control property.</div>
+      <div class="feat-detail" id="feat-containers"><strong>Three container types:</strong>Auto layout — automatically positions and resizes children based on alignment rules (vertical or horizontal stacking). Eliminates manual X/Y coordinate placement. Best for forms or Galleries needing fluid layouts. Manual layout — full control over exact placement of each component. Essential for custom dashboards or fixed navigation bars. Flexible height — dynamically adjusts height based on content. Ideal for Galleries, comment sections, or data-driven forms where item count varies.</div>
+      <div class="feat-detail" id="feat-copilotctrl"><strong>Copilot Controls</strong>Intelligent assistants embedded in the app. Users ask natural language questions (e.g., "what are the top-selling products this month?") and receive AI-generated answers from connected data. Especially powerful for mobile users who need quick, on-the-go data access. Example: a field technician asks "what is the status of the current service request?" and gets a real-time update without navigating through multiple screens. Supports both typed and spoken queries.</div>
+      <div class="feat-detail" id="feat-checker"><strong>AppChecker</strong>Automatically scans for formula errors, performance bottlenecks, and broken queries. Offers actionable fixes — e.g., flags an inefficient SharePoint query and recommends a more optimized approach. <strong style="margin-top:8px;">Accessibility Checker</strong>Identifies barriers for users with disabilities: missing screen reader support, keyboard navigation issues, color contrast compliance. Critical for enterprise apps like HR onboarding portals where accessibility is a requirement, not just best practice.</div>
+    </div>
+  </div>
+
+  <!-- TAB 3: CANVAS APPS -->
+  <div id="tab-canvas" class="section">
+    <div class="card">
+      <div class="card-title">Canvas App Fundamentals</div>
+      <div class="card-body">Start with a blank canvas — choose tablet or mobile layout. Drag and drop elements like building a PowerPoint slide. Connect to multiple data sources. Use Power Fx (Excel-like expressions) for logic. Run on browsers and mobile devices without additional configuration.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Power Apps Studio Interface</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Tree View</div><div class="term-def">Visual hierarchy of all screens and elements in the app. Helps maintain structure and clarity as the app grows. Accessible via the icon that looks like a branching diagram.</div></div>
+          <div class="term"><div class="term-word">Components panel</div><div class="term-def">Insert and manage individual UI components. Used alongside Tree View to organize screens.</div></div>
+          <div class="term"><div class="term-word">Formula Bar</div><div class="term-def">Shows the active formula for the selected control property (e.g., Items, OnSelect). Edit formulas here to bind data or trigger actions.</div></div>
+          <div class="term"><div class="term-word">Properties panel</div><div class="term-def">Adjust properties like width, height, padding, flexible width/height, minimum width, and display mode for each selected control.</div></div>
+          <div class="term"><div class="term-word">Insert menu</div><div class="term-def">Add new controls, containers, icons, galleries, forms, and media elements to the app canvas.</div></div>
+          <div class="term"><div class="term-word">Preview mode</div><div class="term-def">Test the app in browser without publishing. See how it looks and behaves before sharing.</div></div>
+          <div class="term"><div class="term-word">AppChecker</div><div class="term-def">Scans for formula errors, performance issues, and accessibility problems with actionable fixes.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Sharing a Canvas App</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Share button</div><div class="term-def">Specify individuals, groups, or security groups. Assign roles: User (run only) or Co-owner (can edit and share the app).</div></div>
+          <div class="term"><div class="term-word">Co-owner</div><div class="term-def">Can update the app and help evolve the solution. Useful in collaborative environments where multiple stakeholders refine functionality over time.</div></div>
+          <div class="term"><div class="term-word">Data source permissions</div><div class="term-def">Ensure shared users have the necessary permissions for connected data sources and gateways. Some are granted automatically; others require manual setup.</div></div>
+          <div class="term"><div class="term-word">Access channels</div><div class="term-def">Users can run the app in a browser or via the Power Apps mobile app on iOS or Android.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Canvas App Use Cases</div>
+      <div class="card-body">
+        <div class="two-col">
+          <div class="mini-card"><h4>Field work</h4><ul><li>Equipment inspections with camera</li><li>Barcode scanning for asset tracking</li><li>GPS-based location apps</li><li>Audio notes during field visits</li></ul></div>
+          <div class="mini-card"><h4>HR & onboarding</h4><ul><li>Employee onboarding forms</li><li>Time off request systems</li><li>Training completion tracking</li><li>Equipment checkout management</li></ul></div>
+          <div class="mini-card"><h4>Operations</h4><ul><li>Inventory management</li><li>Incident reporting</li><li>Procurement approvals</li><li>Vehicle inspection forms</li></ul></div>
+          <div class="mini-card"><h4>Embedded/lightweight</h4><ul><li>Forms embedded in SharePoint</li><li>Widgets in Teams</li><li>Customer intake forms</li><li>Event RSVPs</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 4: MODEL-DRIVEN APPS -->
+  <div id="tab-model" class="section">
+    <div class="card">
+      <div class="card-title">Model-Driven App Fundamentals</div>
+      <div class="card-body">Built from your data model in Microsoft Dataverse. UI is automatically generated (dashboards, charts, views, forms) from the underlying data structure. Think of them as "data model-driven apps" — a robust Dataverse model is essential. Assembled using the App Designer. Responsive across devices with no additional configuration.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Navigation & Productivity Features</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Change apps</div><div class="term-def">Switch seamlessly between different model-driven apps — ideal for multitasking across business domains like CRM and project management.</div></div>
+          <div class="term"><div class="term-word">Collapse/Expand Sitemap</div><div class="term-def">Show or hide tables and items to streamline the interface. Example: a sales rep collapses inventory sections while working on customer data.</div></div>
+          <div class="term"><div class="term-word">Recent records</div><div class="term-def">System tracks recently accessed records for quick re-access without searching.</div></div>
+          <div class="term"><div class="term-word">Pinned records</div><div class="term-def">Pin up to 25 important records (max 15 per table) for instant access. Especially useful for finance or HR roles that reference certain records frequently.</div></div>
+          <div class="term"><div class="term-word">Page navigation</div><div class="term-def">Clear list of all tables and dashboards in the current work area for efficient movement between data views.</div></div>
+          <div class="term"><div class="term-word">Collapsible groups</div><div class="term-def">App makers can create collapsible sections so users can show/hide groups as needed — perfect for managing complex datasets.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Working with Views — 8 Key Features</div>
+      <div class="card-body">
+        <div class="table-wrap"><table class="compare-table">
+          <tr><th>#</th><th>Feature</th><th>What it does</th></tr>
+          <tr><td>1</td><td>Show Chart button</td><td>Transforms raw table data into visual charts for quick insight into trends and performance</td></tr>
+          <tr><td>2</td><td>Row selection</td><td>Select multiple records for bulk operations like editing or deactivating</td></tr>
+          <tr><td>3</td><td>Edit button</td><td>Inline record updates without leaving the view</td></tr>
+          <tr><td>4</td><td>Activate/Deactivate</td><td>Quickly change status for products, records, or items</td></tr>
+          <tr><td>5</td><td>Filter icon</td><td>Narrow down results based on specific criteria</td></tr>
+          <tr><td>6</td><td>Command Bar</td><td>Central hub for advanced actions: assign records, share links, trigger Power Automate flows</td></tr>
+          <tr><td>7</td><td>Search box</td><td>Locate specific entries instantly across the table</td></tr>
+          <tr><td>8</td><td>Pagination controls</td><td>Navigate smoothly across large datasets</td></tr>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Working with Forms — Key Anatomy</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">General tab</div><div class="term-def">Displays fields and details for the selected record from the data source table.</div></div>
+          <div class="term"><div class="term-word">Related tab</div><div class="term-def">Drop-down providing quick access to associated records (audit history, feedback, reservations) without leaving the form.</div></div>
+          <div class="term"><div class="term-word">Context-sensitive menu bar</div><div class="term-def">Top bar with actions: deactivate, delete, refresh, process, assign, share, email link, save, and Word templates.</div></div>
+          <div class="term"><div class="term-word">Flow button</div><div class="term-def">Integrates Power Automate directly in the form — trigger workflows like sending notifications, updating records, or assigning tasks without leaving the interface.</div></div>
+          <div class="term"><div class="term-word">Availability/ownership</div><div class="term-def">Shows who owns the record and whether the item is active or reserved — supports accountability and resource planning.</div></div>
+          <div class="term"><div class="term-word">Reviews section</div><div class="term-def">Displays user/customer feedback, helping teams make data-informed decisions.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 5: LAB WALKTHROUGH -->
+  <div id="tab-lab" class="section">
+    <div class="card">
+      <div class="card-title">Lab 4 — Canvas App: Time Off & Equipment Checkout <span class="badge badge-blue">Contoso Consulting</span></div>
+      <div class="card-body">Build a Canvas app using Copilot that manages two workflows: Employee Time Off Requests and Equipment Checkout. Uses Copilot to generate the data model, then customizes the app in Power Apps Designer.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Task 1 — Build the Data Model with Copilot</div>
+      <div class="card-body">
+        <div class="step-list">
+          <div class="step-item"><div class="step-num">1</div><div class="step-body"><h4>Generate Time Off Request table</h4><p>In Power Apps, click Create and use Copilot to generate a table for time off requests (Start/End times). Specify one table only.</p></div></div>
+          <div class="step-item"><div class="step-num">2</div><div class="step-body"><h4>Add required columns via Copilot prompts</h4><p>Add choice column "Time Off Reason," choice column "Time Off Type," date column "Submission Date," choice column "Approval Status," multi-line text column "Request Details." Remove unwanted auto-generated fields (Request Name, Reason1, duplicate columns).</p></div></div>
+          <div class="step-item"><div class="step-num">3</div><div class="step-body"><h4>Add User table and create relationship</h4><p>Add the existing Dataverse "User" table. Create a one-to-many relationship: User (one) → Time Off Request (many). Display name: "Requesting Employee."</p></div></div>
+          <div class="step-item"><div class="step-num">4</div><div class="step-body"><h4>Save and open the app</h4><p>Click "Save and Open" to launch the generated Canvas app in Power Apps Studio. App is built from the data model automatically.</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Task 2 — Build the Equipment Checkout Screen</div>
+      <div class="card-body">
+        <div class="step-list">
+          <div class="step-item"><div class="step-num">1</div><div class="step-body"><h4>Add new screen via Copilot</h4><p>Use Copilot to add a new screen called "Equipment Checkout" to the existing app. Keep the generated screen.</p></div></div>
+          <div class="step-item"><div class="step-num">2</div><div class="step-body"><h4>Insert Sidebar layout</h4><p>Drag and drop Insert → Layout → Sidebar. This creates a two-pane layout with a list on the left and details on the right.</p></div></div>
+          <div class="step-item"><div class="step-num">3</div><div class="step-body"><h4>Build the left pane (Equipment List Gallery)</h4><p>Rename sidebar container to "Equipment Container." Insert a vertical Gallery connected to the Equipment table. Name it "Equipment List." Set layout to Title and Subtitle. Add a horizontal "Equipment Search Container" above the gallery with: a text input (hint text: "search," name: "Equip Search Input") and a Search icon. Set heights to 44. Use Formula Bar to set the Gallery's Items property to a filter formula from the lab.</p></div></div>
+          <div class="step-item"><div class="step-num">4</div><div class="step-body"><h4>Build the right pane (Details Container)</h4><p>Rename main container to "Details Container." Add vertical container "Record Details." Inside it, insert an Edit Form connected to Equipment table → name it "Equipment Form." Set Item property via Advanced tab. Set default mode to Edit, columns to 2. Add horizontal container "Selected Record" (height: 50) above Record Details with a text label ("selected record title") and a Save icon button (height/width: 40). Set Save icon's OnSelect to SubmitForm(Equipment Form).</p></div></div>
+          <div class="step-item"><div class="step-num">5</div><div class="step-body"><h4>Finalize the header</h4><p>In Header Container, insert a text label "Equipment Checkout Form." Set font weight to Semi-Bold, padding to 16 all sides, height to 40, flexible width on. Add a Home icon so users can navigate back to the main screen. Set Welcome screen image OnSelect to navigate to Equipment Checkout screen.</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Time Off Request Table — Fields Reference</div>
+      <div class="card-body">
+        <div class="table-wrap"><table class="compare-table">
+          <tr><th>Field name</th><th>Data type</th><th>Notes</th></tr>
+          <tr><td>Employee Name</td><td>Text</td><td>Primary key (auto-set)</td></tr>
+          <tr><td>Start Time</td><td>Date/Time</td><td>Request start</td></tr>
+          <tr><td>End Time</td><td>Date/Time</td><td>Request end</td></tr>
+          <tr><td>Time Off Reason</td><td>Choice</td><td>Added via Copilot prompt</td></tr>
+          <tr><td>Time Off Type</td><td>Choice</td><td>Added via Copilot prompt</td></tr>
+          <tr><td>Submission Date</td><td>Date</td><td>Added via Copilot prompt</td></tr>
+          <tr><td>Approval Status</td><td>Choice</td><td>Added via Copilot prompt</td></tr>
+          <tr><td>Status</td><td>Choice</td><td>Added via Copilot prompt</td></tr>
+          <tr><td>Request Details</td><td>Multi-line text</td><td>Added via Copilot prompt</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 6: REVIEW Q&A -->
+  <div id="tab-review" class="section">
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-title">Key Terms Flash Reference</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Canvas app</div><div class="term-def">Blank-canvas app with full UI control, multiple data sources, and device capabilities (GPS, camera). Best for task-specific, custom-layout solutions.</div></div>
+          <div class="term"><div class="term-word">Model-driven app</div><div class="term-def">Data model-driven app built on Dataverse with auto-generated responsive UI. Best for process-driven, data-centric enterprise applications.</div></div>
+          <div class="term"><div class="term-word">Gallery</div><div class="term-def">Control that displays multiple records from a data source in lists or grids. Customizable layout, real-time data updates.</div></div>
+          <div class="term"><div class="term-word">Form modes</div><div class="term-def">Three modes for forms: View (read-only), Edit (update existing record), New (create a new record).</div></div>
+          <div class="term"><div class="term-word">Power Fx</div><div class="term-def">Excel-like low-code language for app logic. Functions, signals (GPS), enumerators (Color.Red), and named operators (ThisItem).</div></div>
+          <div class="term"><div class="term-word">AppChecker</div><div class="term-def">Scans for formula errors, performance bottlenecks, and broken queries with actionable fix suggestions.</div></div>
+          <div class="term"><div class="term-word">Accessibility Checker</div><div class="term-def">Identifies accessibility barriers: missing screen reader support, keyboard navigation issues, color contrast problems.</div></div>
+          <div class="term"><div class="term-word">Copilot control</div><div class="term-def">AI assistant embedded inside an app — end users ask natural language questions and receive answers from connected data.</div></div>
+          <div class="term"><div class="term-word">Security trimming</div><div class="term-def">Model-driven app feature ensuring users only see data and features they are authorized to access.</div></div>
+          <div class="term"><div class="term-word">Agent Builder</div><div class="term-def">Creates AI-driven agents within Canvas apps using Copilot Studio. Agents use app metadata for context-aware assistance and automation.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:var(--text2);margin-bottom:10px;">Click to reveal answers ↓</p>
+    <div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the key differences between Canvas apps and model-driven apps?<span class="arrow">▼</span></div><div class="accordion-a">Canvas apps start from a blank canvas and give full control over layout and design. They support multiple data sources (SharePoint, Excel, Dataverse) and device capabilities like GPS and camera. Best for task-specific, custom UI solutions. Model-driven apps start from a Dataverse data model and auto-generate the UI. They only use Dataverse, include built-in security trimming, and are best for process-driven, data-centric enterprise applications like CRM and ERP systems.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the two ways Copilot is used in Power Apps?<span class="arrow">▼</span></div><div class="accordion-a">First, as a builder tool — makers describe the app they want (e.g., "track hotel housekeeping tasks") and Copilot generates a Dataverse table and Canvas app, which can be refined with further natural language instructions. Second, as an embedded Copilot control — end users get an intelligent assistant inside the published app they can query in natural language to get data-driven answers without navigating menus or screens.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the three types of layout containers and when is each used?<span class="arrow">▼</span></div><div class="accordion-a">Auto layout — automatically positions and resizes children by stacking vertically or horizontally. Best for forms or Galleries needing fluid, responsive layouts. Manual layout — full precise control over each component's exact position. Essential for custom dashboards or fixed-position navigation bars. Flexible height — dynamically adjusts height based on content volume. Ideal for Galleries, comment sections, or data forms where item count varies.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What is the difference between AppChecker and Accessibility Checker?<span class="arrow">▼</span></div><div class="accordion-a">AppChecker automatically scans for formula errors, performance bottlenecks (e.g., inefficient SharePoint queries), and other functionality issues — offering actionable fix suggestions to ensure the app runs smoothly. Accessibility Checker identifies barriers for users with disabilities: missing screen reader support, keyboard navigation gaps, and color contrast problems. Together they ensure apps are both technically sound and inclusive for all users.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the eight key features when working with views in model-driven apps?<span class="arrow">▼</span></div><div class="accordion-a">Show Chart button (data visualizations), Row Selection (bulk edit/deactivate), Edit button (inline record updates), Activate/Deactivate buttons (status changes), Filter icon (narrow results by criteria), Command Bar (advanced actions: assign, share, trigger flows), Search box (instant record lookup), and Pagination controls (navigate large datasets).</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the AI Builder controls available in Power Apps and what does each do?<span class="arrow">▼</span></div><div class="accordion-a">Business Card Reader — extracts contact details from a scanned card (ideal for sales/networking). Receipt Processor — simplifies expense tracking by reading receipt data. Form Processor — streamlines data entry for structured documents. Object Detector — identifies items in an image (inventory/retail). Text Recognizer — converts printed or handwritten text into digital format (document digitization and accessibility). These require no custom code to implement.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">In Lab 4, what relationship was created between tables and what were the one and many sides?<span class="arrow">▼</span></div><div class="accordion-a">A one-to-many relationship was created between the Dataverse User table (the "one" side) and the custom Time Off Request table (the "many" side). The display name for the relationship was "Requesting Employee." This means one User can have many Time Off Requests, but each request links back to exactly one user.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What is the Agent Builder in Power Apps and what two key capabilities does it provide?<span class="arrow">▼</span></div><div class="accordion-a">Agent Builder (via Copilot Studio) creates AI-driven agents directly within Canvas apps. The two key capabilities are: (1) Metadata and goal alignment — agents use the app's existing data sources, workflows, and interactions to behave in context with the app's purpose (e.g., an IT support agent knows how to check ticket statuses). (2) Skill extraction and integration — agents are equipped with step-by-step instructions, knowledge repositories, and event triggers derived from the app structure (e.g., an inventory agent proactively alerts about low stock and recommends reorder quantities).</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const visited = new Set(['overview']);
+const total = 6;
+function showTab(name, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+  visited.add(name);
+  const pct = Math.round((visited.size / total) * 100);
+  document.getElementById('progress').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = visited.size + ' of ' + total + ' sections visited';
+}
+const featMap = { gallery:'feat-gallery', forms:'feat-forms', controls:'feat-controls', ai:'feat-ai', functions:'feat-functions', containers:'feat-containers', copilotctrl:'feat-copilotctrl', checker:'feat-checker' };
+let openFeat = null;
+function showFeat(id, card) {
+  const el = document.getElementById(featMap[id]);
+  if (openFeat === id) {
+    el.classList.remove('open');
+    card.style.outline = 'none';
+    openFeat = null;
+  } else {
+    Object.values(featMap).forEach(d => document.getElementById(d).classList.remove('open'));
+    document.querySelectorAll('.feat-card').forEach(c => c.style.outline = 'none');
+    el.classList.add('open');
+    card.style.outline = '2px solid #0078D4';
+    openFeat = id;
+  }
+}
+function toggleQ(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}
+</script>
+
+</div>
+</body>
+</html>

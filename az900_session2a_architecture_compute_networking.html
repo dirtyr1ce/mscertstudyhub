@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AZ-900 — Session 2A — Architecture, Compute &amp; Networking</title>
+<style>
+:root{--blue:#0078D4;--blue-dark:#005A9E;--blue-light:#EFF6FC;--blue-mid:#C7E0F4;--green:#107C10;--green-light:#EFF8EF;--green-mid:#9FD89F;--purple:#8764B8;--purple-light:#F4F0FA;--purple-mid:#C9B8E8;--orange:#D83B01;--orange-light:#FFF0EB;--orange-mid:#F7B89A;--pink:#B4009E;--pink-light:#FCF0FB;--pink-mid:#E5A8E4;--text:#201F1E;--text2:#484644;--muted:#797775;--border:#EDEBE9;--bg:#FAF9F8;--white:#fff;--radius:8px;--info-bg:#EFF6FC;--info-text:#004E8C;--success-bg:#EAF3DE;--success-text:#173404;--warn-bg:#FAEEDA;--warn-text:#412402;--danger-bg:#FCEBEB;--danger-text:#501313;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-text-size-adjust:100%;}
+header{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.25rem;display:flex;align-items:center;gap:10px;height:52px;position:sticky;top:0;z-index:100;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;white-space:nowrap;}
+.back:hover{text-decoration:underline;}
+.htitle{font-size:13px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.hbadge{margin-left:auto;font-size:11px;padding:2px 9px;border-radius:10px;font-weight:600;background:var(--blue-light);color:var(--blue-dark);border:1px solid var(--blue-mid);white-space:nowrap;flex-shrink:0;}
+.exam-banner{background:var(--info-bg);border-left:3px solid var(--blue);padding:10px 14px;margin-bottom:16px;font-size:13px;color:var(--info-text);line-height:1.5;}
+.exam-banner strong{font-weight:600;}
+main{max-width:900px;margin:0 auto;padding:2rem 1.25rem 4rem;}
+h1{font-size:clamp(1.3rem,3vw,1.8rem);font-weight:300;margin-bottom:6px;letter-spacing:-0.01em;}
+h1 strong{font-weight:700;}
+.subtitle{font-size:13px;color:var(--muted);margin-bottom:1.5rem;}
+.tabs{display:flex;gap:0;flex-wrap:wrap;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+.tab-btn{padding:8px 14px;font-size:13px;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s;border-radius:0;}
+.tab-btn:hover{color:var(--text);}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:600;}
+.tab{display:none;}.tab.active{display:block;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:12px;}
+.card-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;}
+.card-body{font-size:13px;color:var(--text2);line-height:1.7;}
+.kv{display:flex;flex-direction:column;}
+.r{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+.r:last-child{border-bottom:none;}
+.rk{font-size:13px;font-weight:600;color:var(--text);min-width:165px;flex-shrink:0;}
+.rv{font-size:13px;color:var(--text2);line-height:1.6;}
+table{width:100%;font-size:13px;border-collapse:collapse;margin-bottom:4px;}
+th{text-align:left;padding:8px 12px;font-weight:600;color:var(--text);font-size:12px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border);}
+td{padding:9px 12px;color:var(--text2);border-bottom:1px solid var(--border);vertical-align:top;line-height:1.55;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:var(--bg);}
+.acc{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:8px;}
+.acc-q{padding:12px 16px;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .15s;}
+.acc-q:hover{background:var(--bg);}
+.arr{transition:transform .2s;font-size:12px;color:var(--muted);flex-shrink:0;margin-left:10px;}
+.acc-q.open .arr{transform:rotate(180deg);}
+.acc-a{display:none;padding:12px 16px;font-size:13px;color:var(--text2);line-height:1.7;background:var(--bg);border-top:1px solid var(--border);}
+.acc-a.open{display:block;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.mc{padding:12px 14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--white);}
+.mc h4{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px;}
+.mc p,.mc li{font-size:13px;color:var(--text2);line-height:1.6;}
+.mc ul{padding-left:14px;}
+.why{background:var(--bg);border-left:3px solid var(--blue);padding:10px 14px;margin-top:10px;font-size:13px;color:var(--text2);line-height:1.5;}
+.why strong{color:var(--text);font-weight:600;}
+.scen{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:10px;}
+.scen-q{padding:11px 14px;background:var(--bg);font-size:13px;font-weight:600;color:var(--text);}
+.scen-a{padding:11px 14px;font-size:13px;color:var(--text2);line-height:1.6;border-top:1px solid var(--border);}
+.ans{font-weight:600;color:var(--blue);}
+.badge{font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600;display:inline-block;}
+.bi{background:var(--info-bg);color:var(--info-text);}
+.bg{background:var(--success-bg);color:var(--success-text);}
+.ba{background:var(--warn-bg);color:var(--warn-text);}
+.br{background:var(--danger-bg);color:var(--danger-text);}
+.prog-bar{height:4px;background:var(--border);border-radius:2px;margin-bottom:4px;}
+.prog-fill{height:100%;background:var(--blue);border-radius:2px;transition:width .4s;}
+.prog-label{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.layer{display:flex;gap:12px;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);align-items:flex-start;margin-bottom:6px;}
+.lnum{font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;flex-shrink:0;margin-top:1px;}
+.lbody h4{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;}
+.lbody p{font-size:12px;color:var(--text2);line-height:1.55;}
+@media(max-width:600px){
+  .two-col,.three-col{grid-template-columns:1fr;}
+  .rk{min-width:110px;}
+  .tabs{overflow-x:auto;flex-wrap:nowrap;}
+  .tab-btn{white-space:nowrap;padding:8px 10px;font-size:12px;}
+  table{font-size:12px;}
+  th,td{padding:7px 8px;}
+}
+@media(max-width:400px){.r{flex-direction:column;gap:4px;}}
+
+  /* ── MOBILE FIXES ── */
+  .nav-tabs { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { white-space: nowrap; flex-shrink: 0; }
+
+  .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .compare-table { min-width: 500px; }
+
+  @media (max-width: 600px) {
+    .tool-grid { grid-template-columns: 1fr; }
+    .summary-grid { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .kv-row, .r { flex-direction: column; gap: 4px; }
+    .kv-key, .rk { min-width: unset; font-size: 12px; }
+    .term { flex-direction: column; gap: 3px; }
+    .term-word { min-width: unset; }
+    .card { padding: 0.875rem 1rem; }
+    .layer { padding: 10px 13px; }
+    .qa-question { padding: 10px 13px; font-size: 13px; }
+    .qa-answer { padding: 10px 13px; }
+    .tab-btn { padding: 7px 11px; font-size: 12px; }
+    .compare-table th, .compare-table td { padding: 7px 10px; font-size: 12px; }
+  }
+  @media (max-width: 400px) {
+    .card-title { font-size: 14px; }
+    .card-body { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="az900_index.html">← Back</a>
+  <span class="htitle">Session 2A — Architecture, Compute &amp; Networking</span>
+  <span class="hbadge">35–40% of exam</span>
+</header>
+<main>
+<div class="exam-banner"><strong>AZ-900 exam domain: Azure architecture and services — 35–40% (largest domain).</strong> Session 2A covers Azure's physical/logical infrastructure, all compute options, and core networking services. Expect 10–16 questions combined.</div>
+<div class="prog-bar"><div class="prog-fill" id="prog" style="width:14%"></div></div>
+<div class="prog-label" id="prog-label">1 of 7 sections visited</div>
+<div class="tabs">
+  <button class="tab-btn active" data-tab="a1">Azure Architecture</button>
+  <button class="tab-btn" data-tab="a2">Subscriptions &amp; Groups</button>
+  <button class="tab-btn" data-tab="a3">Compute Services</button>
+  <button class="tab-btn" data-tab="a4">Containers &amp; Functions</button>
+  <button class="tab-btn" data-tab="a5">Networking</button>
+  <button class="tab-btn" data-tab="a6">VPN &amp; ExpressRoute</button>
+  <button class="tab-btn" data-tab="a7">Review Q&amp;A</button>
+</div>
+
+<div class="tab active" id="a1">
+<div class="card"><div class="card-title">Azure regions</div><div class="card-body">A region is a geographic area containing one or more nearby, low-latency connected data centers. When you deploy a resource in Azure, you select the region where it will live. Azure automatically manages load balancing within each region.<div class="kv" style="margin-top:10px;">
+<div class="r"><div class="rk">Global scale</div><div class="rv">60+ regions in 140+ countries — the largest global network of any cloud provider.</div></div>
+<div class="r"><div class="rk">Why region matters</div><div class="rv">Some services and VM types are only available in specific regions. Choose a region close to users for lower latency. Data residency compliance may restrict which regions you can use.</div></div>
+<div class="r"><div class="rk">Global services</div><div class="rv">Some services don't require a region: Microsoft Entra ID, Azure Traffic Manager, Azure DNS — these are globally distributed by design.</div></div>
+</div><div class="why"><strong>Exam tip:</strong> Know the global services that don't require region selection: Entra ID, Traffic Manager, DNS. Also know: choose the region closest to users for best performance.</div></div></div>
+<div class="card"><div class="card-title">Availability zones</div><div class="card-body">Physically separate data centers within a single Azure region. Each zone has independent power, cooling, and networking. If one zone fails, the others continue operating.<div class="kv" style="margin-top:10px;">
+<div class="r"><div class="rk">Minimum per region</div><div class="rv">At least 3 separate zones in every region that supports them — ensuring two remain operational if one fails.</div></div>
+<div class="r"><div class="rk">Connectivity</div><div class="rv">Connected via private high-speed fiber optic networks. Low single-digit millisecond inter-zone latency.</div></div>
+<div class="r"><div class="rk">Isolation boundary</div><div class="rv">Hardware failures, power outages, and cooling issues in one zone do not affect adjacent zones.</div></div>
+</div></div></div>
+<div class="card"><div class="card-title">Region pairs &amp; sovereign regions</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Region pairs</div><div class="rv">Most Azure regions are paired with another region 300+ miles away in the same geography. If one region has a major outage, services fail over to the paired region automatically. Planned maintenance is staggered across pairs so both regions are never updated simultaneously.</div></div>
+<div class="r"><div class="rk">Examples</div><div class="rv">West US ↔ East US. North Europe ↔ West Europe. Southeast Asia ↔ East Asia.</div></div>
+<div class="r"><div class="rk">Azure Government (US)</div><div class="rv">Physically and logically isolated from commercial Azure. Data centers operated by US citizens only. Additional compliance checks. For US government agencies and partners.</div></div>
+<div class="r"><div class="rk">Azure China</div><div class="rv">Isolated environment operated by 21Vianet (not Microsoft directly). Required by Chinese law. Same underlying Azure technology.</div></div>
+</div></div></div>
+<div class="card"><div class="card-title">Architecture layers — protection comparison</div><div class="card-body">
+<div class="table-wrap"><table><tr><th>Concept</th><th>What it is</th><th>Protects against</th></tr>
+<tr><td>Availability Set</td><td>VMs spread across update and fault domains within one data center</td><td>Rack-level power/network failures; planned maintenance downtime</td></tr>
+<tr><td>Availability Zone</td><td>Separate data center buildings within one region</td><td>Entire data center outage (power, cooling, hardware)</td></tr>
+<tr><td>Region pair</td><td>Two regions 300+ miles apart in same geography</td><td>Region-wide disasters (earthquakes, major outages)</td></tr>
+<tr><td>Sovereign region</td><td>Isolated Azure for government/regulatory compliance</td><td>Data sovereignty and regulatory requirements</td></tr>
+</table></div></div></div>
+</div>
+
+<div class="tab" id="a2">
+<div class="card"><div class="card-title">Azure management hierarchy</div><div class="card-body">Azure uses a four-level hierarchy. Each level inherits policies and permissions from the level above it.
+<div style="margin-top:12px;display:flex;flex-direction:column;gap:6px;">
+<div style="padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);"><strong style="color:var(--text);">Management groups</strong> — containers grouping subscriptions. Apply governance at scale. Max 10,000 per directory, 6 levels deep.</div>
+<div style="text-align:center;font-size:18px;color:var(--muted);">↓</div>
+<div style="padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);"><strong style="color:var(--text);">Subscriptions</strong> — unit of billing and access management. Generates its own invoice. Two boundaries: billing and access management.</div>
+<div style="text-align:center;font-size:18px;color:var(--muted);">↓</div>
+<div style="padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);"><strong style="color:var(--text);">Resource groups</strong> — logical containers for related resources. Actions (delete, access grant) apply to all resources within. Cannot be nested.</div>
+<div style="text-align:center;font-size:18px;color:var(--muted);">↓</div>
+<div style="padding:10px 14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);"><strong style="color:var(--text);">Resources</strong> — individual Azure components (VMs, databases, VNets, storage accounts). Every resource belongs to exactly one resource group.</div>
+</div>
+<div class="why" style="margin-top:12px;"><strong>Inheritance chain:</strong> Policies, permissions, and access controls flow downward. A policy at management group level automatically applies to all subscriptions, resource groups, and resources beneath it. Tags do NOT inherit.</div>
+</div></div>
+<div class="card"><div class="card-title">Resource groups, subscriptions &amp; management groups</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Resource groups</div><div class="rv">Logical containers. Deleting a group deletes all resources inside. Access grants at the group level apply to all resources within. Cannot be nested. Each resource belongs to exactly one group at a time.</div></div>
+<div class="r"><div class="rk">Subscriptions</div><div class="rv">Billing boundary (each generates its own invoice) and access management boundary (separate RBAC policies per subscription). Common patterns: one subscription per department, per environment (dev/test/prod), or per geography.</div></div>
+<div class="r"><div class="rk">Management groups</div><div class="rv">Group subscriptions for governance at scale. Policies and RBAC assigned at management group level are inherited by all subscriptions beneath. Max 10,000 per directory, max 6 levels of depth (excluding root and subscription level). Each group/subscription has only one parent.</div></div>
+</div></div></div>
+</div>
+
+<div class="tab" id="a3">
+<div class="card"><div class="card-title">Virtual Machines (VMs)</div><div class="card-body">IaaS — virtualized servers. Full control over the OS, installed software, and configuration. Provider manages physical hardware; you manage everything inside the VM.<div class="kv" style="margin-top:10px;">
+<div class="r"><div class="rk">When to use</div><div class="rv">Full OS control needed, lift-and-shift migration, custom software requirements, legacy applications, specific OS version requirements.</div></div>
+<div class="r"><div class="rk">Limitation</div><div class="rv">Each VM runs only one OS. "Always on" — you pay while the VM is running even if idle, unless you deallocate it.</div></div>
+</div></div></div>
+<div class="card"><div class="card-title">VM Scale Sets &amp; Availability Sets</div><div class="card-body">
+<div class="table-wrap"><table><tr><th>Feature</th><th>VM Scale Sets</th><th>Availability Sets</th></tr>
+<tr><td>Purpose</td><td>Auto-scale identical load-balanced VMs</td><td>Protect VMs from planned/unplanned downtime</td></tr>
+<tr><td>How it works</td><td>Adds/removes VM instances based on demand rules</td><td>Spreads VMs across update domains and fault domains</td></tr>
+<tr><td>Max scale</td><td>Up to 1,000 VM instances</td><td>N/A (not a scaling feature)</td></tr>
+<tr><td>Cost</td><td>Pay for running VMs</td><td>Free — pay only for VM instances</td></tr>
+<tr><td>Protects against</td><td>Traffic spikes, single point of failure</td><td>Rack-level failure (fault domain), maintenance downtime (update domain)</td></tr>
+</table></div></div></div>
+<div class="card"><div class="card-title">Azure Virtual Desktop &amp; App Service</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Azure Virtual Desktop</div><div class="rv">Cloud-hosted Windows desktop accessible from any device. Data stays in Azure — not on user devices. Supports multi-session (multiple users share one VM). Supports MFA and RBAC. Ideal for BYOD, remote workers, and centralized desktop management.</div></div>
+<div class="r"><div class="rk">Azure App Service</div><div class="rv">PaaS for hosting web apps, REST APIs, and mobile backends. You deploy code; Azure manages servers, OS, scaling, and load balancing. Supports .NET, Java, Ruby, Node.js, PHP, Python. Works on Windows and Linux. Built-in DevOps integration with GitHub, Azure DevOps, and Docker Hub.</div></div>
+</div></div></div>
+<div class="card"><div class="card-title">Compute options comparison</div><div class="card-body">
+<div class="table-wrap"><table><tr><th>Service</th><th>Model</th><th>Best for</th></tr>
+<tr><td>Virtual Machines</td><td>IaaS</td><td>Full OS control, lift-and-shift, custom software</td></tr>
+<tr><td>VM Scale Sets</td><td>IaaS</td><td>Auto-scaling identical VMs, up to 1,000 instances</td></tr>
+<tr><td>Azure Virtual Desktop</td><td>IaaS/PaaS</td><td>Remote Windows desktop, BYOD, centralized management</td></tr>
+<tr><td>App Service</td><td>PaaS</td><td>Web apps / REST APIs, focus on code not servers</td></tr>
+<tr><td>Azure Functions</td><td>PaaS (serverless)</td><td>Short event-driven tasks, pay per execution</td></tr>
+<tr><td>Container Instances (ACI)</td><td>PaaS</td><td>Simplest container deployment, burst workloads</td></tr>
+<tr><td>Container Apps</td><td>PaaS (serverless)</td><td>Microservices, scale-to-zero containers</td></tr>
+<tr><td>AKS</td><td>PaaS</td><td>Production Kubernetes, large-scale containers</td></tr>
+</table></div></div></div>
+</div>
+
+<div class="tab" id="a4">
+<div class="card"><div class="card-title">VMs vs containers</div><div class="card-body">VMs virtualize hardware — each VM has its own full OS, consuming significant memory. Containers virtualize the OS — multiple containers share the same OS kernel, making them far more lightweight and portable. Many more containers than VMs can run on the same hardware.</div></div>
+<div class="card"><div class="card-title">Azure container services</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Container Instances (ACI)</div><div class="rv">Fastest, simplest way to run a container in Azure — no VMs or orchestrators to manage. PaaS. Best for simple containerized tasks, burst workloads, dev/test, and short-lived jobs. Billed per second of compute time only while running.</div></div>
+<div class="r"><div class="rk">Container Apps</div><div class="rv">Fully managed serverless container platform for microservices. Abstracts Kubernetes complexity. Supports automatic scale-to-zero — pay nothing when no traffic is present. Language and runtime agnostic — any container image works.</div></div>
+<div class="r"><div class="rk">Azure Kubernetes Service (AKS)</div><div class="rv">Managed Kubernetes service. Azure manages the Kubernetes control plane; you manage workloads and worker nodes. Best for large-scale production containerized apps. Includes built-in DevOps pipelines and security features.</div></div>
+</div></div></div>
+<div class="card"><div class="card-title">Azure Functions — serverless compute</div><div class="card-body">Event-driven serverless compute. Code runs only when triggered by an event — no server management, no idle cost.<div class="kv" style="margin-top:10px;">
+<div class="r"><div class="rk">Event triggers</div><div class="rv">HTTP requests, timers (scheduled), messages from Service Bus or Event Hub, file uploads to Blob Storage, database changes.</div></div>
+<div class="r"><div class="rk">What you don't manage</div><div class="rv">Servers, containers, operating systems, scaling infrastructure — none of this is your concern. Azure provisions exactly the compute needed per execution.</div></div>
+<div class="r"><div class="rk">Best for</div><div class="rv">Short-lived operations (under 10 minutes). Processing files, responding to webhooks, scheduled data cleanup, glue code between services. NOT suited for long-running processes.</div></div>
+<div class="r"><div class="rk">Auto-scaling</div><div class="rv">Automatically scales from 1 to thousands of concurrent executions. No scaling rules to configure.</div></div>
+</div></div></div>
+</div>
+
+<div class="tab" id="a5">
+<div class="card"><div class="card-title">Azure Virtual Networks (VNets)</div><div class="card-body">The fundamental networking building block. A logically isolated private network in Azure for your resources to communicate through.<div class="kv" style="margin-top:10px;">
+<div class="r"><div class="rk">IP address space</div><div class="rv">Define a private IP range (e.g. 10.0.0.0/16). This range is used internally and cannot be routed on the public internet. Subdivide into subnets to organize resources and apply granular security.</div></div>
+<div class="r"><div class="rk">Public vs private endpoints</div><div class="rv">Public endpoints have public IP addresses accessible from anywhere. Private endpoints have private IPs within the VNet's address space — not reachable from the public internet.</div></div>
+<div class="r"><div class="rk">VNet peering</div><div class="rv">Connects two separate VNets privately over Microsoft's backbone — never the public internet. Non-transitive: if A peers with B and B peers with C, A cannot reach C through B. Each peering must be explicitly created.</div></div>
+</div></div></div>
+<div class="card"><div class="card-title">Network Security Groups (NSGs)</div><div class="card-body">Virtual firewalls with inbound/outbound rules controlling traffic by source/destination IP, port, and protocol. Attachable to subnets or individual network interfaces.<div class="kv" style="margin-top:10px;">
+<div class="r"><div class="rk">How rules work</div><div class="rv">Rules are evaluated in priority order — lower numbers first. When a matching rule is found, Azure applies its action (allow or deny) and stops processing. The final default rule denies all unmatched traffic.</div></div>
+<div class="r"><div class="rk">Default rules</div><div class="rv">6 default rules are created automatically and cannot be deleted: allow VNet-to-VNet, allow Azure Load Balancer, deny all inbound; allow VNet-to-VNet outbound, allow internet outbound, deny all outbound.</div></div>
+<div class="r"><div class="rk">Reusability</div><div class="rv">One NSG can be attached to multiple subnets and network interfaces. A single policy protects many resources.</div></div>
+</div></div></div>
+<div class="card"><div class="card-title">Azure DNS</div><div class="card-body">Hosting service for DNS zones providing name resolution using Microsoft's global infrastructure. DNS translates human-readable domain names to IP addresses.<div class="kv" style="margin-top:10px;">
+<div class="r"><div class="rk">What it hosts</div><div class="rv">DNS zones — collections of DNS records (A, CNAME, MX, etc.) that map domain names to IP addresses or other values.</div></div>
+<div class="r"><div class="rk">Auto-integration</div><div class="rv">When an Azure web app moves to a new server, its DNS record can update automatically — no manual changes during deployments.</div></div>
+<div class="r"><div class="rk">Cannot register domains</div><div class="rv">Azure DNS hosts DNS zones — it does not register domain names. Register through a domain registrar, then delegate to Azure DNS.</div></div>
+</div></div></div>
+</div>
+
+<div class="tab" id="a6">
+<div class="card"><div class="card-title">VPN Gateway vs ExpressRoute</div><div class="card-body">
+<div class="table-wrap"><table><tr><th>Factor</th><th>VPN Gateway</th><th>ExpressRoute</th></tr>
+<tr><td>Connection path</td><td>Over the public internet (encrypted)</td><td>Private dedicated circuit — never touches public internet</td></tr>
+<tr><td>Security</td><td>Encrypted, but travels through internet infrastructure</td><td>Higher — private network, no internet exposure</td></tr>
+<tr><td>Latency</td><td>Variable — depends on internet congestion</td><td>Low and predictable — dedicated bandwidth</td></tr>
+<tr><td>Bandwidth</td><td>Up to ~10 Gbps</td><td>50 Mbps to 100 Gbps</td></tr>
+<tr><td>Cost</td><td>Lower — no physical circuit required</td><td>Higher — requires connectivity provider coordination</td></tr>
+<tr><td>Microsoft 365</td><td>Not supported</td><td>Supported — one circuit reaches both Azure and M365</td></tr>
+<tr><td>Best for</td><td>Branch offices, remote users, cost-sensitive hybrid connectivity</td><td>Production workloads with strict performance needs, financial/regulated environments</td></tr>
+</table></div>
+<div class="why" style="margin-top:10px;"><strong>Exam rule:</strong> "Never traverse the public internet" or "private dedicated connection" = ExpressRoute. "Secure connection over the internet" = VPN Gateway.</div>
+</div></div>
+<div class="card"><div class="card-title">VPN Gateway — deep dive</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">What it does</div><div class="rv">Creates an encrypted "tunnel" over the public internet between Azure VNets and on-premises locations. Data is encrypted before leaving and decrypted only at the destination — interception is practically useless.</div></div>
+<div class="r"><div class="rk">Use cases</div><div class="rv">Site-to-site VPN (on-premises to Azure), point-to-site VPN (remote users to Azure), VNet-to-VNet VPN (two Azure VNets in different regions).</div></div>
+<div class="r"><div class="rk">Entry point</div><div class="rv">Each VNet can have only one VPN gateway. That gateway can connect to multiple on-premises sites or VNets simultaneously.</div></div>
+</div></div></div>
+<div class="card"><div class="card-title">ExpressRoute — deep dive</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Private connection</div><div class="rv">Traffic travels from your facility to a connectivity provider's exchange point, then through Microsoft's global network directly to Azure data centers. Never exposed to public internet routing, DDoS attacks, or packet sniffing.</div></div>
+<div class="r"><div class="rk">ExpressRoute Global Reach</div><div class="rv">Connect multiple on-premises sites through Microsoft's network. An office in Asia and data center in Europe, both connected via ExpressRoute, can exchange data without touching the public internet.</div></div>
+<div class="r"><div class="rk">What it connects</div><div class="rv">Azure services and Microsoft 365 (Exchange, SharePoint, Teams). One circuit reaches both simultaneously.</div></div>
+</div></div></div>
+</div>
+
+<div class="tab" id="a7">
+<div class="card"><div class="card-title">Key terms — flash reference</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Region</div><div class="rv">Geographic area with one or more nearby low-latency connected data centers. 60+ regions in 140 countries.</div></div>
+<div class="r"><div class="rk">Availability zone</div><div class="rv">Physically separate data center within a region, independent power/cooling/networking. Min 3 per supported region.</div></div>
+<div class="r"><div class="rk">Region pair</div><div class="rv">Two Azure regions 300+ miles apart in same geography. Automatic failover during region-wide disasters.</div></div>
+<div class="r"><div class="rk">Management group</div><div class="rv">Container grouping subscriptions for governance at scale. Max 10,000 per directory, 6 levels deep.</div></div>
+<div class="r"><div class="rk">Subscription</div><div class="rv">Unit of billing and access management. Generates its own invoice. Billing + access boundaries.</div></div>
+<div class="r"><div class="rk">Resource group</div><div class="rv">Logical container for related resources. Actions apply to all resources within. Cannot be nested.</div></div>
+<div class="r"><div class="rk">VM Scale Sets</div><div class="rv">Auto-scales identical load-balanced VMs. Up to 1,000 instances. Handles demand spikes automatically.</div></div>
+<div class="r"><div class="rk">Availability Sets</div><div class="rv">Protects VMs from planned/unplanned downtime using update domains and fault domains. Free.</div></div>
+<div class="r"><div class="rk">App Service</div><div class="rv">PaaS for web apps and REST APIs. Deploy code; Azure manages servers, OS, and scaling.</div></div>
+<div class="r"><div class="rk">Azure Functions</div><div class="rv">Serverless event-driven compute. Pay per execution. Auto-scales. Resources deallocated after execution.</div></div>
+<div class="r"><div class="rk">VNet</div><div class="rv">Logically isolated private network. Divided into subnets. Resources communicate privately by default.</div></div>
+<div class="r"><div class="rk">NSG</div><div class="rv">Virtual firewall with priority-based rules. 6 default undeletable rules. Attachable to subnets or NICs.</div></div>
+<div class="r"><div class="rk">VPN Gateway</div><div class="rv">Encrypted connection over public internet. Variable latency. Lower cost.</div></div>
+<div class="r"><div class="rk">ExpressRoute</div><div class="rv">Private dedicated circuit. Never touches public internet. Up to 100 Gbps. Predictable low latency.</div></div>
+</div></div></div>
+<div class="scen"><div class="scen-q">A company wants VMs to stay available if an Azure data center loses power. All VMs are in the same data center. What should they configure?</div><div class="scen-a"><span class="ans">Availability Zones.</span> AZs are physically separate data centers in the same region with independent power. Distributing VMs across 3 zones means a power outage in one zone leaves VMs in the other two unaffected. Availability Sets only protect against rack-level failures within one data center.</div></div>
+<div class="scen"><div class="scen-q">A financial institution needs a private, dedicated, high-bandwidth connection from their data center to Azure that never traverses the public internet. Which service?</div><div class="scen-a"><span class="ans">Azure ExpressRoute.</span> ExpressRoute provides a private dedicated connection to Microsoft's network through a connectivity provider — traffic never touches the public internet. VPN Gateway would use the public internet (encrypted) and would not meet the "never traverse the public internet" requirement.</div></div>
+<div class="acc"><div class="acc-q">What is the difference between availability zones, availability sets, and region pairs?<span class="arr">▼</span></div><div class="acc-a">Availability Sets protect against rack-level failures within a single data center — they use update domains (rolling maintenance) and fault domains (separate power/network). They do NOT protect against an entire data center going offline. Availability Zones protect against data center-level failures — deploying VMs across three separate zones means one entire data center going dark still leaves two zones operational. Region pairs protect against region-wide disasters — if a catastrophic event affects an entire Azure region, its paired region (300+ miles away) continues serving traffic. Use availability sets when zones are not available. Use availability zones for production workloads needing data-center resilience. Use region pairs for disaster recovery replication across geographies.</div></div>
+<div class="acc"><div class="acc-q">What are the two types of boundaries a subscription provides?<span class="arr">▼</span></div><div class="acc-a">Subscriptions provide billing boundaries and access management boundaries. The billing boundary means each subscription generates its own invoice — organizations use multiple subscriptions to separate Azure costs by department, project, or environment for accurate internal chargeback. The access management boundary means different Azure RBAC policies can be applied to different subscriptions — one team's subscription can have completely different access rules from another's, preventing accidental cross-team resource modification. For enterprises, this provides both financial accountability and security isolation.</div></div>
+</div>
+
+</main>
+
+<script>
+const tabs=document.querySelectorAll('.tab-btn');
+const panels=document.querySelectorAll('.tab');
+const prog=document.getElementById('prog');
+const progLabel=document.getElementById('prog-label');
+const visited=new Set();
+tabs.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    tabs.forEach(b=>b.classList.remove('active'));
+    panels.forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    const id=btn.dataset.tab;
+    document.getElementById(id).classList.add('active');
+    visited.add(id);
+    if(prog){const pct=Math.round(visited.size/tabs.length*100);prog.style.width=pct+'%';progLabel.textContent=visited.size+' of '+tabs.length+' sections visited';}
+  });
+});
+if(tabs.length>0){visited.add(tabs[0].dataset.tab);}
+document.querySelectorAll('.acc-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    q.classList.toggle('open');
+    q.nextElementSibling.classList.toggle('open');
+  });
+});
+</script>
+
+</body>
+</html>

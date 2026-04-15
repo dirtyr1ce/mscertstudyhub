@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PL-900 — Session 5 — Power Apps: Model-Driven Apps</title>
+<style>
+
+:root{--blue:#0078D4;--blue-dark:#005A9E;--blue-light:#EFF6FC;--blue-mid:#C7E0F4;--text:#201F1E;--text2:#484644;--muted:#797775;--border:#EDEBE9;--bg:#FAF9F8;--white:#fff;--radius:8px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-text-size-adjust:100%;}
+header{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.25rem;display:flex;align-items:center;gap:10px;height:52px;position:sticky;top:0;z-index:100;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;white-space:nowrap;flex-shrink:0;}
+.back:hover{text-decoration:underline;}
+.htitle{font-size:13px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.hbadge{margin-left:auto;font-size:11px;padding:2px 9px;border-radius:10px;font-weight:600;background:var(--blue-light);color:var(--blue-dark);border:1px solid var(--blue-mid);white-space:nowrap;flex-shrink:0;}
+.content-wrap{max-width:900px;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+@media(max-width:480px){
+  .htitle{font-size:12px;}
+  .content-wrap{padding:1rem 1rem 3rem;}
+}
+
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="index.html">← Back</a>
+  <span class="htitle">PL-900 — Session 5 — Power Apps: Model-Driven Apps</span>
+  <span class="hbadge">Exam weight: 25–30% combined</span>
+</header>
+<div class="content-wrap">
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.container { padding: 1rem 0; font-family: 'Segoe UI', -apple-system, sans-serif; }
+.header { margin-bottom: 1.5rem; }
+.header h1 { font-size: 20px; font-weight: 500; color: var(--text); }
+.header p { font-size: 13px; color: var(--text2); margin-top: 4px; }
+.progress-bar { height: 4px; background: var(--border); border-radius: 2px; margin-top: 12px; }
+.progress-fill { height: 100%; background: #0078D4; border-radius: 2px; transition: width 0.4s ease; }
+.progress-label { font-size: 12px; color: var(--text2); margin-top: 4px; }
+.nav-tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 1.5rem; border-bottom: 0.5px solid var(--border); }
+.tab-btn { padding: 8px 14px; font-size: 13px; font-weight: 400; border: none; background: transparent; cursor: pointer; color: var(--text2); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.15s; border-radius: 0; }
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: #0078D4; border-bottom-color: #0078D4; font-weight: 500; }
+.section { display: none; }
+.section.active { display: block; }
+.card { background: var(--white); border: 0.5px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 12px; }
+.card-title { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+.card-body { font-size: 13px; color: var(--text2); line-height: 1.6; }
+.badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; display: inline-block; }
+.badge-blue { background: var(--blue-light); color: var(--blue-dark); }
+.badge-green { background: #EAF3DE; color: #173404; }
+.badge-amber { background: #FAEEDA; color: #412402; }
+.key-terms { display: flex; flex-direction: column; }
+.term { display: flex; gap: 12px; padding: 10px 0; border-bottom: 0.5px solid var(--border); align-items: flex-start; }
+.term:last-child { border-bottom: none; }
+.term-word { font-size: 13px; font-weight: 500; color: var(--text); min-width: 155px; flex-shrink: 0; }
+.term-def { font-size: 13px; color: var(--text2); line-height: 1.5; }
+.compare-table { width: 100%; font-size: 13px; border-collapse: collapse; }
+.compare-table th { text-align: left; padding: 8px 12px; font-weight: 500; color: var(--text); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 0.5px solid var(--border); }
+.compare-table td { padding: 8px 12px; color: var(--text2); border-bottom: 0.5px solid var(--border); vertical-align: top; font-size: 13px; }
+.compare-table tr:last-child td { border-bottom: none; }
+.accordion-item { border: 0.5px solid var(--border); border-radius: 6px; overflow: hidden; margin-bottom: 8px; }
+.accordion-q { padding: 12px 16px; font-size: 14px; font-weight: 500; color: var(--text); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.15s; }
+.accordion-q:hover { background: var(--bg); }
+.accordion-q .arrow { transition: transform 0.2s; font-size: 12px; color: var(--text2); }
+.accordion-q.open .arrow { transform: rotate(180deg); }
+.accordion-a { display: none; padding: 12px 16px; font-size: 13px; color: var(--text2); line-height: 1.6; background: var(--bg); border-top: 0.5px solid var(--border); }
+.accordion-a.open { display: block; }
+.step-list { display: flex; flex-direction: column; }
+.step-item { display: flex; gap: 14px; padding: 12px 0; border-bottom: 0.5px solid var(--border); align-items: flex-start; }
+.step-item:last-child { border-bottom: none; }
+.step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--blue-light); color: var(--blue-dark); font-size: 13px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-body h4 { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.step-body p { font-size: 13px; color: var(--text2); line-height: 1.5; }
+.component-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.comp-card { border-radius: 6px; padding: 12px 14px; border: 0.5px solid; cursor: pointer; transition: all 0.15s; }
+.comp-card:hover { filter: brightness(0.97); }
+.comp-card h4 { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+.comp-card p { font-size: 12px; opacity: 0.8; line-height: 1.4; }
+.comp-detail { display: none; padding: 12px 14px; background: var(--bg); border-radius: 6px; margin-bottom: 10px; font-size: 13px; color: var(--text2); line-height: 1.6; }
+.comp-detail.open { display: block; }
+.comp-detail strong { color: var(--text); display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+.c-data { background: #E6F1FB; border-color: #B5D4F4; color: #042C53; }
+.c-ui { background: #EAF3DE; border-color: #C0DD97; color: #173404; }
+.c-logic { background: #FAEEDA; border-color: #FAC775; color: #412402; }
+.c-viz { background: #EEEDFE; border-color: #CECBF6; color: #26215C; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mini-card { padding: 12px 14px; border: 0.5px solid var(--border); border-radius: 6px; background: var(--white); }
+.mini-card h4 { font-size: 12px; font-weight: 500; color: var(--text2); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+.mini-card ul { padding-left: 14px; font-size: 13px; color: var(--text2); line-height: 1.7; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.form-card { padding: 12px 14px; border: 0.5px solid var(--border); border-radius: 6px; }
+.form-card h4 { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+.form-card p { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+  /* ── MOBILE FIXES ── */
+  .nav-tabs { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { white-space: nowrap; flex-shrink: 0; }
+
+  .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .compare-table { min-width: 500px; }
+
+  @media (max-width: 600px) {
+    .tool-grid { grid-template-columns: 1fr; }
+    .summary-grid { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .kv-row, .r { flex-direction: column; gap: 4px; }
+    .kv-key, .rk { min-width: unset; font-size: 12px; }
+    .term { flex-direction: column; gap: 3px; }
+    .term-word { min-width: unset; }
+    .card { padding: 0.875rem 1rem; }
+    .layer { padding: 10px 13px; }
+    .qa-question { padding: 10px 13px; font-size: 13px; }
+    .qa-answer { padding: 10px 13px; }
+    .tab-btn { padding: 7px 11px; font-size: 12px; }
+    .compare-table th, .compare-table td { padding: 7px 10px; font-size: 12px; }
+  }
+  @media (max-width: 400px) {
+    .card-title { font-size: 14px; }
+    .card-body { font-size: 12px; }
+  }
+</style>
+
+<div class="container">
+  <div class="header">
+    <h1>Model-Driven Apps in Power Apps</h1>
+    <p>Session 5 — Based on the course by Barbara Andrews, Lead Microsoft Technical Trainer</p>
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width:20%"></div></div>
+    <div class="progress-label" id="progress-label">1 of 5 sections visited</div>
+  </div>
+
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('overview',this)">Fundamentals</button>
+    <button class="tab-btn" onclick="showTab('components',this)">Components</button>
+    <button class="tab-btn" onclick="showTab('forms',this)">Forms & Views</button>
+    <button class="tab-btn" onclick="showTab('lab',this)">Lab Walkthrough</button>
+    <button class="tab-btn" onclick="showTab('review',this)">Review Q&A</button>
+  </div>
+
+  <!-- TAB 1: FUNDAMENTALS -->
+  <div id="tab-overview" class="section active">
+    <div class="card">
+      <div class="card-title">What are Model-Driven Apps?</div>
+      <div class="card-body">No-code applications built using a component-focused, metadata-driven design approach. Unlike Canvas apps where you control every pixel, model-driven apps <em>automatically generate</em> the UI from the underlying Dataverse data model. Accessible at <span style="font-family:'Consolas', 'Courier New', monospace;font-size:12px;">make.powerapps.com</span>. Built using the App Designer.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">The 3-Step Design Process</div>
+      <div class="card-body">
+        <div class="step-list">
+          <div class="step-item"><div class="step-num">1</div><div class="step-body"><h4>Model your business data</h4><p>Define entities, relationships, and data types in Dataverse that reflect your organizational structure. This metadata-driven foundation ensures accurate reporting, seamless integration, and consistent data governance.</p></div></div>
+          <div class="step-item"><div class="step-num">2</div><div class="step-body"><h4>Define business processes</h4><p>Map workflows, automate tasks, and set rules that guide user interactions — approvals, escalations, notifications. Helps users focus on work rather than remembering manual steps.</p></div></div>
+          <div class="step-item"><div class="step-num">3</div><div class="step-body"><h4>Build the app with App Designer</h4><p>Assemble components like views, forms, and dashboards using drag-and-drop tools. Configure security roles and share the app for distribution.</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Model-Driven vs Canvas Apps — Quick Comparison</div>
+      <div class="card-body">
+        <div class="table-wrap"><table class="compare-table">
+          <tr><th>Dimension</th><th>Model-Driven</th><th>Canvas</th></tr>
+          <tr><td>UI generation</td><td>Auto-generated from data model</td><td>Manually designed, full layout control</td></tr>
+          <tr><td>Data source</td><td>Microsoft Dataverse only</td><td>Multiple (SharePoint, Excel, Dataverse, etc.)</td></tr>
+          <tr><td>Best for</td><td>Process-driven, data-centric, enterprise apps</td><td>Task-specific, custom UI, field workers</td></tr>
+          <tr><td>Security trimming</td><td>Built-in</td><td>Manual</td></tr>
+          <tr><td>Examples</td><td>CRM, compliance tracking, case management</td><td>Field inspections, intake forms, mobile dashboards</td></tr>
+          <tr><td>Responsive design</td><td>Automatic — no extra config needed</td><td>Requires manual responsive design work</td></tr>
+          <tr><td>Code required</td><td>None</td><td>None (Power Fx formulas for logic)</td></tr>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Common Use Cases</div>
+      <div class="card-body">
+        <div class="two-col">
+          <div class="mini-card"><h4>Business operations</h4><ul><li>Customer Relationship Management (CRM)</li><li>Issue and case tracking</li><li>Compliance monitoring</li><li>Innovation management</li></ul></div>
+          <div class="mini-card"><h4>Enterprise processes</h4><ul><li>Employee onboarding workflows</li><li>Sales pipeline management</li><li>Member relationship tracking (banks)</li><li>Service request management</li></ul></div>
+          <div class="mini-card"><h4>Analytics & reporting</h4><ul><li>Performance dashboards (executives)</li><li>Real-time operational metrics</li><li>Embedded Power BI reports</li><li>Domain-specific KPI dashboards</li></ul></div>
+          <div class="mini-card"><h4>Event management (Lab 5)</h4><ul><li>Event and session tracking</li><li>Session registrations</li><li>Speaker and participant management</li><li>Contact role assignment</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: COMPONENTS -->
+  <div id="tab-components" class="section">
+    <div class="card">
+      <div class="card-title">4 Component Categories — Click to Expand ↓</div>
+      <div class="card-body" style="margin-bottom:12px;">App Designer creators select components that become the app's metadata — ensuring consistency and scalability.</div>
+      <div class="component-grid">
+        <div class="comp-card c-data" onclick="showComp('data',this)"><h4>🗄️ Data Components</h4><p>Tables, columns, relationships — the backbone and data foundation</p></div>
+        <div class="comp-card c-ui" onclick="showComp('ui',this)"><h4>🖥️ UI Components</h4><p>App shell, sitemap, forms, views — navigation and interaction</p></div>
+        <div class="comp-card c-logic" onclick="showComp('logic',this)"><h4>⚙️ Logic Components</h4><p>Business processes, flows, workflows, actions, business rules</p></div>
+        <div class="comp-card c-viz" onclick="showComp('viz',this)"><h4>📊 Visualization Components</h4><p>Charts, dashboards, embedded Power BI reports</p></div>
+      </div>
+      <div class="comp-detail" id="comp-data"><strong>Data Components</strong>Tables define the entities (e.g., Contact, Event, Session). Columns define the fields within each table and their data types. Relationships link tables together — one-to-many and many-to-many — enabling seamless navigation between related records and preventing data duplication. This forms the metadata-driven architecture that drives the entire app's structure.</div>
+      <div class="comp-detail" id="comp-ui"><strong>UI Components</strong>App shell — the outer navigation frame of the application. Sitemap — defines the navigation structure (groups, tables, views) that users see in the left nav. Forms — control how individual records are displayed and edited. Views — list-based access to table rows for filtering, sorting, and locating records. Together these determine how users navigate and interact with data throughout the app.</div>
+      <div class="comp-detail" id="comp-logic"><strong>Logic Components</strong>Business processes — structured workflows guiding users through standardized steps (e.g., approvals, escalations). Workflows — automated background processes triggered by record changes. Actions — callable processes that can be triggered from flows or code. Business rules — no-code table-level logic for field validation and conditional display. Power Automate flows — cloud flows for cross-system automation triggered from within the app.</div>
+      <div class="comp-detail" id="comp-viz"><strong>Visualization Components</strong>Charts — transform raw table data into visual bar, pie, line, or funnel charts for quick trend analysis. Dashboards — combine multiple charts and views into a single graphical overview. Ideal for executives or team leads needing real-time summaries. Can include custom filters and visual graphics tailored to specific roles or departments. Embedded Power BI reports — bring full Power BI analytics directly inside the model-driven app.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Sitemap Navigation — Groups & Views</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Sitemap</div><div class="term-def">The navigation structure users see in the left panel. Organized into Groups and Views/Tables. Configured in the App Designer under Navigation.</div></div>
+          <div class="term"><div class="term-word">Groups</div><div class="term-def">Named sections in the sitemap that organize related tables. Example from Lab 5: "People" group (Contacts) and "Events" group (Events, Event Sessions, Session Registrations).</div></div>
+          <div class="term"><div class="term-word">Reordering views</div><div class="term-def">Views (table entries) can be dragged between groups in the App Designer's Navigation panel to organize the sitemap logically.</div></div>
+          <div class="term"><div class="term-word">Show in Navigation</div><div class="term-def">Toggle on each added table/view to control whether it appears in the app's left navigation panel.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Third-Party Solutions & App Accelerators</div>
+      <div class="card-body">Model-driven apps support third-party solutions and app accelerators, allowing organizations to extend functionality and integrate specialized tools. These are distributed using the same solution framework (managed solutions), ensuring compatibility and ease of integration — the same mechanism Microsoft uses for Dynamics 365 apps.</div>
+    </div>
+  </div>
+
+  <!-- TAB 3: FORMS & VIEWS -->
+  <div id="tab-forms" class="section">
+    <div class="card">
+      <div class="card-title">4 Form Types</div>
+      <div class="card-body">
+        <div class="form-grid">
+          <div class="form-card"><h4>📄 Main form <span class="badge badge-blue">Primary</span></h4><p>The primary interface for full record interaction. Multiple tabs and sections. Ideal for CRM or case tracking where users need complete access to all record details.</p></div>
+          <div class="form-card"><h4>🃏 Card form <span class="badge badge-amber">Compact</span></h4><p>Optimized for small screens or sub-grid areas. Perfect for mobile dashboards or summary views with limited space where quick access to key data is needed.</p></div>
+          <div class="form-card"><h4>⚡ Quick Create form <span class="badge badge-green">Fast entry</span></h4><p>Built for speed — users input essential data and create new records without leaving their current screen. Ideal for sales or support ticketing in fast-paced environments.</p></div>
+          <div class="form-card"><h4>👁️ Quick View form <span class="badge badge-blue">Read-only</span></h4><p>Displays read-only data from a related table within a main form. Reduces navigation. Example: view account details while working on a contact record.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">3 View Types</div>
+      <div class="card-body">
+        <div class="table-wrap"><table class="compare-table">
+          <tr><th>View type</th><th>Created by</th><th>Purpose</th><th>Example</th></tr>
+          <tr><td>Personal views</td><td>Individual users</td><td>Custom filters and layouts for personal workflows</td><td>A sales rep filters leads by their own region</td></tr>
+          <tr><td>System views</td><td>Administrators (built-in)</td><td>Core app views ensuring consistency: Quick Find, Advanced Find, Lookup Views</td><td>Quick Find for fast search; Advanced Find for complex queries</td></tr>
+          <tr><td>Public views</td><td>Admins / customizers</td><td>Shared organization-wide views; used in subgrids, forms, dashboards</td><td>Open service requests list shown in a dashboard</td></tr>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Form Editor — Key Capabilities</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Table columns panel</div><div class="term-def">Lists all available columns for the table. Search for a column by name, then drag it onto the form canvas to add it as a field.</div></div>
+          <div class="term"><div class="term-word">New table column</div><div class="term-def">Create a brand new column directly from the form editor. Define name, data type (e.g., Choice, Text, Number), and settings — saves back to the Dataverse table.</div></div>
+          <div class="term"><div class="term-word">Choice field configuration</div><div class="term-def">For Choice columns, add labels (option values) directly in the editor. Toggle "Sync with Global Choice" on or off. Set a default choice value (e.g., "None").</div></div>
+          <div class="term"><div class="term-word">Save and Publish</div><div class="term-def">Always save then publish after editing a form. Publishing makes the changes live in the app. Must be done for both forms and views.</div></div>
+          <div class="term"><div class="term-word">Form tabs & sections</div><div class="term-def">Main forms support multiple tabs and sections to organize fields. Allows grouping related data (e.g., General tab, Related tab for linked records).</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Charts & Dashboards</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Charts</div><div class="term-def">Transform raw table data into visual insights (bar, pie, line, funnel). Accessible via the "Show Chart" button in a view. Help users quickly grasp trends and performance metrics.</div></div>
+          <div class="term"><div class="term-word">Dashboards</div><div class="term-def">Combine multiple charts and views into a single graphical overview. Ideal for executives or team leads needing real-time summaries. Supports custom filters and visual graphics per role or department.</div></div>
+          <div class="term"><div class="term-word">Embedded Power BI</div><div class="term-def">Full Power BI reports can be embedded directly inside a model-driven app dashboard, bringing advanced analytics into the same interface users already work in.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 4: LAB WALKTHROUGH -->
+  <div id="tab-lab" class="section">
+    <div class="card">
+      <div class="card-title">Lab 5 — Contoso Event Management Model-Driven App <span class="badge badge-blue">Hands-on</span></div>
+      <div class="card-body">Build a model-driven app for Contoso Consulting to manage events, sessions, and registrations. Uses the Event Management solution and tables created in Labs 1–2. Demonstrates form customization, sitemap navigation grouping, and data entry testing.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Step-by-Step Summary</div>
+      <div class="card-body">
+        <div class="step-list">
+          <div class="step-item"><div class="step-num">1</div><div class="step-body"><h4>Create the model-driven app</h4><p>In Power Apps → Solutions → Event Management solution, click New → App → Model-Driven App. Name it "Contoso Event Management5." Add a description. Click Create.</p></div></div>
+          <div class="step-item"><div class="step-num">2</div><div class="step-body"><h4>Add Dataverse tables as pages</h4><p>Add pages using Dataverse tables. Select four tables: Contact, Event, EventSession, Session Registration. Enable "Show in Navigation" for all four. Verify all four appear in the navigation panel.</p></div></div>
+          <div class="step-item"><div class="step-num">3</div><div class="step-body"><h4>Organize the sitemap into groups</h4><p>In App Designer → Navigation, create two new groups: "People" and "Events." Move Contact view into the People group. Move Events, EventSessions, and Session Registrations views into the Events group. Reorder by dragging.</p></div></div>
+          <div class="step-item"><div class="step-num">4</div><div class="step-body"><h4>Customize the Contact form</h4><p>Navigate to People → Contact form → Edit. Create a new table column: Name = "Contact Type5," Data type = Choice, Sync with Global Choice = Off. Add three choice labels: Speaker, Participant, Support Staff. Set default to None. Save. Search for the new column in Table Columns panel, drag it onto the form. Save and Publish.</p></div></div>
+          <div class="step-item"><div class="step-num">5</div><div class="step-body"><h4>Review Events view and form</h4><p>Navigate to Events view in App Designer. Verify "Event Details1" field has been removed (done in earlier labs). Save and Publish the Events form. Return to App Designer and Save and Publish the full app.</p></div></div>
+          <div class="step-item"><div class="step-num">6</div><div class="step-body"><h4>Test the app with sample data</h4><p>Open the app (Apps → Contoso Event Management5 → Play icon). Add two contacts: Tim Brown (Speaker) and Tammy Jones (Participant). Create an Event: "Fall Conference," Seattle, max 500, type = Conference, registration required. Create an EventSession: "AI Session," tomorrow, 1.5 hours, speaker = Suzanne Diaz, event = Fall Conference. Create a Session Registration: Suzanne Diaz, ABC Company, special instructions = no gluten.</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">App Structure Built in Lab 5</div>
+      <div class="card-body">
+        <div class="table-wrap"><table class="compare-table">
+          <tr><th>Sitemap group</th><th>Table/view</th><th>Key customization</th></tr>
+          <tr><td>People</td><td>Contact</td><td>Added "Contact Type" choice field (Speaker, Participant, Support Staff)</td></tr>
+          <tr><td>Events</td><td>Event</td><td>Verified removal of Event Details1 field; saved and published</td></tr>
+          <tr><td>Events</td><td>Event Session</td><td>Added to Events group in sitemap; displays session details</td></tr>
+          <tr><td>Events</td><td>Session Registration</td><td>Added to Events group; stores participant registration data</td></tr>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Sample Data Entered During Testing</div>
+      <div class="card-body">
+        <div class="table-wrap"><table class="compare-table">
+          <tr><th>Record type</th><th>Name</th><th>Key fields</th></tr>
+          <tr><td>Contact</td><td>Tim Brown</td><td>Job title: Engineer; Contact Type: Speaker</td></tr>
+          <tr><td>Contact</td><td>Tammy Jones</td><td>Job title: Engineer; Contact Type: Participant</td></tr>
+          <tr><td>Event</td><td>Fall Conference</td><td>Location: Seattle; Max attendees: 500; Type: Conference; Registration required: Yes</td></tr>
+          <tr><td>Event Session</td><td>AI Session</td><td>Date: Tomorrow; Duration: 1.5 hours; Speaker: Suzanne Diaz; Event: Fall Conference</td></tr>
+          <tr><td>Session Registration</td><td>Suzanne Diaz</td><td>Company: ABC Company; Session date: Tomorrow; Special instructions: No gluten; Participant: Suzanne Diaz</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 5: REVIEW Q&A -->
+  <div id="tab-review" class="section">
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-title">Key Terms Flash Reference</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Model-driven app</div><div class="term-def">No-code app that auto-generates its UI from a Dataverse data model. Built with App Designer. Best for process-driven, data-centric enterprise scenarios.</div></div>
+          <div class="term"><div class="term-word">App Designer</div><div class="term-def">The drag-and-drop tool in Power Apps for assembling model-driven app components: pages, forms, views, dashboards, and the sitemap.</div></div>
+          <div class="term"><div class="term-word">Sitemap</div><div class="term-def">The app's navigation structure — defines the left panel groups and which table views appear under each group.</div></div>
+          <div class="term"><div class="term-word">Main form</div><div class="term-def">Primary record interaction form. Multi-tab, comprehensive. Used for full data entry and review.</div></div>
+          <div class="term"><div class="term-word">Quick Create form</div><div class="term-def">Streamlined fast-entry form — create a record without leaving the current screen. Ideal for sales or support.</div></div>
+          <div class="term"><div class="term-word">Quick View form</div><div class="term-def">Read-only form embedded in a main form showing data from a related table — reduces navigation.</div></div>
+          <div class="term"><div class="term-word">Card form</div><div class="term-def">Compact form for mobile or sub-grid display with limited space.</div></div>
+          <div class="term"><div class="term-word">Personal view</div><div class="term-def">User-created custom filter/layout for their own workflow. Not shared with others.</div></div>
+          <div class="term"><div class="term-word">System view</div><div class="term-def">Built-in admin-managed views: Quick Find, Advanced Find, Lookup Views. Ensures core app consistency.</div></div>
+          <div class="term"><div class="term-word">Public view</div><div class="term-def">Admin/customizer-created shared view, used in subgrids, forms, and dashboards across the organization.</div></div>
+          <div class="term"><div class="term-word">Security trimming</div><div class="term-def">Built-in model-driven app feature — users only see data and features they are authorized to access.</div></div>
+          <div class="term"><div class="term-word">Metadata-driven architecture</div><div class="term-def">The app's UI and behavior are defined by the Dataverse data model (metadata) rather than hand-coded layouts.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:var(--text2);margin-bottom:10px;">Click to reveal answers ↓</p>
+    <div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the three steps in the model-driven app design process?<span class="arrow">▼</span></div><div class="accordion-a">Step 1 — Model your business data: define entities, relationships, and data types in Dataverse to create a solid metadata-driven foundation. Step 2 — Define business processes: map workflows, automate tasks, and set rules for approvals, escalations, and notifications. Step 3 — Build the app with App Designer: assemble components (views, forms, dashboards) using drag-and-drop tools, then configure security roles and share the app.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the four component categories and what does each include?<span class="arrow">▼</span></div><div class="accordion-a">Data components — tables, columns, and relationships that form the backbone and ensure relational integrity. UI components — app shell, sitemap, forms, and views that determine navigation and data interaction. Logic components — business processes, workflows, actions, business rules, and Power Automate flows for automation and policy enforcement. Visualization components — charts, dashboards, and embedded Power BI reports providing real-time insights.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the four form types and when is each used?<span class="arrow">▼</span></div><div class="accordion-a">Main form — full multi-tab record interface; used for CRM, case tracking, or any scenario needing complete record access. Card form — compact display for mobile/sub-grid areas with limited space. Quick Create form — fast entry without leaving the current screen; ideal for sales or support ticketing. Quick View form — read-only data from a related table embedded within a main form; reduces navigation between records.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the three view types and how do they differ?<span class="arrow">▼</span></div><div class="accordion-a">Personal views are created by individual users as custom filters/layouts for their own workflows — not shared. System views are built-in, admin-managed views (Quick Find, Advanced Find, Lookup Views) that ensure core app consistency. Public views are created by admins or customizers and shared across the organization, typically used in subgrids, forms, and dashboards to standardize data presentation.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">In Lab 5, how was the sitemap organized and what tables went in each group?<span class="arrow">▼</span></div><div class="accordion-a">Two groups were created in the App Designer's Navigation panel: "People" — contains the Contact table/view. "Events" — contains the Event, Event Session, and Session Registration table views. Views were reorganized by moving them between groups using drag-and-drop in the Navigation panel.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What custom column was added to the Contact form in Lab 5 and how was it configured?<span class="arrow">▼</span></div><div class="accordion-a">A new column named "Contact Type5" was created directly from the form editor. Data type: Choice. Sync with Global Choice was turned off. Three choice labels were added: Speaker, Participant, and Support Staff. Default was set to None. The column was then found in the Table Columns panel (by searching "contact") and dragged onto the form. Finally, the form was Saved and Published to make the changes live.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What is metadata-driven architecture and why does it matter for model-driven apps?<span class="arrow">▼</span></div><div class="accordion-a">Metadata-driven architecture means the app's UI, navigation, and behavior are automatically generated from the definitions stored in Dataverse (the metadata) rather than being hand-coded. When you define a table, its columns, relationships, and business rules, the app uses that information to build responsive forms, views, and dashboards automatically. This ensures consistency across the app, enables scalability, and means UI changes can be made by updating the data model — not rewriting code.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What is the difference between model-driven app dashboards and embedded Power BI?<span class="arrow">▼</span></div><div class="accordion-a">Model-driven app dashboards are built natively within the app by combining multiple charts and views from Dataverse tables into a single graphical overview. They update in real time from the app's data and support custom filters by role. Embedded Power BI reports bring full Power BI analytics (with all its advanced visualization and data modeling capabilities) directly into a model-driven app dashboard — useful when deeper cross-system analytics are needed beyond what native Dataverse charts provide.</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const visited = new Set(['overview']);
+const total = 5;
+function showTab(name, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+  visited.add(name);
+  const pct = Math.round((visited.size / total) * 100);
+  document.getElementById('progress').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = visited.size + ' of ' + total + ' sections visited';
+}
+const compMap = { data:'comp-data', ui:'comp-ui', logic:'comp-logic', viz:'comp-viz' };
+let openComp = null;
+function showComp(id, card) {
+  const el = document.getElementById(compMap[id]);
+  if (openComp === id) {
+    el.classList.remove('open');
+    card.style.outline = 'none';
+    openComp = null;
+  } else {
+    Object.values(compMap).forEach(d => document.getElementById(d).classList.remove('open'));
+    document.querySelectorAll('.comp-card').forEach(c => c.style.outline = 'none');
+    el.classList.add('open');
+    card.style.outline = '2px solid #0078D4';
+    openComp = id;
+  }
+}
+function toggleQ(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}
+</script>
+
+</div>
+</body>
+</html>

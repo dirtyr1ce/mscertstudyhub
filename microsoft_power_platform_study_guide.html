@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PL-900 — Session 1 — Platform Overview & Business Value</title>
+<style>
+
+:root{--blue:#0078D4;--blue-dark:#005A9E;--blue-light:#EFF6FC;--blue-mid:#C7E0F4;--text:#201F1E;--text2:#484644;--muted:#797775;--border:#EDEBE9;--bg:#FAF9F8;--white:#fff;--radius:8px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-text-size-adjust:100%;}
+header{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.25rem;display:flex;align-items:center;gap:10px;height:52px;position:sticky;top:0;z-index:100;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;white-space:nowrap;flex-shrink:0;}
+.back:hover{text-decoration:underline;}
+.htitle{font-size:13px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.hbadge{margin-left:auto;font-size:11px;padding:2px 9px;border-radius:10px;font-weight:600;background:var(--blue-light);color:var(--blue-dark);border:1px solid var(--blue-mid);white-space:nowrap;flex-shrink:0;}
+.content-wrap{max-width:900px;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+@media(max-width:480px){
+  .htitle{font-size:12px;}
+  .content-wrap{padding:1rem 1rem 3rem;}
+}
+
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="index.html">← Back</a>
+  <span class="htitle">PL-900 — Session 1 — Platform Overview & Business Value</span>
+  <span class="hbadge">Exam weight: 15–20%</span>
+</header>
+<div class="content-wrap">
+
+<style>
+  :root { --accent: #0078D4; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', -apple-system, sans-serif; }
+  .container { padding: 1rem 0; }
+  .header { margin-bottom: 1.5rem; }
+  .header h1 { font-size: 20px; font-weight: 500; color: var(--text); }
+  .header p { font-size: 13px; color: var(--text2); margin-top: 4px; }
+  .progress-bar { height: 4px; background: var(--border); border-radius: 2px; margin-top: 12px; }
+  .progress-fill { height: 100%; background: #0078D4; border-radius: 2px; transition: width 0.4s ease; }
+  .progress-label { font-size: 12px; color: var(--text2); margin-top: 4px; }
+
+  .nav-tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 1.5rem; border-bottom: 0.5px solid var(--border); padding-bottom: 0; }
+  .tab-btn { padding: 8px 14px; font-size: 13px; font-weight: 400; border: none; background: transparent; cursor: pointer; color: var(--text2); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.15s; border-radius: 0; }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: #0078D4; border-bottom-color: #0078D4; font-weight: 500; }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .card { background: var(--white); border: 0.5px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 12px; }
+  .card-title { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card-body { font-size: 13px; color: var(--text2); line-height: 1.6; }
+  .badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
+  .badge-blue { background: var(--blue-light); color: var(--blue-dark); }
+  .badge-green { background: #EAF3DE; color: #173404; }
+  .badge-amber { background: #FAEEDA; color: #412402; }
+
+  .layers { display: flex; flex-direction: column; gap: 8px; }
+  .layer { border-radius: 6px; padding: 12px 16px; border: 0.5px solid; cursor: pointer; transition: all 0.15s; }
+  .layer:hover { filter: brightness(0.97); }
+  .layer-title { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .layer-items { font-size: 12px; opacity: 0.8; }
+  .layer-detail { font-size: 13px; line-height: 1.6; margin-top: 10px; display: none; padding-top: 10px; border-top: 0.5px solid currentColor; opacity: 0.7; }
+  .layer-detail.open { display: block; }
+  .layer-ai { background: #E6F1FB; border-color: #B5D4F4; color: #042C53; }
+  .layer-apps { background: #EAF3DE; border-color: #C0DD97; color: #173404; }
+  .layer-intel { background: #FAEEDA; border-color: #FAC775; color: #412402; }
+  .layer-data { background: #EEEDFE; border-color: #CECBF6; color: #26215C; }
+  .layer-gov { background: #F1EFE8; border-color: #D3D1C7; color: #2C2C2A; }
+
+  .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tool-card { border: 0.5px solid var(--border); border-radius: 6px; padding: 12px; cursor: pointer; transition: all 0.15s; }
+  .tool-card:hover { background: var(--bg); }
+  .tool-card.selected { border-color: #0078D4; background: #E6F1FB; }
+  .tool-icon { font-size: 20px; margin-bottom: 6px; }
+  .tool-name { font-size: 14px; font-weight: 500; color: var(--text); }
+  .tool-tag { font-size: 11px; color: var(--text2); }
+  .tool-detail { margin-top: 1rem; padding: 1rem 1.25rem; background: var(--bg); border-radius: 6px; display: none; }
+  .tool-detail.open { display: block; }
+  .tool-detail h3 { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+  .tool-detail p { font-size: 13px; color: var(--text2); line-height: 1.6; }
+  .use-case { margin-top: 8px; padding: 8px 12px; background: var(--white); border-radius: 6px; border: 0.5px solid var(--border); font-size: 12px; color: var(--text2); line-height: 1.5; }
+  .use-case strong { color: var(--text); display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 2px; }
+
+  .qa-list { display: flex; flex-direction: column; gap: 8px; }
+  .qa-item { border: 0.5px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .qa-question { padding: 12px 16px; font-size: 14px; font-weight: 500; color: var(--text); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.15s; }
+  .qa-question:hover { background: var(--bg); }
+  .qa-question .arrow { transition: transform 0.2s; font-size: 12px; color: var(--text2); }
+  .qa-question.open .arrow { transform: rotate(180deg); }
+  .qa-answer { display: none; padding: 12px 16px; font-size: 13px; color: var(--text2); line-height: 1.6; background: var(--bg); border-top: 0.5px solid var(--border); }
+  .qa-answer.open { display: block; }
+
+  .compare-table { width: 100%; font-size: 13px; border-collapse: collapse; }
+  .compare-table th { text-align: left; padding: 8px 12px; font-weight: 500; color: var(--text); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 0.5px solid var(--border); }
+  .compare-table td { padding: 8px 12px; color: var(--text2); border-bottom: 0.5px solid var(--border); vertical-align: top; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .dot-yes { color: #173404; }
+  .dot-no { color: #501313; }
+  .dot-extra { color: #412402; }
+
+  .key-terms { display: flex; flex-direction: column; gap: 8px; }
+  .term { display: flex; gap: 12px; padding: 10px 0; border-bottom: 0.5px solid var(--border); align-items: flex-start; }
+  .term:last-child { border-bottom: none; }
+  .term-word { font-size: 14px; font-weight: 500; color: var(--text); min-width: 130px; }
+  .term-def { font-size: 13px; color: var(--text2); line-height: 1.5; }
+
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .summary-card { padding: 12px 14px; border: 0.5px solid var(--border); border-radius: 6px; background: var(--white); }
+  .summary-card h4 { font-size: 13px; font-weight: 500; color: var(--text2); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+  .summary-card ul { padding-left: 14px; font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+  /* ── MOBILE FIXES ── */
+  .nav-tabs { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { white-space: nowrap; flex-shrink: 0; }
+
+  .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .compare-table { min-width: 500px; }
+
+  @media (max-width: 600px) {
+    .tool-grid { grid-template-columns: 1fr; }
+    .summary-grid { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .kv-row, .r { flex-direction: column; gap: 4px; }
+    .kv-key, .rk { min-width: unset; font-size: 12px; }
+    .term { flex-direction: column; gap: 3px; }
+    .term-word { min-width: unset; }
+    .card { padding: 0.875rem 1rem; }
+    .layer { padding: 10px 13px; }
+    .qa-question { padding: 10px 13px; font-size: 13px; }
+    .qa-answer { padding: 10px 13px; }
+    .tab-btn { padding: 7px 11px; font-size: 12px; }
+    .compare-table th, .compare-table td { padding: 7px 10px; font-size: 12px; }
+  }
+  @media (max-width: 400px) {
+    .card-title { font-size: 14px; }
+    .card-body { font-size: 12px; }
+  }
+</style>
+
+<div class="container">
+  <div class="header">
+    <h1>Microsoft Power Platform — Study Guide</h1>
+    <p>Based on the course transcript by Barbara Andrews, Lead Microsoft Technical Trainer</p>
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width:0%"></div></div>
+    <div class="progress-label" id="progress-label">0 of 5 sections visited</div>
+  </div>
+
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('overview',this)">Platform Overview</button>
+    <button class="tab-btn" onclick="showTab('tools',this)">Core Tools</button>
+    <button class="tab-btn" onclick="showTab('connectors',this)">Connectors & Data</button>
+    <button class="tab-btn" onclick="showTab('integration',this)">Integration</button>
+    <button class="tab-btn" onclick="showTab('review',this)">Review Q&A</button>
+  </div>
+
+  <!-- TAB 1: OVERVIEW -->
+  <div id="tab-overview" class="section active">
+    <div class="card">
+      <div class="card-title">What is Microsoft Power Platform?</div>
+      <div class="card-body">A suite of low-code tools that helps organizations build apps, automate processes, analyze data, and create digital experiences. Built on a modular architecture — each layer adds capability to the next.</div>
+    </div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:10px;">Click each layer to expand details ↓</p>
+    <div class="layers">
+      <div class="layer layer-ai" onclick="toggleLayer(this)">
+        <div class="layer-title">🤖 AI Layer — Copilot</div>
+        <div class="layer-items">Natural language · Intelligent suggestions · Cross-platform AI</div>
+        <div class="layer-detail">Copilot sits at the top because it enhances every part of the platform. It's not a standalone tool — it's embedded across Power Apps, Power Automate, Power BI, Power Pages, and Dataverse to help users build faster through natural language.</div>
+      </div>
+      <div class="layer layer-apps" onclick="toggleLayer(this)">
+        <div class="layer-title">⚙️ Application & Automation Layer</div>
+        <div class="layer-items">Power Apps · Power Automate · Power BI · Power Pages</div>
+        <div class="layer-detail">The four core tools of the platform. Power Apps builds custom apps, Power Automate handles workflow automation, Power BI transforms data into dashboards, and Power Pages creates external-facing websites — all low-code.</div>
+      </div>
+      <div class="layer layer-intel" onclick="toggleLayer(this)">
+        <div class="layer-title">🧠 Intelligence & Extensibility Layer</div>
+        <div class="layer-items">AI Builder · Copilot Studio · Power Fx · Connectors (1,400+)</div>
+        <div class="layer-detail">Extends the platform with AI and integration. AI Builder adds predictive capabilities without code. Copilot Studio builds conversational AI agents. Power Fx is the low-code Excel-like language. Connectors bridge apps to 1,400+ external services.</div>
+      </div>
+      <div class="layer layer-data" onclick="toggleLayer(this)">
+        <div class="layer-title">🗄️ Data Foundation — Microsoft Dataverse</div>
+        <div class="layer-items">Secure · Scalable · Unified data model · Cross-platform</div>
+        <div class="layer-detail">The backbone of Power Platform. Dataverse stores and manages data used by all components with a common data model, ensuring consistency, security, and seamless integration. It enables all tools to work together reliably.</div>
+      </div>
+      <div class="layer layer-gov" onclick="toggleLayer(this)">
+        <div class="layer-title">🔒 Governance & Environment Layer</div>
+        <div class="layer-items">Managed environments · Compliance · Access control · Deployment</div>
+        <div class="layer-detail">Managed environments provide isolated, controlled spaces for building, testing, and deploying solutions. Gives organizations oversight and control over data, resources, and compliance.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <div class="card-title">Why Power Platform? — The Business Case</div>
+      <div class="card-body">
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>Workforce Shift</h4>
+            <ul><li>Millennials & Gen Z = majority of workforce</li><li>Demand personalized, digital, collaborative tools</li><li>Power Platform delivers custom experiences</li></ul>
+          </div>
+          <div class="summary-card">
+            <h4>Cost Reduction</h4>
+            <ul><li>Traditional dev is expensive & slow</li><li>Low-code lets business users build their own apps</li><li>Reduces costly custom dev cycles</li></ul>
+          </div>
+          <div class="summary-card">
+            <h4>Speed & Agility</h4>
+            <ul><li>Old cycles: months to deploy, weeks for minor changes</li><li>Power Platform: rapid build, test, iterate</li><li>Keeps pace with business needs</li></ul>
+          </div>
+          <div class="summary-card">
+            <h4>Citizen Developers</h4>
+            <ul><li>Business users with domain expertise build apps</li><li>Pro devs extend with advanced features</li><li>Hybrid teams = scalable & user-centered</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: CORE TOOLS -->
+  <div id="tab-tools" class="section">
+    <p style="font-size:13px;color:var(--text2);margin-bottom:12px;">Click a tool to see details and examples ↓</p>
+    <div class="tool-grid">
+      <div class="tool-card" onclick="showTool('apps',this)">
+        <div class="tool-icon">📱</div>
+        <div class="tool-name">Power Apps</div>
+        <div class="tool-tag">Low-code app builder</div>
+      </div>
+      <div class="tool-card" onclick="showTool('automate',this)">
+        <div class="tool-icon">⚡</div>
+        <div class="tool-name">Power Automate</div>
+        <div class="tool-tag">Workflow automation</div>
+      </div>
+      <div class="tool-card" onclick="showTool('bi',this)">
+        <div class="tool-icon">📊</div>
+        <div class="tool-name">Power BI</div>
+        <div class="tool-tag">Analytics & dashboards</div>
+      </div>
+      <div class="tool-card" onclick="showTool('pages',this)">
+        <div class="tool-icon">🌐</div>
+        <div class="tool-name">Power Pages</div>
+        <div class="tool-tag">Business websites</div>
+      </div>
+      <div class="tool-card" onclick="showTool('copilot',this)">
+        <div class="tool-icon">🤖</div>
+        <div class="tool-name">Copilot Studio</div>
+        <div class="tool-tag">AI agent builder</div>
+      </div>
+      <div class="tool-card" onclick="showTool('fx',this)">
+        <div class="tool-icon">𝑓𝑥</div>
+        <div class="tool-name">Power Fx</div>
+        <div class="tool-tag">Low-code language</div>
+      </div>
+    </div>
+    <div class="tool-detail" id="tool-detail">
+      <h3 id="td-title"></h3>
+      <p id="td-desc"></p>
+      <div class="use-case"><strong>Example use case</strong><span id="td-example"></span></div>
+      <div class="use-case" id="td-copilot-box" style="display:none"><strong>Copilot integration</strong><span id="td-copilot"></span></div>
+    </div>
+  </div>
+
+  <!-- TAB 3: CONNECTORS & DATA -->
+  <div id="tab-connectors" class="section">
+    <div class="card">
+      <div class="card-title">Connectors — The Bridges <span class="badge badge-blue">1,400+</span></div>
+      <div class="card-body">Pre-built integrations that connect apps, data, and services. They come with predefined actions so users can build workflows without writing custom code.</div>
+    </div>
+
+    <div class="table-wrap"><table class="compare-table" style="margin-bottom:16px;">
+      <tr>
+        <th>Feature</th>
+        <th>Standard Connectors</th>
+        <th>Premium Connectors</th>
+      </tr>
+      <tr>
+        <td>License required</td>
+        <td>Microsoft 365 (included)</td>
+        <td>Power Apps / Automate Premium</td>
+      </tr>
+      <tr>
+        <td>Examples</td>
+        <td>SharePoint, OneDrive, Outlook, GitHub, Power BI</td>
+        <td>Salesforce, DocuSign, SQL Server, Dynamics 365, SurveyMonkey</td>
+      </tr>
+      <tr>
+        <td>Identifier</td>
+        <td>—</td>
+        <td>Premium stamp shown in interface</td>
+      </tr>
+      <tr>
+        <td>Best for</td>
+        <td>Everyday M365 workflows</td>
+        <td>Enterprise / mission-critical systems</td>
+      </tr>
+      <tr>
+        <td>Custom connectors</td>
+        <td colspan="2">Can be created when no standard/premium connector covers a proprietary system</td>
+      </tr>
+    </table></div>
+
+    <div class="card">
+      <div class="card-title">Microsoft Dataverse</div>
+      <div class="card-body" style="margin-bottom:10px;">The unified, secure data backbone for all Power Platform components. Provides a common data model so Power Apps, Automate, and BI work together seamlessly.</div>
+      <div class="key-terms">
+        <div class="term">
+          <div class="term-word">Unified data model</div>
+          <div class="term-def">Standardized structure ensuring consistency across apps, with built-in business logic, security, and integration.</div>
+        </div>
+        <div class="term">
+          <div class="term-word">Integration</div>
+          <div class="term-def">Connects with Dynamics 365, Microsoft 365, Azure, and third-party data via industry partners.</div>
+        </div>
+        <div class="term">
+          <div class="term-word">Power Fx in Dataverse</div>
+          <div class="term-def">Creates calculated columns for real-time data calculations. Example: auto-calculate employee tenure from hire date.</div>
+        </div>
+        <div class="term">
+          <div class="term-word">Table management</div>
+          <div class="term-def">Users can create tables, import data, edit properties, and configure security directly via Power Apps interface.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Power Fx — The Low-Code Language</div>
+      <div class="card-body">
+        <p style="margin-bottom:10px;">An Excel-like, declarative language used across Power Apps, Dataverse, and Copilot Studio. Human-readable syntax — no deep coding expertise needed.</p>
+        <div class="key-terms">
+          <div class="term">
+            <div class="term-word">In Power Apps</div>
+            <div class="term-def">Controls app behavior with formulas. Example: <code style="font-family:'Consolas', 'Courier New', monospace;font-size:12px;">If(IsBlank(PropertyName.Text), false, true)</code> — shows/hides UI elements based on input.</div>
+          </div>
+          <div class="term">
+            <div class="term-word">In Dataverse</div>
+            <div class="term-def">Creates calculated columns. Example: auto-calculate employee tenure by subtracting hire date from today.</div>
+          </div>
+          <div class="term">
+            <div class="term-word">In Copilot Studio</div>
+            <div class="term-def">Sets variables, conditional logic, validates user input. Example: only accept restaurant bookings within a 14-day window.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 4: INTEGRATION -->
+  <div id="tab-integration" class="section">
+    <div class="card">
+      <div class="card-title">Microsoft 365 Integration</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Approval flows</div><div class="term-def">Route documents to stakeholders automatically. Example: campaign materials routed to legal and branding before publication.</div></div>
+          <div class="term"><div class="term-word">Invoice automation</div><div class="term-def">Detect incoming emails with attachments → extract invoice data → validate → route for approval → store in SharePoint → update ERP.</div></div>
+          <div class="term"><div class="term-word">Email attachments</div><div class="term-def">Automatically save email attachments to the correct SharePoint folder using Power Automate flows.</div></div>
+          <div class="term"><div class="term-word">Routine task automation</div><div class="term-def">Send reminders, update spreadsheets, route requests — freeing employees for strategic work.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Microsoft Teams Integration</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Copilot agents in Teams</div><div class="term-def">Deploy AI agents to answer employee questions (e.g., HR policies/benefits) directly in Teams.</div></div>
+          <div class="term"><div class="term-word">Power BI tab</div><div class="term-def">Collaborate on live dashboards inside Teams meetings without switching apps.</div></div>
+          <div class="term"><div class="term-word">Power Apps in Teams</div><div class="term-def">Build and publish apps directly in Teams channels (e.g., incident reporting app). Templates: Issue Report, Employee Ideas, Inspection.</div></div>
+          <div class="term"><div class="term-word">Virtual Assistants</div><div class="term-def">Open-source template for building branded conversational solutions; can be integrated into Teams.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">On-Premises Data Gateway</div>
+      <div class="card-body">
+        <p style="margin-bottom:10px;">Acts as a secure bridge between cloud-based Power Platform services and local/on-premises data sources. Essential for hybrid environments.</p>
+        <div class="key-terms">
+          <div class="term"><div class="term-word">No data migration</div><div class="term-def">Cloud services access on-premises data without moving it to the cloud — key for data residency/compliance requirements.</div></div>
+          <div class="term"><div class="term-word">Multi-service support</div><div class="term-def">A single gateway supports Power Automate, Power Apps, and Power BI simultaneously.</div></div>
+          <div class="term"><div class="term-word">Gateway clusters</div><div class="term-def">Multiple gateways installed in a cluster provide failover support and load balancing for continuous availability.</div></div>
+          <div class="term"><div class="term-word">Admin center</div><div class="term-def">IT manages gateway clusters, user access, and performance via the Power Platform admin center.</div></div>
+          <div class="term"><div class="term-word">How it works</div><div class="term-def">Cloud service → Gateway Cloud Service (encrypts query) → On-premises gateway (decrypts credentials) → Local data source (SQL Server, file shares, etc.).</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Copilot Studio — AI Agent Builder</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Data sources</div><div class="term-def">Connects to 1,500+ pre-built data sources for accurate, real-time responses.</div></div>
+          <div class="term"><div class="term-word">Automated workflows</div><div class="term-def">Define agent behavior using Power Automate. Example: "if customer asks about a product, send an email with details."</div></div>
+          <div class="term"><div class="term-word">Multi-channel</div><div class="term-def">Deploy one agent to websites, mobile apps, social media, and Teams simultaneously.</div></div>
+          <div class="term"><div class="term-word">Security</div><div class="term-def">Built-in tools to protect sensitive data and maintain control over agent operations.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 5: REVIEW Q&A -->
+  <div id="tab-review" class="section">
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-title">Key Terms Flash Reference</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Dataverse</div><div class="term-def">Secure, scalable data platform that stores and manages data across all Power Platform components using a common data model.</div></div>
+          <div class="term"><div class="term-word">Power Fx</div><div class="term-def">Excel-like, low-code programming language used across Power Apps, Dataverse, and Copilot Studio.</div></div>
+          <div class="term"><div class="term-word">Standard connector</div><div class="term-def">Included with M365 subscription. Examples: SharePoint, OneDrive, Outlook, GitHub.</div></div>
+          <div class="term"><div class="term-word">Premium connector</div><div class="term-def">Requires Power Apps/Automate premium license. Examples: Salesforce, DocuSign, SQL Server, Dynamics 365.</div></div>
+          <div class="term"><div class="term-word">Managed environment</div><div class="term-def">Isolated, controlled space for building, testing, and deploying Power Platform apps with governance and compliance.</div></div>
+          <div class="term"><div class="term-word">Citizen developer</div><div class="term-def">Business user with domain expertise who builds apps using low-code tools without deep programming knowledge.</div></div>
+          <div class="term"><div class="term-word">On-premises gateway</div><div class="term-def">Secure bridge connecting cloud Power Platform services to local data sources without migrating that data to the cloud.</div></div>
+          <div class="term"><div class="term-word">AI Builder</div><div class="term-def">Adds AI/predictive capabilities to apps and workflows without writing code.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:var(--text2);margin-bottom:10px;">Click questions to reveal answers ↓</p>
+    <div class="qa-list">
+      <div class="qa-item"><div class="qa-question" onclick="toggleQA(this)">What are the four core tools in the Application & Automation layer?<span class="arrow">▼</span></div><div class="qa-answer">Power Apps (custom app builder), Power Automate (workflow automation), Power BI (analytics and dashboards), and Power Pages (external-facing business websites).</div></div>
+      <div class="qa-item"><div class="qa-question" onclick="toggleQA(this)">What is the role of Copilot in Power Platform?<span class="arrow">▼</span></div><div class="qa-answer">Copilot is the AI layer embedded across all tools — not a standalone product. It enhances productivity through natural language interactions, intelligent suggestions, and automation across Power Apps, Power Automate, Power BI, Power Pages, and Dataverse.</div></div>
+      <div class="qa-item"><div class="qa-question" onclick="toggleQA(this)">What is the difference between standard and premium connectors?<span class="arrow">▼</span></div><div class="qa-answer">Standard connectors are included with a Microsoft 365 subscription and cover common services (SharePoint, Outlook, OneDrive). Premium connectors require a Power Apps or Power Automate premium license and connect to enterprise systems like Salesforce, DocuSign, SQL Server, and Dynamics 365. They're identified by a premium stamp in the interface.</div></div>
+      <div class="qa-item"><div class="qa-question" onclick="toggleQA(this)">Why is Microsoft Dataverse described as the "backbone" of Power Platform?<span class="arrow">▼</span></div><div class="qa-answer">Dataverse provides a unified, secure data foundation that all Power Platform tools (Power Apps, Automate, BI) draw from. It enforces a common data model, business rules, and security settings — ensuring consistency, governance, and seamless integration across the entire platform.</div></div>
+      <div class="qa-item"><div class="qa-question" onclick="toggleQA(this)">What problem does the on-premises data gateway solve?<span class="arrow">▼</span></div><div class="qa-answer">In hybrid environments where some data lives on-premises (not in the cloud), the gateway lets cloud-based Power Platform services securely access that local data without migrating it. It encrypts queries, routes them to on-premises systems, and returns results — maintaining data residency and compliance requirements.</div></div>
+      <div class="qa-item"><div class="qa-question" onclick="toggleQA(this)">How does Power Platform address the "traditional development is too slow" problem?<span class="arrow">▼</span></div><div class="qa-answer">Traditional cycles take months to deploy solutions. Power Platform uses low-code tools so business users (citizen developers) can build and maintain their own apps, reducing dependence on IT. Combined with professional developers who can add advanced features, organizations get a scalable hybrid team model that builds and iterates much faster.</div></div>
+      <div class="qa-item"><div class="qa-question" onclick="toggleQA(this)">What does Copilot Studio enable organizations to build?<span class="arrow">▼</span></div><div class="qa-answer">Copilot Studio is a low-code platform for building intelligent AI agents (chatbots/virtual assistants). These agents connect to 1,500+ data sources, use Power Automate for workflows, can be deployed across multiple channels (website, Teams, mobile, social media), and include security and governance controls. Example: a university deploying an enrollment assistant on its website and in Teams.</div></div>
+      <div class="qa-item"><div class="qa-question" onclick="toggleQA(this)">Name three ways Power Automate integrates with Microsoft Teams.<span class="arrow">▼</span></div><div class="qa-answer">(1) Managers can approve purchase requests directly from a Teams notification, speeding up procurement. (2) AI agents deployed in Teams answer employee HR questions. (3) Workflows can trigger notifications inside Teams, reducing context-switching for users.</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const visited = new Set();
+const tools = {
+  apps: { title: 'Power Apps', desc: 'Low-code environment for building custom business applications that run on web, mobile, and tablet. Supports canvas apps (flexible design) and model-driven apps. Connects to cloud and on-premises data sources. Empowers both business users and professional developers.', example: 'An employee onboarding app that pulls data from multiple sources, adapting its layout for smartphone, desktop, or tablet automatically.', copilot: 'Describe what you want to track (e.g., "build an app to manage employee onboarding") and Copilot generates the Dataverse tables and app structure for you.' },
+  automate: { title: 'Power Automate', desc: 'Automates repetitive tasks and workflows across apps and services. Supports simple single-step flows, complex workflows with branches, loops, and conditional logic. Works with both cloud services and legacy on-premises systems.', example: 'An HR team automates onboarding: send welcome emails → assign training tasks → route documents for approval — all based on the new hire\'s role, triggered by a single HR system entry.', copilot: 'Describe a process in plain language ("send notification when a document is uploaded to SharePoint") and Copilot generates the workflow, suggests connectors, and guides customization.' },
+  bi: { title: 'Power BI', desc: 'Business analytics service that turns raw data into interactive dashboards and reports. Connects to diverse sources (cloud, on-premises, third-party). Scales across an organization with built-in governance and security. Reports are accessible on web and mobile.', example: 'A Power BI report showing a drop in customer satisfaction automatically triggers a follow-up flow in Power Automate and surfaces a feedback form in Power Apps.', copilot: 'Describe what you want to see ("show me revenue by region and product category") and Copilot generates the visualization, identifies trends, and provides recommendations.' },
+  pages: { title: 'Power Pages', desc: 'Low-code SaaS platform for building secure, professional, data-driven external-facing websites. Uses templates or fully custom designs. Leverages Dataverse data. Includes role-based access controls and Azure compliance capabilities.', example: 'A small business owner selects a template and customizes it with product videos, testimonials, and contact forms — no code required. A developer can extend with Visual Studio Code and GitHub for advanced needs.', copilot: 'Copilot can generate forms and interactive elements automatically. Example: a customer support site with an embedded ticket submission form.' },
+  copilot: { title: 'Copilot Studio', desc: 'Low-code platform for building intelligent, responsive AI agents (chatbots). Connects to 1,500+ data sources. Uses Power Automate to define automated response workflows. Agents can be deployed across websites, mobile apps, social media, and Microsoft Teams. Includes strong security and governance features.', example: 'A university deploys a Copilot agent on its website and in Teams to answer student enrollment questions 24/7, reducing the load on human staff.', copilot: 'The entire tool is built around AI — users define topics, plug in data sources, and set automated workflows through a guided, low-code interface.' },
+  fx: { title: 'Power Fx', desc: 'A general-purpose, strongly typed, declarative, functional programming language used across Power Platform. Its Excel-like syntax makes it accessible without deep coding expertise. Used in Power Apps for canvas app logic, in Dataverse for calculated columns, and in Copilot Studio for conversation logic.', example: 'A Copilot Studio restaurant bot uses Power Fx to check: if a customer\'s requested booking date is more than 14 days away, respond with a helpful message and alternative options.', copilot: '' }
+};
+
+function showTool(id, el) {
+  document.querySelectorAll('.tool-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  const t = tools[id];
+  const detail = document.getElementById('tool-detail');
+  document.getElementById('td-title').textContent = t.title;
+  document.getElementById('td-desc').textContent = t.desc;
+  document.getElementById('td-example').textContent = t.example;
+  const copilotBox = document.getElementById('td-copilot-box');
+  if (t.copilot) {
+    document.getElementById('td-copilot').textContent = t.copilot;
+    copilotBox.style.display = 'block';
+  } else {
+    copilotBox.style.display = 'none';
+  }
+  detail.classList.add('open');
+}
+
+function toggleLayer(el) {
+  const d = el.querySelector('.layer-detail');
+  d.classList.toggle('open');
+}
+
+function toggleQA(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}
+
+function showTab(name, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+  visited.add(name);
+  const pct = Math.round((visited.size / 5) * 100);
+  document.getElementById('progress').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = visited.size + ' of 5 sections visited';
+}
+visited.add('overview');
+document.getElementById('progress').style.width = '20%';
+document.getElementById('progress-label').textContent = '1 of 5 sections visited';
+</script>
+
+</div>
+</body>
+</html>

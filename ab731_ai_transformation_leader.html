@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AB-731 — AI Transformation Leader Study Guide</title>
+<style>
+:root{--blue:#0078D4;--blue-dark:#005A9E;--blue-light:#EFF6FC;--blue-mid:#C7E0F4;--green:#107C10;--green-light:#EFF8EF;--green-mid:#9FD89F;--purple:#8764B8;--purple-light:#F4F0FA;--purple-mid:#C9B8E8;--orange:#D83B01;--orange-light:#FFF0EB;--orange-mid:#F7B89A;--pink:#B4009E;--pink-light:#FCF0FB;--pink-mid:#E5A8E4;--lime:#16A34A;--lime-light:#F0FDF4;--lime-mid:#86EFAC;--text:#201F1E;--text2:#484644;--muted:#797775;--border:#EDEBE9;--bg:#FAF9F8;--white:#fff;--radius:8px;--info-bg:#EFF6FC;--info-text:#004E8C;--success-bg:#EAF3DE;--success-text:#173404;--warn-bg:#FAEEDA;--warn-text:#412402;--danger-bg:#FCEBEB;--danger-text:#501313;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-text-size-adjust:100%;}
+header{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.25rem;display:flex;align-items:center;gap:10px;height:52px;position:sticky;top:0;z-index:100;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;white-space:nowrap;flex-shrink:0;}
+.back:hover{text-decoration:underline;}
+.htitle{font-size:13px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.hbadge{margin-left:auto;font-size:11px;padding:2px 9px;border-radius:10px;font-weight:600;background:var(--lime-light);color:var(--lime);border:1px solid var(--lime-mid);white-space:nowrap;flex-shrink:0;}
+.exam-banner{background:var(--lime-light);border-left:3px solid var(--lime);padding:10px 14px;margin-bottom:16px;font-size:13px;color:#14532D;line-height:1.5;}
+.exam-banner strong{font-weight:600;}
+main{max-width:900px;margin:0 auto;padding:2rem 1.25rem 4rem;}
+h1{font-size:clamp(1.3rem,3vw,1.8rem);font-weight:300;margin-bottom:6px;letter-spacing:-0.01em;}
+h1 strong{font-weight:700;}
+.subtitle{font-size:13px;color:var(--muted);margin-bottom:1.5rem;}
+.tabs{display:flex;gap:0;flex-wrap:nowrap;overflow-x:auto;border-bottom:1px solid var(--border);margin-bottom:1.5rem;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab-btn{padding:8px 14px;font-size:13px;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s;border-radius:0;white-space:nowrap;flex-shrink:0;}
+.tab-btn:hover{color:var(--text);}
+.tab-btn.active{color:var(--lime);border-bottom-color:var(--lime);font-weight:600;}
+.tab{display:none;}.tab.active{display:block;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:12px;}
+.card-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;}
+.card-body{font-size:13px;color:var(--text2);line-height:1.7;}
+.kv{display:flex;flex-direction:column;}
+.r{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+.r:last-child{border-bottom:none;}
+.rk{font-size:13px;font-weight:600;color:var(--text);min-width:165px;flex-shrink:0;}
+.rv{font-size:13px;color:var(--text2);line-height:1.6;}
+.table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table{width:100%;font-size:13px;border-collapse:collapse;min-width:480px;}
+th{text-align:left;padding:8px 12px;font-weight:600;color:var(--text);font-size:12px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border);}
+td{padding:9px 12px;color:var(--text2);border-bottom:1px solid var(--border);vertical-align:top;line-height:1.55;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:var(--bg);}
+.acc{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:8px;}
+.acc-q{padding:12px 16px;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .15s;}
+.acc-q:hover{background:var(--bg);}
+.arr{transition:transform .2s;font-size:12px;color:var(--muted);flex-shrink:0;margin-left:10px;}
+.acc-q.open .arr{transform:rotate(180deg);}
+.acc-a{display:none;padding:12px 16px;font-size:13px;color:var(--text2);line-height:1.7;background:var(--bg);border-top:1px solid var(--border);}
+.acc-a.open{display:block;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.mc{padding:12px 14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--white);}
+.mc h4{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px;}
+.mc p,.mc li{font-size:13px;color:var(--text2);line-height:1.6;}
+.mc ul{padding-left:14px;}
+.why{background:var(--lime-light);border-left:3px solid var(--lime);padding:10px 14px;margin-top:10px;font-size:13px;color:#14532D;line-height:1.5;}
+.why strong{color:#14532D;font-weight:600;}
+.scen{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:10px;}
+.scen-q{padding:11px 14px;background:var(--bg);font-size:13px;font-weight:600;color:var(--text);}
+.scen-a{padding:11px 14px;font-size:13px;color:var(--text2);line-height:1.6;border-top:1px solid var(--border);}
+.ans{font-weight:600;color:var(--lime);}
+.badge{font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600;display:inline-block;}
+.bi{background:var(--info-bg);color:var(--info-text);}
+.bg{background:var(--success-bg);color:var(--success-text);}
+.ba{background:var(--warn-bg);color:var(--warn-text);}
+.br{background:var(--danger-bg);color:var(--danger-text);}
+.bl{background:var(--lime-light);color:var(--lime);}
+.prog-bar{height:4px;background:var(--border);border-radius:2px;margin-bottom:4px;}
+.prog-fill{height:100%;background:var(--lime);border-radius:2px;transition:width .4s;}
+.prog-label{font-size:12px;color:var(--muted);margin-bottom:1.5rem;}
+.principle{border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;margin-bottom:8px;border-left:4px solid;}
+.principle h4{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.principle p{font-size:13px;color:var(--text2);line-height:1.55;}
+@media(max-width:600px){
+  .two-col,.three-col{grid-template-columns:1fr;}
+  .r{flex-direction:column;gap:4px;}
+  .rk{min-width:unset;}
+  .card{padding:.875rem 1rem;}
+  .tab-btn{padding:7px 10px;font-size:12px;}
+  table{font-size:12px;}
+  th,td{padding:7px 8px;}
+}
+@media(max-width:400px){.card-title{font-size:14px;}.card-body{font-size:12px;}}
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="index.html">← Back</a>
+  <span class="htitle">AB-731 — AI Transformation Leader</span>
+  <span class="hbadge">Microsoft Certification</span>
+</header>
+<main>
+<h1>AI Transformation Leader <strong>Study Guide</strong></h1>
+<p class="subtitle">AB-731 Microsoft Certification · Based on the exam prep video by Griffin Lickfeld &amp; Nathan Rose</p>
+<div class="exam-banner"><strong>Exam format:</strong> ~40–50 questions · 45 minutes · Passing score: 700/1000 · Focus: WHY and business VALUE of AI — not how to technically build it. If you passed AB-730, you're ~80% ready. Key mindset: always choose the <em>most correct</em> answer from a business transformation leader perspective.</div>
+<div class="prog-bar"><div class="prog-fill" id="prog" style="width:12%"></div></div>
+<div class="prog-label" id="prog-label">1 of 8 sections visited</div>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="t1">AI Fundamentals</button>
+  <button class="tab-btn" data-tab="t2">Model Types</button>
+  <button class="tab-btn" data-tab="t3">Copilot &amp; Agents</button>
+  <button class="tab-btn" data-tab="t4">Azure &amp; Foundry</button>
+  <button class="tab-btn" data-tab="t5">Responsible AI</button>
+  <button class="tab-btn" data-tab="t6">Business Value</button>
+  <button class="tab-btn" data-tab="t7">Cost &amp; Licensing</button>
+  <button class="tab-btn" data-tab="t8">Review Q&amp;A</button>
+</div>
+
+<div class="tab active" id="t1">
+<div class="card"><div class="card-title">How AI actually works — the core concept</div><div class="card-body">
+All AI is doing is working with <strong>word relationships</strong>. Large Language Models (LLMs) tie every word in a language to every other word — the word "dog" is close to "bark", which is close to "tree", which is close to "leaf". When you send a prompt, the AI looks at all those word relationships and predicts the next most likely word, then the next, then the next.
+<div class="why"><strong>Critical exam point:</strong> AI does not fact-check. It is not finding the most correct answer — it is predicting the next token. This is why human oversight is essential and why "human in the loop" is a recurring theme throughout the entire exam.</div>
+</div></div>
+
+<div class="two-col">
+<div class="mc" style="border-color:var(--blue-mid)"><h4>Traditional AI</h4>
+<p>Makes <strong>predictions based on patterns in previous data</strong>. Output is deterministic — ask the same question, get the same answer. Used for trend analysis, classification, pattern recognition.</p>
+<p style="margin-top:8px;"><strong>Example:</strong> Analysing emails to determine if someone gives positive or negative reviews — always produces the same result for the same input.</p></div>
+<div class="mc" style="border-color:var(--lime-mid)"><h4>Generative AI</h4>
+<p>Uses LLMs and word relationships to <strong>create something new</strong> — content that didn't exist before. Output is non-deterministic (indeterministic) — ask the same question three times, get three different answers.</p>
+<p style="margin-top:8px;"><strong>Example:</strong> Writing an email, creating a slide deck, summarising a meeting — generates new content each time.</p></div>
+</div>
+<div class="why" style="margin-top:10px;"><strong>Exam trap:</strong> If the task is creating something new (email, document, response) → Generative AI. If the task is finding a pattern in existing data → Traditional AI. The key differentiator: are we creating something that didn't exist before?</div>
+
+<div class="card" style="margin-top:12px;"><div class="card-title">Machine learning &amp; deep learning</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Machine learning</div><div class="rv">The computer's ability to get better over time by picking up on patterns. For the exam you just need the definition and the lifecycle: Define the task → Collect and prepare data → Train and validate the model → Deploy → Monitor and manage. You don't need technical depth.</div></div>
+<div class="r"><div class="rk">Deep learning</div><div class="rv">Machine learning that uses many layers of connected <strong>neural networks</strong> to discover complex patterns in unstructured data automatically. Exam tip: tie the words "deep learning" to "neural network" — that's all you need to know.</div></div>
+</div></div></div>
+
+<div class="card"><div class="card-title">AI challenges and weaknesses</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Fabrication (hallucination)</div><div class="rv">Microsoft is moving from the term "hallucination" to <strong>"fabrication"</strong>. AI doesn't lie — it just predicts the next token. If that prediction is wrong, it confidently states something incorrect. Expect questions on this.</div></div>
+<div class="r"><div class="rk">Reliability of output</div><div class="rv">Ask Copilot to write the same email three times — you'll get three different results. The output is <strong>non-deterministic</strong>. This is different from fabrication — it's about consistency, not correctness.</div></div>
+<div class="r"><div class="rk">Lack of explainability</div><div class="rv">Understanding exactly HOW the AI produced its output is difficult. Users generally don't understand what data it referenced or how it reasoned. This is a real challenge for building trust.</div></div>
+<div class="r"><div class="rk">Data quality</div><div class="rv">All AI does is predict the next token based on the data it has access to. <strong>Flawed data → flawed responses.</strong> If an agent is grounded in bad data, its answers will be bad. Data must be accurate, up-to-date, deduplicated, and representative.</div></div>
+<div class="r"><div class="rk">Bias and representativeness</div><div class="rv">If your training or grounding data is biased, your AI output will be biased. Ensure data is representative of ALL the people your AI serves — not just the majority. This is how you address bias in agent output.</div></div>
+<div class="r"><div class="rk">Privacy concerns</div><div class="rv">Be careful about what data the AI has access to, especially PII. Have we cited sources? Have we considered who can see the output? These are questions the exam will ask about.</div></div>
+<div class="r"><div class="rk">Sustainability</div><div class="rv">Running powerful AI models uses significant compute, power, and water. As a transformation leader, are we running unnecessarily powerful models for simple tasks? Cost and environmental impact are real considerations.</div></div>
+</div></div></div>
+
+<div class="card"><div class="card-title">Grounding, RAG, and prompting</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Grounding</div><div class="rv">What data is the AI using to generate its responses? By default, most agents are grounded in the general web. The power of Microsoft Copilot is grounding it in <strong>your business data</strong> — SharePoint, Teams chats, emails — so responses are specific and relevant to your organisation.</div></div>
+<div class="r"><div class="rk">RAG (Retrieval Augmented Generation)</div><div class="rv">Before sending your prompt to the LLM, the system searches available data sources, finds relevant information, and adds it to your prompt automatically behind the scenes. You don't need to memorise the acronym — understand the concept: it's how agents pull in relevant business data to improve responses and reduce fabrication.</div></div>
+<div class="r"><div class="rk">Semantic indexing</div><div class="rv">Ensuring that the word "customer" means the same thing across Sales, Marketing, and Shipping in your organisation. Consistent data definitions across your business are essential for AI to give coherent answers.</div></div>
+</div>
+<div class="why" style="margin-top:10px;"><strong>Writing a good prompt — four parts:</strong> (1) <strong>Context</strong> — who/what is this for? (2) <strong>Goal</strong> — what do you want? (3) <strong>Source</strong> — what data should it use? (4) <strong>Expectation</strong> — how should it respond (length, tone, format)?<br><br>
+<strong>Few-shot prompting:</strong> Including examples of the desired output inside your prompt. Gives the AI more context about what "good" looks like, enabling more consistent results. This is a Microsoft exam term — be aware of it.</div>
+</div></div>
+</div>
+
+<div class="tab" id="t2">
+<div class="card"><div class="card-title">AI model types — know when to use which</div><div class="card-body">
+The exam will give you a scenario and ask which model type fits. The names are largely intuitive — learn the distinctions and you'll be fine.
+</div></div>
+<div class="three-col">
+<div class="mc" style="border-color:var(--blue-mid)"><h4>Large Language Model (LLM)</h4><p>Trained on vast amounts of text. Understands and generates language. Use for: reviewing cases to generate knowledge articles, drafting emails, summarising documents, answering questions in natural language.</p></div>
+<div class="mc" style="border-color:var(--green-mid)"><h4>Code model</h4><p>Trained specifically on programming languages. Use for: generating Python to analyse an Excel spreadsheet, writing SQL queries, creating scripts, debugging code. NOT a general LLM task.</p></div>
+<div class="mc" style="border-color:var(--orange-mid)"><h4>Diffusion model</h4><p>Image generation model. Creates or manipulates images. Think: DALL-E, Midjourney-style outputs. Use when the task involves generating visual content.</p></div>
+<div class="mc" style="border-color:var(--purple-mid)"><h4>Multimodal model</h4><p>Handles multiple input/output types simultaneously — text, images, audio, code. An all-in-one model. Use when the task spans multiple media types.</p></div>
+<div class="mc" style="border-color:var(--lime-mid)"><h4>Domain-specific model</h4><p>Custom or fine-tuned for a specific industry or task — medical, legal, financial. Use when general LLMs lack the specialised knowledge the business process requires.</p></div>
+<div class="mc" style="border-color:var(--border)"><h4>Where models live</h4><p>Copilot Studio: generally LLM, you can select the model. M365 Copilot: includes code interpreter (Analyst uses this heavily). Azure Foundry: full model selection and customisation for pro-code scenarios.</p></div>
+</div>
+<div class="why" style="margin-top:12px;"><strong>Exam approach:</strong> Read the scenario carefully. Language/text task → LLM. Code/data analysis → Code model. Images → Diffusion. Multiple types → Multimodal. Regulated industry needing specialised knowledge → Domain-specific.</div>
+</div>
+
+<div class="tab" id="t3">
+<div class="card"><div class="card-title">Copilot vs Agents — a critical distinction</div><div class="card-body">
+<div class="two-col">
+<div class="mc" style="border-color:var(--blue-mid)"><h4>Microsoft Copilot (M365)</h4><p>Productivity-focused. Prompt-driven interactions embedded in workflow apps (Word, Outlook, Teams, Excel). Users chat with it to get things done faster. Summarise meetings, draft emails, create decks, prep for calls.</p><p style="margin-top:8px;"><strong>Think:</strong> Personal productivity assistant built into the apps you already use.</p></div>
+<div class="mc" style="border-color:var(--lime-mid)"><h4>Agents</h4><p>Task execution focused. Autonomous, event-driven, multi-step processes with minimal human intervention. Connect to APIs and data sources. Designed to do ONE specific thing across one or more systems in a workflow.</p><p style="margin-top:8px;"><strong>Think:</strong> A specialised employee assigned one job — not a general-purpose assistant.</p></div>
+</div>
+<div class="why" style="margin-top:10px;"><strong>Exam tip:</strong> Copilot = productivity (faster emails, better meeting prep). Agents = task automation (independently executing a defined business process). If the question is about doing something faster for a person → Copilot. If it's about automating a repeatable process → Agent.</div>
+</div></div>
+
+<div class="card"><div class="card-title">The three elements of an agent</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Model (the brain)</div><div class="rv">The LLM or AI model the agent uses to think and reason. Choice of model affects performance, reliability, and cost. Bigger/more powerful model = more expensive. Right-size the model to the task.</div></div>
+<div class="r"><div class="rk">Instructions (the behaviour)</div><div class="rv">The text that tells the agent who it is, who it serves, what its purpose is, how it should behave, and what tone to use. Think of it as the agent's job description and personality definition.</div></div>
+<div class="r"><div class="rk">Tools (the hands)</div><div class="rv">How the agent connects to external systems and actually executes tasks. Like connectors in Power Apps/Power Automate — they allow the agent to read data, write records, send messages, call APIs. Without tools, the agent can only talk; it can't act.</div></div>
+</div></div></div>
+
+<div class="card"><div class="card-title">Agent orchestration</div><div class="card-body">
+Instead of one agent that does six different tasks, build six specialised agents that each do one task — and connect them. This distribution of responsibilities across multiple specialised agents is called <strong>agent orchestration</strong>.
+<div class="why" style="margin-top:10px;"><strong>Power Platform analogy:</strong> Same concept as parent/child flows in Power Automate — a main flow hands off to child flows and they return results. Just with AI agents instead of flow steps.</div>
+</div></div>
+
+<div class="card"><div class="card-title">Which platform to use — the three-tier decision</div><div class="card-body">
+<div class="table-wrap"><table>
+<tr><th>Platform</th><th>Use when</th><th>Licensing approach</th></tr>
+<tr><td><strong>M365 Copilot agents</strong></td><td>Productivity within M365 apps only — Teams, Outlook, Word. Personal or team productivity. No custom data sources needed.</td><td>Subscription (per user/month)</td></tr>
+<tr><td><strong>Copilot Studio</strong></td><td>Need to go beyond M365 — interact with business data (Dataverse, etc.), publish to custom channels (website, Teams), low-code agent building. Organisation-level deployment.</td><td>Subscription or pay-as-you-go</td></tr>
+<tr><td><strong>Azure AI Foundry</strong></td><td>Need to customise or fine-tune the actual model. Highly regulated industries. Maximum control. Pro-code agent building. Custom generative AI development.</td><td>Pay-as-you-go or prepaid/reserved capacity</td></tr>
+</table></div>
+<div class="why" style="margin-top:10px;"><strong>Simple rule:</strong> Buy (M365 Copilot) for productivity. Extend (Copilot Studio) for business processes. Build (Foundry) for custom AI models. The further you go toward Build, the more time, cost, and control is involved.</div>
+</div></div>
+
+<div class="card"><div class="card-title">M365 Copilot — Researcher vs Analyst</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Researcher agent</div><div class="rv">Finds and synthesises information from research sources — documents, PDFs, websites, email threads. Best for: drawing conclusions from reading lots of content, responding to an RFP, researching a topic across multiple documents. Think: web research + document analysis → synthesis.</div></div>
+<div class="r"><div class="rk">Analyst agent</div><div class="rv">Derives insights from structured data — Excel spreadsheets, databases, graphs. Uses the <strong>code interpreter</strong> (a code model) to generate Python code and charts. Best for: looking at a spreadsheet and surfacing trends, analysing database outputs, generating charts. Think: data → insights.</div></div>
+<div class="r"><div class="rk">Pages</div><div class="rv">Quick collaboration output — like a SharePoint page. For sharing and light collaboration on Copilot-generated content.</div></div>
+<div class="r"><div class="rk">Notebooks</div><div class="rv">Deep research and complex projects. Organise multiple prompts, documents, and responses in one place over time. Best for long-running projects like RFP responses where context builds up across many sessions.</div></div>
+</div></div></div>
+</div>
+
+<div class="tab" id="t4">
+<div class="card"><div class="card-title">Azure AI services — what each one does</div><div class="card-body">
+You need to know which Azure service fits a given business scenario. You don't need to know how to configure them — just match the service to the use case.
+</div></div>
+<div class="two-col">
+<div class="mc" style="border-color:var(--blue-mid)"><h4>Azure Vision</h4><p>Enables AI to <strong>see</strong>. Detects objects in images, generates captions from video, reads text in images (OCR).</p><p style="margin-top:8px;"><strong>Example:</strong> Security camera in a warehouse detecting when something falls on the floor and alerting a manager. Monitoring a retail store for hazards.</p></div>
+<div class="mc" style="border-color:var(--green-mid)"><h4>Azure Language</h4><p>Enables AI to <strong>understand text</strong> at scale. Key information extraction, sentiment analysis — is this review positive or negative? Would this be a 1-star or 5-star rating?</p><p style="margin-top:8px;"><strong>Example:</strong> Analysing customer feedback to gauge sentiment. Extracting key topics from support tickets.</p></div>
+<div class="mc" style="border-color:var(--orange-mid)"><h4>Azure Document Intelligence</h4><p>Extracts structured information from <strong>documents</strong>. Pre-built models for invoices, receipts, shipping labels. Uses OCR but is document-focused, not camera/scene-focused.</p><p style="margin-top:8px;"><strong>Example:</strong> Uploading an invoice and automatically extracting vendor name, amount, date, and line items.</p></div>
+<div class="mc" style="border-color:var(--purple-mid)"><h4>Azure AI Search</h4><p>Turns content into a <strong>searchable index</strong>. Uses AI to understand and organise data so users can find information quickly across large data estates.</p><p style="margin-top:8px;"><strong>Example:</strong> Making thousands of internal documents searchable with AI-powered relevance ranking.</p></div>
+<div class="mc" style="border-color:var(--lime-mid)"><h4>Azure Speech</h4><p>Deals with <strong>audio</strong>. Contact centre as a service, voice-activated agents, transcribing calls, speech-to-text.</p><p style="margin-top:8px;"><strong>Example:</strong> A Copilot agent that listens to inbound customer calls and routes them appropriately.</p></div>
+<div class="mc" style="border-color:var(--border)"><h4>Natural Language Processing</h4><p>Analyses <strong>documents and websites</strong> to determine intent and sentiment. Different from Speech (audio) — NLP is text-based understanding of meaning, not spoken word.</p><p style="margin-top:8px;"><strong>Example:</strong> Determining customer intent from a support chat message.</p></div>
+</div>
+
+<div class="card" style="margin-top:12px;"><div class="card-title">Azure AI Foundry — the pro-code platform</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">What it is</div><div class="rv">The orchestration layer and governance platform for building custom generative AI and AI agents in Azure. Provides tools for model selection, safety controls, evaluation, observability, and lifecycle management.</div></div>
+<div class="r"><div class="rk">When to use it</div><div class="rv">When you need to customise or fine-tune the actual model. Highly regulated industries. Maximum control and differentiation. When Copilot Studio doesn't provide enough customisation. When you need to build a domain-specific model.</div></div>
+<div class="r"><div class="rk">Key capabilities</div><div class="rv">Model selection across all available models. Safety controls and content filtering. Evaluation of model performance. Information extraction. Decision support. Vision, speech, and NLP integration. Full lifecycle management.</div></div>
+<div class="r"><div class="rk">Vision vs Document Intelligence</div><div class="rv">Classic exam trap: Vision = security camera watching a scene (detecting a hazard on a warehouse floor). Document Intelligence = extracting fields from an uploaded invoice or shipping label. Both use OCR but serve very different purposes.</div></div>
+</div></div></div>
+
+<div class="card"><div class="card-title">Security in the Microsoft AI ecosystem</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Encryption</div><div class="rv">Copilot encrypts data at rest (while being processed) and in transit (while moving between systems). Data cannot be intercepted by third parties.</div></div>
+<div class="r"><div class="rk">Privacy by design</div><div class="rv">Microsoft's term for building privacy into the agent from the beginning — not as an afterthought. Agents in the Microsoft ecosystem inherit your organisation's existing security infrastructure.</div></div>
+<div class="r"><div class="rk">Authentication</div><div class="rv">Ensuring only trusted identities (people and systems) can interact with your agents and access your data. Just like requiring sign-in to a CRM, agents should require appropriate authentication.</div></div>
+<div class="r"><div class="rk">Governance</div><div class="rv">A centralised authority (admins + executive leadership) that defines who can build agents, what policies apply, controls agent lifecycle, and can instantly restrict or disable agents when risk is detected.</div></div>
+<div class="r"><div class="rk">Permissions &amp; sensitivity</div><div class="rv">Copilot respects the existing permissions in your M365 environment. Users only see information they already have access to — Copilot doesn't elevate privileges.</div></div>
+</div></div></div>
+</div>
+
+<div class="tab" id="t5">
+<div class="card"><div class="card-title">Microsoft's six Responsible AI principles</div><div class="card-body">
+<strong>Commit these to memory.</strong> They are thematically woven into every question on the exam. Microsoft's view: AI must be governed responsibly. We are not moving fast and breaking things — the potential for harm is too significant.
+</div></div>
+
+<div class="principle" style="border-color:#0078D4;">
+<h4>1. Fairness</h4>
+<p>AI must not discriminate against any group of people. Every user interacting with the AI has a fair chance of getting a helpful response. Example of a fairness violation: a loan approval model that automatically declines anyone who wore a red hoodie in their photo — the model is discriminating based on an irrelevant attribute.</p>
+</div>
+<div class="principle" style="border-color:#107C10;">
+<h4>2. Reliability &amp; Safety</h4>
+<p>Have we tested the AI rigorously to ensure we are not getting harmful, fabricated, or inconsistent outputs? Have we protected against exploitation and jailbreaking (getting the AI to say things it shouldn't)? Is the AI grounded in the right data and regularly tested?</p>
+</div>
+<div class="principle" style="border-color:#8764B8;">
+<h4>3. Privacy &amp; Security</h4>
+<p>Ensure the AI is not connected to systems containing PII unnecessarily. Apply the principle of least privilege — the AI should only access the data it needs for its specific task. Data handling must comply with privacy regulations.</p>
+</div>
+<div class="principle" style="border-color:#D83B01;">
+<h4>4. Inclusiveness</h4>
+<p>All users must have an equal chance of interacting with the AI regardless of their abilities. A chatbot that works perfectly for sighted users but is unusable for visually impaired users fails inclusiveness — not fairness. Think: accessibility for people with disabilities, hearing impairments, neurodivergence.</p>
+</div>
+<div class="principle" style="border-color:#B4009E;">
+<h4>5. Transparency</h4>
+<p>Users should understand what the AI is doing and where its answers come from. Copilot cites its sources — this is transparency in action. Users should know they're interacting with AI and understand (at a reasonable level) how it generates responses. It's not magic — it's math.</p>
+</div>
+<div class="principle" style="border-color:var(--lime);">
+<h4>6. Accountability</h4>
+<p><strong>The human is responsible for AI output.</strong> If Copilot drafts a document and you send it to a client without reviewing it and it contains errors, you are accountable — not Copilot. This is why humans must be in the loop, reviewing AI output before it reaches consequential decisions or external parties.</p>
+</div>
+
+<div class="why" style="margin-top:12px;"><strong>Fairness vs Inclusiveness — the exam trap:</strong> Fairness = the AI discriminates against a group (red hoodie example). Inclusiveness = some users can't effectively use the AI due to their abilities (visually impaired user can't interact with the chatbot). These feel similar but are distinctly different principles.</div>
+
+<div class="card" style="margin-top:12px;"><div class="card-title">Sensitive use cases to avoid</div><div class="card-body">
+Microsoft outlines three categories where AI agents should generally be avoided or handled with extreme caution and human oversight:
+<div class="kv" style="margin-top:10px;">
+<div class="r"><div class="rk">Denial of consequential services</div><div class="rv">An agent that could automatically deny someone's ability to buy a home (mortgage approval), access healthcare, or lose employment. The consequences of a wrong answer are too significant to leave to AI alone.</div></div>
+<div class="r"><div class="rk">Risk of harm</div><div class="rv">Using AI to diagnose illness or prescribe medication without human medical oversight. Any scenario where an incorrect AI response could physically harm a person.</div></div>
+<div class="r"><div class="rk">Infringement on human rights</div><div class="rv">If the output of the agent could, in any way, restrict a person's fundamental human rights, the agent should not be built or must have robust human oversight at every decision point.</div></div>
+</div>
+<div class="why" style="margin-top:10px;"><strong>Note:</strong> These are not absolute prohibitions — organisations do use AI in sensitive scenarios. But they require humans in the loop for final decisions, governance systems, and clear accountability frameworks.</div>
+</div></div>
+
+<div class="card"><div class="card-title">Governance systems &amp; Microsoft's governing bodies</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Chief AI Ethics Officer</div><div class="rv">A designated individual who owns AI governance decisions — understands both the technology and the business process. Makes decisions about what is acceptable in sensitive AI scenarios.</div></div>
+<div class="r"><div class="rk">Cross-functional committee</div><div class="rv">AI governance must NOT sit with IT alone. It requires executive leadership + technical staff + business process owners + third-party experts. Diverse, cross-department, cross-level representation from the very beginning of AI strategy development.</div></div>
+<div class="r"><div class="rk">Microsoft Senior Leadership Team</div><div class="rv">Fully integrated into how Microsoft manages AI and develops responsible AI practices and tools.</div></div>
+<div class="r"><div class="rk">Office of Responsible AI</div><div class="rv">Microsoft's cross-organisational responsible AI governance function. Shapes norms and standards for AI inside and outside Microsoft.</div></div>
+<div class="r"><div class="rk">AETHER Committee</div><div class="rv">AI and Ethics in Engineering and Research — a body of members that develops tools, best practices, and standards for responsible AI at Microsoft.</div></div>
+</div></div></div>
+</div>
+
+<div class="tab" id="t6">
+<div class="card"><div class="card-title">Identifying business value — the three key questions</div><div class="card-body">
+<strong>Memorise these.</strong> The exam will ask what questions a business leader should ask to evaluate AI use cases. The most correct answer will reference these — not just "build it in Copilot Studio."
+<div class="three-col" style="margin-top:12px;">
+<div class="mc" style="border-color:var(--lime-mid);border-top:3px solid var(--lime);"><h4>1. What problem does it solve?</h4><p>Identify the specific pain point. Don't use AI when an IF statement will do. AI should solve real, meaningful problems — not be used for the sake of saying you've done an AI project.</p></div>
+<div class="mc" style="border-color:var(--lime-mid);border-top:3px solid var(--lime);"><h4>2. What measurable outcomes?</h4><p>How will you know if it worked? Define KPIs upfront — hours saved, error rate reduction, customer satisfaction improvement, escalation decrease. If you can't measure it, you can't manage it.</p></div>
+<div class="mc" style="border-color:var(--lime-mid);border-top:3px solid var(--lime);"><h4>3. Does it align with strategy?</h4><p>Does this AI initiative support the organisation's actual strategic goals? Growing revenue, improving customer lifetime value, reducing costs, increasing satisfaction? AI for its own sake wastes resources.</p></div>
+</div>
+</div></div>
+
+<div class="card"><div class="card-title">How to pick good AI use cases</div><div class="card-body">
+Look for tasks and processes with these four characteristics — they are the best indicators of where Copilot or an agent will deliver real value:
+<div class="two-col" style="margin-top:10px;">
+<div class="mc"><h4>⏱ Time-consuming</h4><p>What takes your people a lot of time? Manual summarisation, report generation, email drafting — tasks where volume of effort is high but the underlying work is repetitive.</p></div>
+<div class="mc"><h4>📄 Document-heavy</h4><p>Lots of text for Copilot to analyse and reason over — contracts, case notes, RFPs, policy documents. The more language involved, the more value Copilot can add.</p></div>
+<div class="mc"><h4>📊 Data-heavy</h4><p>Large volumes of structured data where humans struggle to identify patterns or trends manually. AI can surface insights much faster than manual analysis.</p></div>
+<div class="mc"><h4>🎤 Meeting-heavy</h4><p>Teams, calls, workshops, stand-ups. Copilot can summarise, extract actions, prepare briefings, and eliminate the need for a dedicated note-taker.</p></div>
+</div></div></div>
+
+<div class="card"><div class="card-title">The AI readiness framework — five pillars</div><div class="card-body">
+<div class="kv">
+<div class="r"><div class="rk">1. Business strategy</div><div class="rv">Before AI — what are the organisation's goals? Revenue growth, customer acquisition, satisfaction improvement, cost reduction? Understand the KPIs your organisation cares about. AI must serve these goals, not exist in isolation.</div></div>
+<div class="r"><div class="rk">2. Technology &amp; data</div><div class="rv">Prepare your data estate. Break down data silos. Improve data quality (clean, deduplicated, representative). Create data dictionaries. Set access controls. <strong>Key point: data readiness is continuous — not a one-time task.</strong> Trustworthy AI depends on ongoing data hygiene.</div></div>
+<div class="r"><div class="rk">3. AI strategy &amp; experience</div><div class="rv">Start small, learn fast. Tightly scoped pilots with clear objectives, data inputs, and success criteria. Microsoft recommends 6–12 week timelines. Define a hypothesis. Instrument it. Run post-deployment reviews. Iterate. Don't plan 18-month projects.</div></div>
+<div class="r"><div class="rk">4. Organisational &amp; culture</div><div class="rv">Build diverse cross-functional teams (technical + business + risk + executive). Lead from the top — communicate the AI vision from leadership. Embed AI goals into performance reviews. Build sponsorship and momentum. Include AI strategy in organizational goal-setting.</div></div>
+<div class="r"><div class="rk">5. AI governance</div><div class="rv">Three components: <strong>Data governance</strong> (who can access what data), <strong>AI governance</strong> (managing model risks and AI challenges), <strong>Regulatory governance</strong> (what laws apply to your organisation and how to comply). Build guardrails. Create transparency. Anticipate and mitigate common risks.</div></div>
+</div></div></div>
+</div>
+
+<div class="tab" id="t7">
+<div class="card"><div class="card-title">Tokens — the currency of AI</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">What a token is</div><div class="rv">The unit of currency in the AI world. All generative AI is doing is predicting the next token in a sequence. Roughly, one token ≈ one word (or part of a word). Everything is broken down into tokens.</div></div>
+<div class="r"><div class="rk">Why tokens matter for cost</div><div class="rv">The more tokens you use, the more it costs. Bad prompts waste tokens — if you say "write an email" and then follow up with five corrections, you've used far more tokens than if you gave a clear, complete prompt the first time. Good prompting = cost optimisation.</div></div>
+<div class="r"><div class="rk">Subscription vs pay-as-you-go</div><div class="rv">M365 Copilot: subscription-based (per user/month). Tokens are still being consumed behind the scenes, but your bill doesn't directly reflect token count. Foundry/Azure: pay-as-you-go — the more tokens consumed, the higher your bill. Copilot Studio: both options available.</div></div>
+</div></div></div>
+
+<div class="card"><div class="card-title">Buy vs Extend vs Build — the core cost decision</div><div class="card-body">
+<div class="table-wrap"><table>
+<tr><th>Approach</th><th>Platform</th><th>Business fit</th><th>Time to value</th><th>Cost</th><th>Control</th></tr>
+<tr><td><strong>Buy</strong></td><td>M365 Copilot</td><td>Standard productivity — meetings, email, documents. Most businesses have the same meeting summarisation needs.</td><td>Fastest</td><td>Subscription</td><td>Lowest</td></tr>
+<tr><td><strong>Extend</strong></td><td>Copilot Studio</td><td>Need to interact with line-of-business systems, custom data, or publish to custom channels. Low-code.</td><td>Medium</td><td>Subscription or PAYG</td><td>Medium</td></tr>
+<tr><td><strong>Build</strong></td><td>Azure Foundry</td><td>Custom AI models, highly regulated industries, unique business processes that off-the-shelf tools can't serve. Pro-code.</td><td>Slowest</td><td>Prepaid or PAYG</td><td>Maximum</td></tr>
+</table></div>
+<div class="why" style="margin-top:10px;"><strong>Key exam insight:</strong> Most businesses think their processes are more unique than they are. Don't default to Build when Buy will do. The goal is NOT to use the most powerful option — it's to use the most appropriate one. The most advanced model is not always the right answer.</div>
+</div></div>
+
+<div class="card"><div class="card-title">Foundry licensing — pay-as-you-go vs prepaid</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Pay-as-you-go</div><div class="rv">Pay only for what you consume, billed monthly. No upfront commitment. <strong>Use for: pilots, testing, getting started.</strong> Low barrier to entry — turn it on, see how much you use, pay accordingly. If the pilot fails, you haven't committed to a contract.</div></div>
+<div class="r"><div class="rk">Prepaid / reserved capacity</div><div class="rv">Commit to a certain amount of capacity upfront — get better pricing because you're entering a contract with Microsoft. <strong>Use for: production workloads with predictable consumption.</strong> Once you know how many tokens three scaled agents consume, lock in a prepaid plan for better value.</div></div>
+</div>
+<div class="why" style="margin-top:10px;"><strong>Exam question pattern:</strong> "Your organisation wants to start a pilot of a custom AI agent. Which licensing?" → Pay-as-you-go. "Your organisation has three widely adopted agents in production. Which licensing?" → Prepaid (better cost control, supports long-term planning).</div>
+</div></div>
+
+<div class="card"><div class="card-title">Cost optimisation strategies</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Start small, scale gradually</div><div class="rv">Tightly scope the pilot. Define a specific task. Measure ROI before expanding. Resist pressure from business stakeholders to "make it do everything at once."</div></div>
+<div class="r"><div class="rk">Right-size the model</div><div class="rv">Don't use a sledgehammer to swat a mosquito. If you just need to summarise documents, don't build a custom Foundry model — M365 Copilot does it. Using an unnecessarily powerful model wastes tokens and money.</div></div>
+<div class="r"><div class="rk">Target repetitive tasks</div><div class="rv">Focus AI on work that's high volume and low variation — meeting summaries, email drafting, data extraction. This is where ROI is fastest and most measurable.</div></div>
+<div class="r"><div class="rk">Write good prompts</div><div class="rv">Clear, complete prompts with context, goal, source, and expectation get the right answer first time — using far fewer tokens than iterating through bad prompts.</div></div>
+<div class="r"><div class="rk">Monitor consumption</div><div class="rv">Continuously track what's being consumed and whether it's justified. Monitoring is not optional — it's an ongoing responsibility of AI governance.</div></div>
+<div class="r"><div class="rk">Reserved/excess capacity</div><div class="rv">Using reserved capacity or excess capacity when available reduces costs — particularly relevant for Foundry workloads with predictable usage patterns.</div></div>
+</div></div></div>
+</div>
+
+<div class="tab" id="t8">
+<div class="card"><div class="card-title">Key terms — flash reference</div><div class="card-body"><div class="kv">
+<div class="r"><div class="rk">Fabrication</div><div class="rv">Microsoft's preferred term for hallucination. AI producing incorrect output because it predicts the next token — not because it intends to deceive.</div></div>
+<div class="r"><div class="rk">Non-deterministic</div><div class="rv">Generative AI produces different output each time for the same input. Ask for the same email three times → three different emails.</div></div>
+<div class="r"><div class="rk">Deterministic</div><div class="rv">Traditional AI produces the same output for the same input every time — because it's pattern-based.</div></div>
+<div class="r"><div class="rk">Grounding</div><div class="rv">What data the AI uses to generate responses. Copilot's power = grounded in your business data (SharePoint, Teams, emails), not just the web.</div></div>
+<div class="r"><div class="rk">RAG</div><div class="rv">Retrieval Augmented Generation. The system pulls relevant business data and adds it to your prompt before sending to the LLM. Reduces fabrication, improves relevance.</div></div>
+<div class="r"><div class="rk">Few-shot prompting</div><div class="rv">Including examples of the desired output inside your prompt to guide the AI toward more consistent results.</div></div>
+<div class="r"><div class="rk">Agent orchestration</div><div class="rv">Multiple specialised agents each doing one task, connected together — rather than one agent doing everything.</div></div>
+<div class="r"><div class="rk">Human in the loop</div><div class="rv">A human reviews and is accountable for AI output before it reaches consequential decisions or external parties. Fundamental to responsible AI.</div></div>
+<div class="r"><div class="rk">Tokens</div><div class="rv">The unit of AI consumption and cost. More tokens used = more money spent. Good prompting = fewer tokens = lower cost.</div></div>
+<div class="r"><div class="rk">Buy / Extend / Build</div><div class="rv">Buy = M365 Copilot (productivity). Extend = Copilot Studio (business processes). Build = Foundry (custom models). Match the approach to what you actually need.</div></div>
+<div class="r"><div class="rk">Fairness vs Inclusiveness</div><div class="rv">Fairness = AI doesn't discriminate against groups. Inclusiveness = all users can interact with the AI regardless of their abilities.</div></div>
+<div class="r"><div class="rk">Semantic indexing</div><div class="rv">Ensuring consistent data definitions across your organisation ("customer" means the same thing in every department).</div></div>
+<div class="r"><div class="rk">Data readiness</div><div class="rv">Continuous — not a one-time exercise. Ongoing data hygiene is required for trustworthy AI.</div></div>
+</div></div></div>
+
+<p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Scenario Q&amp;A — click to reveal ↓</p>
+
+<div class="scen"><div class="scen-q">Your organisation wants to deploy an AI agent that automatically approves or denies mortgage applications. From a Responsible AI perspective, what should you advise?</div><div class="scen-a"><span class="ans">Advise against full automation — require human review of every decision.</span> This is a denial of consequential services scenario. An agent that automatically denies a mortgage denies someone the ability to buy a home — a consequential outcome too significant to leave to AI alone. A human must be in the loop for final decisions. Additionally, the agent must be checked for fairness (not discriminating on irrelevant factors) and the data used to train/ground it must be representative.</div></div>
+
+<div class="scen"><div class="scen-q">A company has three Copilot Studio agents running in production, widely used across the organisation. They want to optimise their Azure costs. Which Foundry licensing model should they use?</div><div class="scen-a"><span class="ans">Prepaid (reserved capacity).</span> With three production agents running at scale, consumption is predictable. Prepaid gives better pricing by committing capacity upfront, supports long-term planning, and provides more cost control than pay-as-you-go. Pay-as-you-go is for pilots and testing when consumption is unknown.</div></div>
+
+<div class="scen"><div class="scen-q">A sales team wants to use AI to help prepare for customer meetings. They need it to search through recent emails and Teams conversations and generate a briefing. Which platform and which M365 Copilot feature is most appropriate?</div><div class="scen-a"><span class="ans">M365 Copilot — Researcher agent.</span> This is a productivity task (meeting prep) fully within the M365 ecosystem using M365 data (emails, Teams). No custom line-of-business systems needed → M365 Copilot, not Copilot Studio. Researcher is most appropriate because the task involves finding and synthesising information from documents and communications (not a structured data/spreadsheet task, which would be Analyst).</div></div>
+
+<div class="scen"><div class="scen-q">A manufacturing company wants to use AI to detect defects on a production line by analysing live camera feeds. Which Azure AI service should they use?</div><div class="scen-a"><span class="ans">Azure Vision.</span> This is a scene-detection / object-detection use case using live camera feeds — not document processing. Azure Vision enables AI to see and identify objects in images and video streams. Azure Document Intelligence would be wrong — it extracts structured fields from uploaded documents like invoices, not live camera scenes.</div></div>
+
+<div class="scen"><div class="scen-q">Your organisation is considering an AI initiative. Leadership asks: "What questions should we be asking to evaluate the business value?" What are the three questions?</div><div class="scen-a"><span class="ans">1. What problem does it solve? 2. What measurable outcomes will it deliver? 3. Does it align with our organisation's strategic goals?</span> These are the Microsoft-defined questions for evaluating AI business value. On the exam, if one answer references these questions and another just says "build an agent in Copilot Studio," the business-value answer is the most correct choice.</div></div>
+
+<div class="acc"><div class="acc-q">What is the difference between Traditional AI and Generative AI? Give the key distinguishing features.<span class="arr">▼</span></div><div class="acc-a">Traditional AI identifies patterns in previous data to make predictions about what will happen next. It is deterministic — the same input always produces the same output. Use cases: fraud detection, demand forecasting, sentiment classification. Generative AI uses LLMs and word/semantic relationships to create entirely new content that didn't exist before. It is non-deterministic — the same prompt produces different outputs each time. Use cases: drafting emails, generating documents, answering questions in natural language. The key differentiator: are we creating something new (generative) or finding a pattern in existing data (traditional)?</div></div>
+
+<div class="acc"><div class="acc-q">What are the six Microsoft Responsible AI principles and what makes Fairness different from Inclusiveness?<span class="arr">▼</span></div><div class="acc-a">The six principles are: Fairness, Reliability &amp; Safety, Privacy &amp; Security, Inclusiveness, Transparency, and Accountability. Fairness means the AI does not discriminate against groups of people — it gives everyone an equally fair chance of a helpful response. Example violation: a loan model that automatically declines people based on an irrelevant attribute (red hoodie). Inclusiveness means all users can effectively interact with the AI regardless of their abilities — sighted vs visually impaired, hearing vs hearing impaired. Example violation: a chatbot that works perfectly for sighted users but is unusable for visually impaired users. The distinction: Fairness is about whether the AI treats different groups equitably in its decisions. Inclusiveness is about whether all users can access and use the AI effectively regardless of their physical or cognitive abilities.</div></div>
+
+<div class="acc"><div class="acc-q">What are the three elements of an agent, and what is agent orchestration?<span class="arr">▼</span></div><div class="acc-a">Every agent has three elements: (1) Model — the LLM or AI model that powers the agent's reasoning (the brain). Choice affects performance, cost, and reliability. (2) Instructions — the text defining who the agent is, who it serves, what it does, and how it behaves (the job description). (3) Tools — the connections to external systems and APIs that allow the agent to actually execute tasks — not just talk, but act (the hands). Agent orchestration is the practice of building multiple specialised agents that each perform one specific task, then connecting them so they work together as a system. Instead of one agent doing six tasks, build six agents doing one task each. This mirrors the parent/child flow pattern in Power Automate.</div></div>
+
+<div class="acc"><div class="acc-q">What are the five pillars of the AI readiness framework, and which one is explicitly described as continuous?<span class="arr">▼</span></div><div class="acc-a">The five pillars are: (1) Business Strategy — identifying the outcomes and KPIs your organisation cares about, before any AI discussion. (2) Technology &amp; Data — preparing your data estate: breaking down silos, improving quality, ensuring clean/deduplicated/representative data, creating data dictionaries and access controls. This is the pillar explicitly described as continuous — data readiness is not a one-time exercise but an ongoing cycle of hygiene. (3) AI Strategy &amp; Experience — starting small, tightly scoped pilots with 6–12 week timelines, clear success criteria, and fast iteration loops. (4) Organisational &amp; Culture — leading from the top, building diverse cross-functional teams, embedding AI goals in performance reviews, building executive sponsorship. (5) AI Governance — covering data governance, AI governance (managing model risks), and regulatory governance (legal compliance and ethics).</div></div>
+</div>
+</main>
+
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    const visited=document.querySelectorAll('.tab-btn.active~.tab-btn').length;
+    const total=document.querySelectorAll('.tab-btn').length;
+  });
+});
+document.querySelectorAll('.acc-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    q.classList.toggle('open');
+    q.nextElementSibling.classList.toggle('open');
+  });
+});
+</script>
+
+</body>
+</html>

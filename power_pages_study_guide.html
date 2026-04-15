@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PL-900 — Session 3 — Power Pages</title>
+<style>
+
+:root{--blue:#0078D4;--blue-dark:#005A9E;--blue-light:#EFF6FC;--blue-mid:#C7E0F4;--text:#201F1E;--text2:#484644;--muted:#797775;--border:#EDEBE9;--bg:#FAF9F8;--white:#fff;--radius:8px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-text-size-adjust:100%;}
+header{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.25rem;display:flex;align-items:center;gap:10px;height:52px;position:sticky;top:0;z-index:100;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;white-space:nowrap;flex-shrink:0;}
+.back:hover{text-decoration:underline;}
+.htitle{font-size:13px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.hbadge{margin-left:auto;font-size:11px;padding:2px 9px;border-radius:10px;font-weight:600;background:var(--blue-light);color:var(--blue-dark);border:1px solid var(--blue-mid);white-space:nowrap;flex-shrink:0;}
+.content-wrap{max-width:900px;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+@media(max-width:480px){
+  .htitle{font-size:12px;}
+  .content-wrap{padding:1rem 1rem 3rem;}
+}
+
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="index.html">← Back</a>
+  <span class="htitle">PL-900 — Session 3 — Power Pages</span>
+  <span class="hbadge">Exam weight: 10–15%</span>
+</header>
+<div class="content-wrap">
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.container { padding: 1rem 0; font-family: 'Segoe UI', -apple-system, sans-serif; }
+.header { margin-bottom: 1.5rem; }
+.header h1 { font-size: 20px; font-weight: 500; color: var(--text); }
+.header p { font-size: 13px; color: var(--text2); margin-top: 4px; }
+.progress-bar { height: 4px; background: var(--border); border-radius: 2px; margin-top: 12px; }
+.progress-fill { height: 100%; background: #0078D4; border-radius: 2px; transition: width 0.4s ease; }
+.progress-label { font-size: 12px; color: var(--text2); margin-top: 4px; }
+.nav-tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 1.5rem; border-bottom: 0.5px solid var(--border); }
+.tab-btn { padding: 8px 14px; font-size: 13px; font-weight: 400; border: none; background: transparent; cursor: pointer; color: var(--text2); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.15s; border-radius: 0; }
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: #0078D4; border-bottom-color: #0078D4; font-weight: 500; }
+.section { display: none; }
+.section.active { display: block; }
+.card { background: var(--white); border: 0.5px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 12px; }
+.card-title { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+.card-body { font-size: 13px; color: var(--text2); line-height: 1.6; }
+.badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; display: inline-block; }
+.badge-blue { background: var(--blue-light); color: var(--blue-dark); }
+.badge-green { background: #EAF3DE; color: #173404; }
+.badge-amber { background: #FAEEDA; color: #412402; }
+.key-terms { display: flex; flex-direction: column; }
+.term { display: flex; gap: 12px; padding: 10px 0; border-bottom: 0.5px solid var(--border); align-items: flex-start; }
+.term:last-child { border-bottom: none; }
+.term-word { font-size: 13px; font-weight: 500; color: var(--text); min-width: 150px; flex-shrink: 0; }
+.term-def { font-size: 13px; color: var(--text2); line-height: 1.5; }
+.compare-table { width: 100%; font-size: 13px; border-collapse: collapse; }
+.compare-table th { text-align: left; padding: 8px 12px; font-weight: 500; color: var(--text); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 0.5px solid var(--border); }
+.compare-table td { padding: 8px 12px; color: var(--text2); border-bottom: 0.5px solid var(--border); vertical-align: top; font-size: 13px; }
+.compare-table tr:last-child td { border-bottom: none; }
+.accordion-item { border: 0.5px solid var(--border); border-radius: 6px; overflow: hidden; margin-bottom: 8px; }
+.accordion-q { padding: 12px 16px; font-size: 14px; font-weight: 500; color: var(--text); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.15s; }
+.accordion-q:hover { background: var(--bg); }
+.accordion-q .arrow { transition: transform 0.2s; font-size: 12px; color: var(--text2); }
+.accordion-q.open .arrow { transform: rotate(180deg); }
+.accordion-a { display: none; padding: 12px 16px; font-size: 13px; color: var(--text2); line-height: 1.6; background: var(--bg); border-top: 0.5px solid var(--border); }
+.accordion-a.open { display: block; }
+.workspace-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.ws-card { border-radius: 6px; padding: 12px 14px; border: 0.5px solid; cursor: pointer; transition: all 0.15s; }
+.ws-card:hover { filter: brightness(0.97); }
+.ws-card h4 { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+.ws-card p { font-size: 12px; line-height: 1.5; opacity: 0.8; }
+.ws-detail { display: none; padding: 12px 14px; background: var(--bg); border-radius: 6px; margin-bottom: 12px; font-size: 13px; color: var(--text2); line-height: 1.6; }
+.ws-detail.open { display: block; }
+.ws-detail strong { color: var(--text); display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+.w-pages { background: #E6F1FB; border-color: #B5D4F4; color: #042C53; }
+.w-styling { background: #FAEEDA; border-color: #FAC775; color: #412402; }
+.w-data { background: #EAF3DE; border-color: #C0DD97; color: #173404; }
+.w-setup { background: #EEEDFE; border-color: #CECBF6; color: #26215C; }
+.step-list { display: flex; flex-direction: column; gap: 0; }
+.step-item { display: flex; gap: 14px; padding: 12px 0; border-bottom: 0.5px solid var(--border); align-items: flex-start; }
+.step-item:last-child { border-bottom: none; }
+.step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--blue-light); color: var(--blue-dark); font-size: 13px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-body h4 { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.step-body p { font-size: 13px; color: var(--text2); line-height: 1.5; }
+.use-case-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.uc-card { padding: 12px 14px; border: 0.5px solid var(--border); border-radius: 6px; }
+.uc-card h4 { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 5px; }
+.uc-card p { font-size: 12px; color: var(--text2); line-height: 1.5; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mini-card { padding: 12px 14px; border: 0.5px solid var(--border); border-radius: 6px; background: var(--white); }
+.mini-card h4 { font-size: 12px; font-weight: 500; color: var(--text2); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+.mini-card ul { padding-left: 14px; font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+  /* ── MOBILE FIXES ── */
+  .nav-tabs { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { white-space: nowrap; flex-shrink: 0; }
+
+  .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .compare-table { min-width: 500px; }
+
+  @media (max-width: 600px) {
+    .tool-grid { grid-template-columns: 1fr; }
+    .summary-grid { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .kv-row, .r { flex-direction: column; gap: 4px; }
+    .kv-key, .rk { min-width: unset; font-size: 12px; }
+    .term { flex-direction: column; gap: 3px; }
+    .term-word { min-width: unset; }
+    .card { padding: 0.875rem 1rem; }
+    .layer { padding: 10px 13px; }
+    .qa-question { padding: 10px 13px; font-size: 13px; }
+    .qa-answer { padding: 10px 13px; }
+    .tab-btn { padding: 7px 11px; font-size: 12px; }
+    .compare-table th, .compare-table td { padding: 7px 10px; font-size: 12px; }
+  }
+  @media (max-width: 400px) {
+    .card-title { font-size: 14px; }
+    .card-body { font-size: 12px; }
+  }
+</style>
+
+<div class="container">
+  <div class="header">
+    <h1>Microsoft Power Pages</h1>
+    <p>Session 3 — Based on the course by Barbara Andrews, Lead Microsoft Technical Trainer</p>
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width:20%"></div></div>
+    <div class="progress-label" id="progress-label">1 of 5 sections visited</div>
+  </div>
+
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('overview',this)">Overview</button>
+    <button class="tab-btn" onclick="showTab('design',this)">Design Studio</button>
+    <button class="tab-btn" onclick="showTab('security',this)">Security</button>
+    <button class="tab-btn" onclick="showTab('lab',this)">Lab Walkthrough</button>
+    <button class="tab-btn" onclick="showTab('review',this)">Review Q&A</button>
+  </div>
+
+  <!-- TAB 1: OVERVIEW -->
+  <div id="tab-overview" class="section active">
+    <div class="card">
+      <div class="card-title">What is Microsoft Power Pages?</div>
+      <div class="card-body">A secure, enterprise-grade, low-code Software as a Service (SaaS) platform for creating, hosting, and administering modern, external-facing business websites. Accessible to both low-code makers and professional developers. URL: <span style="font-family:'Consolas', 'Courier New', monospace;font-size:12px;">powerpages.microsoft.com</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Core Capabilities</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Secure external websites</div><div class="term-def">Create public or partner-facing portals with authentication and role-based access controls. Especially useful in healthcare and finance where sensitive data must be protected yet accessible to authorized users.</div></div>
+          <div class="term"><div class="term-word">Dataverse integration</div><div class="term-def">Collect and display Dataverse data using forms and lists, enabling real-time interaction with business data. Supports customer onboarding, service request tracking, and more.</div></div>
+          <div class="term"><div class="term-word">Power Automate workflows</div><div class="term-def">Trigger automated actions like approvals or notifications from form submissions — ideal for procurement or HR request processes.</div></div>
+          <div class="term"><div class="term-word">Self-service portals</div><div class="term-def">Users can submit requests, track cases, or update profiles without direct support, reducing operational overhead.</div></div>
+          <div class="term"><div class="term-word">M365 & Azure integration</div><div class="term-def">Seamless connectivity with SharePoint, Teams, and Entra ID for a cohesive digital environment.</div></div>
+          <div class="term"><div class="term-word">Granular permissions</div><div class="term-def">Web roles and table permissions ensure compliance and data protection across all site content.</div></div>
+          <div class="term"><div class="term-word">AI & Copilot agents</div><div class="term-def">Embed chatbots and AI assistants to guide users through complex processes and provide automated support.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Real-World Use Cases</div>
+      <div class="card-body">
+        <div class="use-case-grid">
+          <div class="uc-card"><h4>Partner Collaboration</h4><p>Manufacturing companies give suppliers a secure portal to access inventory data, update delivery timelines, and share logistics plans — replacing scattered emails.</p></div>
+          <div class="uc-card"><h4>Employee Self-Service</h4><p>Staff independently access HR documents, submit leave requests, enroll in benefits, or complete training without relying on HR or management.</p></div>
+          <div class="uc-card"><h4>Customer Portals</h4><p>Customers submit support tickets, track orders, or update account profiles without human intervention — improving satisfaction and reducing overhead.</p></div>
+          <div class="uc-card"><h4>Education</h4><p>Faculty check payroll, submit professional development requests, or organize course schedules. Students access enrollment info via an AI agent.</p></div>
+          <div class="uc-card"><h4>Real Estate</h4><p>Agents and brokers access shared property listings, marketing assets, and transactional details to collaborate and close deals faster.</p></div>
+          <div class="uc-card"><h4>Public Sector</h4><p>Government employees access policy documents, submit expense claims, or register for workshops — simplifying previously manual processes.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Three Ways to Build a Site</div>
+      <div class="card-body">
+        <div class="table-wrap"><table class="compare-table">
+          <tr><th>Method</th><th>Best for</th><th>How it works</th></tr>
+          <tr><td>AI-powered Copilot</td><td>Non-developers wanting fast setup</td><td>Describe site purpose, users, and features in natural language. Copilot generates site name, address, homepage layout, and additional pages. Then refine in Design Studio.</td></tr>
+          <tr><td>Manual from scratch</td><td>Users wanting full control</td><td>Start with a blank canvas and design every detail to meet specific, unique requirements.</td></tr>
+          <tr><td>Developer / pro-code</td><td>Advanced scenarios needing custom code</td><td>Access tools like Visual Studio Code, GitHub, and Azure DevOps. Integrate custom APIs and advanced functionality beyond low-code scope.</td></tr>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Copilot Site Creation — 3 Steps</div>
+      <div class="card-body">
+        <div class="step-list">
+          <div class="step-item"><div class="step-num">1</div><div class="step-body"><h4>Describe</h4><p>Input a natural language description of the site (e.g., "create a site for project management"). Copilot interprets the intent and generates a site structure.</p></div></div>
+          <div class="step-item"><div class="step-num">2</div><div class="step-body"><h4>Pick Layout</h4><p>Copilot presents layout options aligned with the described use case. Choose the visual structure that best fits the need. Can regenerate for more options.</p></div></div>
+          <div class="step-item"><div class="step-num">3</div><div class="step-body"><h4>Add Pages</h4><p>Specify initial pages to include (e.g., dashboard, contact forms, resource libraries). Common templates like About Us and FAQ are offered. Site is generated and opens in Design Studio.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: DESIGN STUDIO -->
+  <div id="tab-design" class="section">
+    <div class="card">
+      <div class="card-title">Design Studio — 4 Workspaces</div>
+      <div class="card-body" style="margin-bottom:12px;">The central tool for customizing and managing a Power Pages site after creation. Click each workspace for details ↓</div>
+      <div class="workspace-grid">
+        <div class="ws-card w-pages" onclick="showWS('pages',this)"><h4>📄 Pages</h4><p>Create, edit, and arrange web pages and site navigation</p></div>
+        <div class="ws-card w-styling" onclick="showWS('styling',this)"><h4>🎨 Styling</h4><p>Theming, color palettes, fonts, buttons, branding</p></div>
+        <div class="ws-card w-data" onclick="showWS('data',this)"><h4>🗄️ Data</h4><p>Connect to Dataverse, manage tables, forms, and views</p></div>
+        <div class="ws-card w-setup" onclick="showWS('setup',this)"><h4>⚙️ Setup</h4><p>Site settings, performance, integrations, security</p></div>
+      </div>
+      <div class="ws-detail" id="ws-pages"><strong>Pages workspace</strong>Create new pages, edit existing ones, organize site navigation. Add sections within pages and insert components like text, images, and forms. Includes a Navigation panel and a + Page button. Copilot integration: type a natural language prompt (e.g., "add a section with an image and a mission statement") and Copilot generates the section with a preview — you can accept, delete, or undo changes.</div>
+      <div class="ws-detail" id="ws-styling"><strong>Styling workspace</strong>Apply global site styles aligned with corporate branding. Choose from multiple preset themes and customize: color palettes, background colors, font styles, button styles, and section margins. The Real-Time Preview feature shows changes instantly as you make them — no need to publish to see results.</div>
+      <div class="ws-detail" id="ws-data"><strong>Data workspace</strong>Seamlessly integrate Dataverse into the site. Create new Dataverse tables, edit existing ones, and build or modify forms and views — all without leaving the site-building environment. Dataverse forms display lists of records or individual record details. Dataverse views enable data entry forms. Role-based security ensures only authorized users can access or modify data.</div>
+      <div class="ws-detail" id="ws-setup"><strong>Setup workspace</strong>Centralized hub for site configuration. Includes: Site Details (high-level config info), Go-Live Checklist (structured guide before launch), Site Performance tools (identify slow pages and get optimization suggestions), Integrations (connect Power Automate and external apps), and Copilot features like Site Search and Agent Configuration for intelligent user assistance.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">7 Copilot Capabilities in Design Studio</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">1. Create & modify pages</div><div class="term-def">Describe the page you need (e.g., "add a student registration page with a form and Submit button") — Copilot generates the layout, inserts the form, and connects it to the Dataverse table if needed.</div></div>
+          <div class="term"><div class="term-word">2. Edit page content</div><div class="term-def">Use natural language to update content (e.g., "change the title on the homepage to Welcome to the campus portal"). Copilot locates the block and applies the change.</div></div>
+          <div class="term"><div class="term-word">3. Style & theme adjustments</div><div class="term-def">Personalize appearance with prompts like "make all buttons rounded" or "use university blue and gold colors." Applied across the whole site via the Styling workspace.</div></div>
+          <div class="term"><div class="term-word">4. Add data-driven components</div><div class="term-def">Bind components to Dataverse tables — e.g., display maintenance requests from a facilities table. Ideal for operations or facilities management portals.</div></div>
+          <div class="term"><div class="term-word">5. Configure security</div><div class="term-def">Set web roles via natural language — e.g., "restrict grade submission pages to faculty only."</div></div>
+          <div class="term"><div class="term-word">6. Generate forms automatically</div><div class="term-def">Generate and embed forms tied to Dataverse tables (e.g., an IT support ticket form) with a single prompt.</div></div>
+          <div class="term"><div class="term-word">7. Setup site navigation</div><div class="term-def">Update navigation menus with prompts like "add a link to the student portal in the top navigation bar."</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: SECURITY -->
+  <div id="tab-security" class="section">
+    <div class="card">
+      <div class="card-title">5 Security Principles of Power Pages</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Multiple identity providers</div><div class="term-def">Flexible login via Microsoft, LinkedIn, Google, or other third-party services. Configured in the Security workspace. Example: a corporate intranet restricts to Microsoft auth; a public event site allows LinkedIn login.</div></div>
+          <div class="term"><div class="term-word">Role-based security</div><div class="term-def">Users are assigned roles that define what data and features they can access. Essential for maintaining data integrity and compliance.</div></div>
+          <div class="term"><div class="term-word">Table permissions</div><div class="term-def">Granular control over Dataverse records — specify who can read, write, or delete data. Example: customers can only view their own order history, not others'.</div></div>
+          <div class="term"><div class="term-word">Page permissions</div><div class="term-def">Restrict access at the page level. Example: an admin dashboard is visible only to users with the Administrator role; general visitors see the public homepage.</div></div>
+          <div class="term"><div class="term-word">Site visibility</div><div class="term-def">Configure whether a site is public or private. A customer support portal can be open to all; an internal project management site can be restricted to employees only.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Layered Data Protection</div>
+      <div class="card-body">
+        <div class="two-col">
+          <div class="mini-card">
+            <h4>Table permissions</h4>
+            <ul><li>Control access to Dataverse records</li><li>Read, write, delete per role</li><li>Example: users see only their own order history</li><li>Access types: global, local, self</li></ul>
+          </div>
+          <div class="mini-card">
+            <h4>Page permissions</h4>
+            <ul><li>Restrict which pages users can view</li><li>Assigned by web role</li><li>Example: payroll pages visible only to HR roles</li><li>Sensitive content stays hidden from general users</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Identity Providers Supported</div>
+      <div class="card-body">
+        <div class="table-wrap"><table class="compare-table">
+          <tr><th>Provider</th><th>Best for</th><th>Example scenario</th></tr>
+          <tr><td>Microsoft (Entra ID)</td><td>Internal / employee portals</td><td>Corporate intranet restricting access to verified company accounts</td></tr>
+          <tr><td>LinkedIn</td><td>Partner / professional portals</td><td>Event registration site where professionals log in with existing credentials</td></tr>
+          <tr><td>Google</td><td>Public-facing / consumer portals</td><td>Customer service site where consumers log in with familiar credentials</td></tr>
+          <tr><td>Other third-party</td><td>Specialized audience needs</td><td>Custom OAuth providers for specific industry or regional requirements</td></tr>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Deep Scan & AI Responsible Use</div>
+      <div class="card-body">The Deep Scan feature lets makers scan their site for vulnerabilities and receive guidance on how to fix them — especially valuable for public-facing sites with higher exposure to external threats. As Copilot becomes part of site creation, adopting responsible AI practices is emphasized to maintain ethical standards and content integrity. All security settings are managed through the centralized Security workspace.</div>
+    </div>
+  </div>
+
+  <!-- TAB 4: LAB WALKTHROUGH -->
+  <div id="tab-lab" class="section">
+    <div class="card">
+      <div class="card-title">Lab 3 — Contoso Event Management Site <span class="badge badge-blue">Hands-on</span></div>
+      <div class="card-body">Build a Power Pages site for Contoso Consulting's event management system, using Copilot to generate the site and Design Studio to customize it. Builds on the Dataverse tables created in Lab 2.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Step-by-Step Summary</div>
+      <div class="card-body">
+        <div class="step-list">
+          <div class="step-item"><div class="step-num">1</div><div class="step-body"><h4>Generate site with Copilot</h4><p>Navigate to powerpages.microsoft.com. Paste the Copilot prompt to describe the event management site. Set name to "Contoso Event Management" and URL to "eventmanagement." Click Next to pick a layout, then add pages (About Us, FAQ, and others). Click Done — site is generated and opens in Design Studio.</p></div></div>
+          <div class="step-item"><div class="step-num">2</div><div class="step-body"><h4>Customize the homepage</h4><p>Upload the Contoso logo image to the header. Change the site background by uploading a background JPG from the GitHub lab assets. Use the Paintbrush panel for overlay, border, and layout adjustments.</p></div></div>
+          <div class="step-item"><div class="step-num">3</div><div class="step-body"><h4>Create Dataverse forms (Data workspace)</h4><p>Open the Data workspace → Forms tab. Create two forms on the Event table: (1) "Create Event" — for adding new event records, and (2) "View Event" — for viewing records (includes a subgrid showing Active Event Sessions with Show Related Records enabled). Save and Publish both forms.</p></div></div>
+          <div class="step-item"><div class="step-num">4</div><div class="step-body"><h4>Build site pages (Pages workspace)</h4><p>Create four new pages using Copilot: New Event (form mode: Create new record), View Event (form mode: Read-only), Edit Event (form mode: Update existing records), Events (list mode — displays Active Events with Create New Event, See Event, and Edit Event action buttons). Clean up extra sections on each page, keeping only the form and copyright footer.</p></div></div>
+          <div class="step-item"><div class="step-num">5</div><div class="step-body"><h4>Configure table permissions</h4><p>Events page list: Permission name "Events," table = Event, access = Read, roles = Administrators + Anonymous + Authenticated. New Event page: table = Event, access = Read + Create, same roles. Edit Event page: table = Event, access = Read + Update, same roles.</p></div></div>
+          <div class="step-item"><div class="step-num">6</div><div class="step-body"><h4>Organize navigation & preview</h4><p>Reorder pages: Events moved below Contact; New Event, View Event, and Edit Event nested as subpages under Events. Sync the site, then use Preview to see desktop and mobile views.</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Forms Built in Lab 3 — Quick Reference</div>
+      <div class="card-body">
+        <div class="table-wrap"><table class="compare-table">
+          <tr><th>Form name</th><th>Table</th><th>Data mode</th><th>Page used on</th></tr>
+          <tr><td>Create Event</td><td>Event</td><td>Create new record</td><td>New Event page</td></tr>
+          <tr><td>View Event</td><td>Event</td><td>Read-only (+ Event Sessions subgrid)</td><td>View Event page</td></tr>
+          <tr><td>Edit Event (based on Create Event)</td><td>Event</td><td>Update existing records</td><td>Edit Event page</td></tr>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Permissions Configured in Lab 3</div>
+      <div class="card-body">
+        <div class="table-wrap"><table class="compare-table">
+          <tr><th>Permission name</th><th>Table</th><th>Access type</th><th>Roles assigned</th></tr>
+          <tr><td>Events</td><td>Event</td><td>Read (global)</td><td>Administrators, Anonymous, Authenticated</td></tr>
+          <tr><td>Create Events</td><td>Event</td><td>Read + Create</td><td>Administrators, Anonymous, Authenticated</td></tr>
+          <tr><td>Edit Event</td><td>Event</td><td>Read + Update</td><td>Administrators, Anonymous, Authenticated</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 5: REVIEW Q&A -->
+  <div id="tab-review" class="section">
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-title">Key Terms Flash Reference</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Power Pages</div><div class="term-def">Secure, enterprise-grade, low-code SaaS platform for creating external-facing business websites. Part of Microsoft Power Platform.</div></div>
+          <div class="term"><div class="term-word">Design Studio</div><div class="term-def">The central tool for customizing Power Pages sites. Contains four workspaces: Pages, Styling, Data, and Setup.</div></div>
+          <div class="term"><div class="term-word">Table permissions</div><div class="term-def">Granular controls over who can read, write, or delete Dataverse records in a portal.</div></div>
+          <div class="term"><div class="term-word">Page permissions</div><div class="term-def">Restrict access to specific pages based on user roles — sensitive pages are hidden from unauthorized users.</div></div>
+          <div class="term"><div class="term-word">Web roles</div><div class="term-def">The role assignments used in Power Pages to control what each type of user (admin, authenticated, anonymous) can see and do.</div></div>
+          <div class="term"><div class="term-word">Site visibility</div><div class="term-def">Setting that controls whether a site is public (open to anyone) or private (restricted to specific users).</div></div>
+          <div class="term"><div class="term-word">Deep Scan</div><div class="term-def">Feature that scans a Power Pages site for vulnerabilities and provides guidance on fixing them.</div></div>
+          <div class="term"><div class="term-word">Go-Live Checklist</div><div class="term-def">Structured guide in the Setup workspace ensuring all critical steps are completed before a site launches.</div></div>
+          <div class="term"><div class="term-word">Subgrid</div><div class="term-def">A component embedded in a form that displays related records from another table — e.g., showing Event Sessions inside a View Event form.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:var(--text2);margin-bottom:10px;">Click to reveal answers ↓</p>
+    <div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the four workspaces in the Power Pages Design Studio and what does each do?<span class="arrow">▼</span></div><div class="accordion-a">Pages — create, edit, and arrange web pages and navigation. Styling — apply themes, color palettes, font styles, and branding with real-time preview. Data — connect to Dataverse, create and manage tables, forms, and views without leaving the site builder. Setup — configure site settings, performance tools, integrations (Power Automate), and Copilot features like Site Search and Agent Configuration.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the five security principles of Power Pages?<span class="arrow">▼</span></div><div class="accordion-a">Multiple identity providers (Microsoft, LinkedIn, Google, etc.), role-based security (users assigned roles defining access), table permissions (granular Dataverse record access control), page permissions (restrict access to specific pages by role), and site visibility (configure whether a site is public or private).</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the three ways to build a Power Pages site?<span class="arrow">▼</span></div><div class="accordion-a">AI-powered Copilot (describe in natural language → Copilot generates name, address, layout, and pages → refine in Design Studio), manual from scratch (blank canvas, full control over every detail), and developer/pro-code (Visual Studio Code, GitHub, Azure DevOps for custom code and APIs beyond low-code scope).</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What is the difference between table permissions and page permissions?<span class="arrow">▼</span></div><div class="accordion-a">Table permissions control access to Dataverse records — specifying who can read, write, or delete data at the row level (e.g., a customer can only see their own orders). Page permissions restrict access to entire pages on the site based on web role — for example, an admin dashboard is only visible to users with the Administrator role, while other users are redirected to a public page.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the three Copilot site creation steps and what happens in each?<span class="arrow">▼</span></div><div class="accordion-a">Describe — input a natural language description; Copilot generates a site structure based on your intent. Pick Layout — Copilot presents layout options matching your use case; choose the best fit (can regenerate for more options). Add Pages — specify which initial pages to include (e.g., About Us, FAQ, Contact); the site is generated and opens in Design Studio.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">In the Lab 3 walkthrough, what three form modes were used and on which pages?<span class="arrow">▼</span></div><div class="accordion-a">Create new record — used on the New Event page (lets users add a new event). Read-only — used on the View Event page (displays event details plus a subgrid of related Event Sessions). Update existing records — used on the Edit Event page (lets users modify an existing event record).</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What is the purpose of the Events list page built in Lab 3?<span class="arrow">▼</span></div><div class="accordion-a">The Events list page displays all active event records from the Dataverse Event table in a list view. It has three action buttons configured: Create New Event (opens the Create Event form to add a record), See Event (opens the View Event form to view details in read-only mode), and Edit Event (opens the Edit Event form to update an existing record). Table permissions are set so the data is readable by administrators, anonymous, and authenticated users.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">How does Power Pages integrate with the broader Power Platform ecosystem?<span class="arrow">▼</span></div><div class="accordion-a">Power Pages uses Microsoft Dataverse as its data backend, meaning data is shared across Power Apps, Power Automate, and Power BI. Power Automate can be triggered by form submissions on a Power Pages site (e.g., approvals, notifications). Power BI can be embedded in portal pages for data visualization. Entra ID (formerly Azure AD) handles authentication. The Design Studio's Setup workspace includes direct integration settings for Power Automate and external apps.</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const visited = new Set(['overview']);
+const total = 5;
+function showTab(name, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+  visited.add(name);
+  const pct = Math.round((visited.size / total) * 100);
+  document.getElementById('progress').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = visited.size + ' of ' + total + ' sections visited';
+}
+const wsDetails = { pages: 'ws-pages', styling: 'ws-styling', data: 'ws-data', setup: 'ws-setup' };
+let openWS = null;
+function showWS(id, card) {
+  const detailEl = document.getElementById(wsDetails[id]);
+  if (openWS === id) {
+    detailEl.classList.remove('open');
+    card.style.outline = 'none';
+    openWS = null;
+  } else {
+    Object.values(wsDetails).forEach(d => document.getElementById(d).classList.remove('open'));
+    document.querySelectorAll('.ws-card').forEach(c => c.style.outline = 'none');
+    detailEl.classList.add('open');
+    card.style.outline = '2px solid #0078D4';
+    openWS = id;
+  }
+}
+function toggleQ(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}
+</script>
+
+</div>
+</body>
+</html>

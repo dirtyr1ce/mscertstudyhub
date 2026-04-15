@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AZ-900 — Course Overview &amp; Exam Blueprint</title>
+<style>
+:root{--blue:#0078D4;--blue-dark:#005A9E;--blue-light:#EFF6FC;--blue-mid:#C7E0F4;--text:#201F1E;--text2:#484644;--muted:#797775;--border:#EDEBE9;--bg:#FAF9F8;--white:#fff;--radius:8px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-text-size-adjust:100%;}
+header{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.25rem;display:flex;align-items:center;gap:10px;height:52px;position:sticky;top:0;z-index:100;}
+.back-link{font-size:13px;color:var(--blue);text-decoration:none;display:flex;align-items:center;gap:4px;white-space:nowrap;}
+.back-link:hover{text-decoration:underline;}
+.header-title{font-size:13px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.badge{font-size:11px;padding:2px 9px;border-radius:10px;font-weight:600;background:var(--blue-light);color:var(--blue-dark);border:1px solid var(--blue-mid);white-space:nowrap;margin-left:auto;}
+main{max-width:860px;margin:0 auto;padding:2rem 1.25rem 4rem;}
+h1{font-size:clamp(1.4rem,3vw,1.9rem);font-weight:300;color:var(--text);margin-bottom:6px;letter-spacing:-0.01em;}
+h1 strong{font-weight:700;}
+.subtitle{font-size:13px;color:var(--muted);margin-bottom:2rem;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:12px;}
+.card-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;}
+.kv{display:flex;flex-direction:column;}
+.kv-row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+.kv-row:last-child{border-bottom:none;}
+.kv-key{font-size:13px;font-weight:600;color:var(--text);min-width:160px;flex-shrink:0;}
+.kv-val{font-size:13px;color:var(--text2);line-height:1.6;}
+.session-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:10px;margin-bottom:4px;}
+.session-card{border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;}
+.session-num{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;}
+.session-card h4{font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px;}
+.session-card p{font-size:12px;color:var(--text2);line-height:1.5;}
+.domain-list{display:flex;flex-direction:column;gap:10px;}
+.domain{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.domain-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--bg);}
+.domain-name{font-size:14px;font-weight:600;color:var(--text);}
+.domain-weight{font-size:12px;font-weight:600;}
+.badge-blue{background:var(--blue-light);color:var(--blue-dark);border:1px solid var(--blue-mid);border-radius:10px;padding:2px 9px;}
+.badge-amber{background:#FAEEDA;color:#412402;border:1px solid #EF9F27;border-radius:10px;padding:2px 9px;}
+.badge-green{background:#EAF3DE;color:#173404;border:1px solid #97C459;border-radius:10px;padding:2px 9px;}
+.domain-bar{height:6px;background:var(--border);}
+.domain-bar-fill{height:100%;}
+.domain-topics{display:flex;flex-wrap:wrap;gap:5px;padding:10px 14px;}
+.pill{font-size:11px;padding:2px 8px;border-radius:4px;font-weight:500;}
+.pill-blue{background:var(--blue-light);color:var(--blue-dark);border:0.5px solid var(--blue-mid);}
+.pill-amber{background:#FAEEDA;color:#633806;border:0.5px solid #EF9F27;}
+.pill-green{background:#EAF3DE;color:#27500A;border:0.5px solid #97C459;}
+.tip-list{display:flex;flex-direction:column;gap:8px;}
+.tip{padding:10px 12px;background:var(--bg);border-left:3px solid var(--blue);font-size:13px;color:var(--text2);line-height:1.5;}
+.tip strong{color:var(--text);font-weight:600;}
+@media(max-width:480px){.kv-key{min-width:120px;}.kv-row{flex-direction:column;gap:4px;}}
+
+  /* ── MOBILE FIXES ── */
+  .nav-tabs { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { white-space: nowrap; flex-shrink: 0; }
+
+  .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .compare-table { min-width: 500px; }
+
+  @media (max-width: 600px) {
+    .tool-grid { grid-template-columns: 1fr; }
+    .summary-grid { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .kv-row, .r { flex-direction: column; gap: 4px; }
+    .kv-key, .rk { min-width: unset; font-size: 12px; }
+    .term { flex-direction: column; gap: 3px; }
+    .term-word { min-width: unset; }
+    .card { padding: 0.875rem 1rem; }
+    .layer { padding: 10px 13px; }
+    .qa-question { padding: 10px 13px; font-size: 13px; }
+    .qa-answer { padding: 10px 13px; }
+    .tab-btn { padding: 7px 11px; font-size: 12px; }
+    .compare-table th, .compare-table td { padding: 7px 10px; font-size: 12px; }
+  }
+  @media (max-width: 400px) {
+    .card-title { font-size: 14px; }
+    .card-body { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <a class="back-link" href="az900_index.html">← Back</a>
+  <span class="header-title">AZ-900 — Course Overview &amp; Exam Blueprint</span>
+  <span class="badge">Intro</span>
+</header>
+<main>
+  <h1>Course Overview &amp; <strong>Exam Blueprint</strong></h1>
+  <p class="subtitle">AZ-900 Microsoft Azure Fundamentals · Instructor: Alexandra Zakharova, Senior Technical Trainer at Microsoft</p>
+
+  <div class="card">
+    <div class="card-title">About this course &amp; exam</div>
+    <div class="kv">
+      <div class="kv-row"><div class="kv-key">Instructor</div><div class="kv-val">Alexandra Zakharova — Senior Technical Trainer and AI Course Lead at Microsoft. Specializes in Azure cloud solutions and Azure AI Services. Connect: aka.ms/alexandra</div></div>
+      <div class="kv-row"><div class="kv-key">Target exam</div><div class="kv-val">AZ-900: Microsoft Azure Fundamentals — Foundational certification</div></div>
+      <div class="kv-row"><div class="kv-key">Passing score</div><div class="kv-val">700 out of 1000 points</div></div>
+      <div class="kv-row"><div class="kv-key">Exam format</div><div class="kv-val">Define and describe concepts — no hands-on implementation required. Expect multiple choice, hotspot, drag-and-drop matching, and scenario-based questions.</div></div>
+      <div class="kv-row"><div class="kv-key">Free study resource</div><div class="kv-val">Microsoft Learn (aka.ms/learn) — free, self-paced learning paths aligned directly to this course. All slides are based on Microsoft Learn content.</div></div>
+      <div class="kv-row"><div class="kv-key">Who it's for</div><div class="kv-val">IT professionals, business stakeholders, students, or anyone new to cloud computing who wants a certified foundation in Azure concepts, services, security, and pricing.</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Course structure — 6 study guides</div>
+    <div class="session-grid">
+      <div class="session-card"><div class="session-num">Intro</div><h4>Course Overview &amp; Blueprint</h4><p>Course structure, exam weights, and study tips from the instructor.</p></div>
+      <div class="session-card"><div class="session-num">Session 1</div><h4>Cloud Concepts</h4><p>Cloud computing, cloud models, CapEx vs OpEx, 8 benefits, IaaS/PaaS/SaaS, shared responsibility model.</p></div>
+      <div class="session-card"><div class="session-num">Session 2A</div><h4>Architecture, Compute &amp; Networking</h4><p>Regions, availability zones, hierarchy, VMs, containers, Functions, VNets, VPN, ExpressRoute.</p></div>
+      <div class="session-card"><div class="session-num">Session 2B</div><h4>Storage, Identity &amp; Security</h4><p>Storage services, redundancy, access tiers, Entra ID, RBAC, Zero Trust, Defender for Cloud.</p></div>
+      <div class="session-card"><div class="session-num">Session 3</div><h4>Management, Governance &amp; Monitoring</h4><p>Cost tools, Azure Policy, resource locks, ARM templates, Bicep, Azure Arc, Azure Monitor.</p></div>
+      <div class="session-card"><div class="session-num">Final Review</div><h4>Exam Readiness</h4><p>Full blueprint, common exam traps, comparison tables, and interactive study checklist.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">AZ-900 exam domain breakdown</div>
+    <div class="domain-list">
+      <div class="domain">
+        <div class="domain-header"><span class="domain-name">Describe cloud concepts</span><span class="domain-weight badge-blue">25–30%</span></div>
+        <div class="domain-bar"><div class="domain-bar-fill" style="width:27%;background:#185FA5;"></div></div>
+        <div class="domain-topics">
+          <span class="pill pill-blue">Cloud computing definition</span>
+          <span class="pill pill-blue">Shared responsibility model</span>
+          <span class="pill pill-blue">IaaS / PaaS / SaaS</span>
+          <span class="pill pill-blue">Public / Private / Hybrid cloud</span>
+          <span class="pill pill-blue">High availability &amp; scalability</span>
+          <span class="pill pill-blue">Consumption-based pricing</span>
+          <span class="pill pill-blue">CapEx vs OpEx</span>
+        </div>
+      </div>
+      <div class="domain">
+        <div class="domain-header"><span class="domain-name">Describe Azure architecture and services</span><span class="domain-weight badge-amber">35–40%</span></div>
+        <div class="domain-bar"><div class="domain-bar-fill" style="width:38%;background:#854F0B;"></div></div>
+        <div class="domain-topics">
+          <span class="pill pill-amber">Regions &amp; availability zones</span>
+          <span class="pill pill-amber">Resource groups &amp; subscriptions</span>
+          <span class="pill pill-amber">Compute services (VMs, containers, functions)</span>
+          <span class="pill pill-amber">Networking (VNet, VPN, ExpressRoute)</span>
+          <span class="pill pill-amber">Storage (Blob, Disk, File, Queue)</span>
+          <span class="pill pill-amber">Identity &amp; access (Entra ID, MFA, RBAC)</span>
+          <span class="pill pill-amber">Security (Defender, Key Vault, Sentinel)</span>
+        </div>
+      </div>
+      <div class="domain">
+        <div class="domain-header"><span class="domain-name">Describe Azure management and governance</span><span class="domain-weight badge-green">30–35%</span></div>
+        <div class="domain-bar"><div class="domain-bar-fill" style="width:32%;background:#3B6D11;"></div></div>
+        <div class="domain-topics">
+          <span class="pill pill-green">Cost management &amp; TCO</span>
+          <span class="pill pill-green">Azure Policy &amp; Blueprints</span>
+          <span class="pill pill-green">Management groups</span>
+          <span class="pill pill-green">Resource locks &amp; tags</span>
+          <span class="pill pill-green">Azure Arc</span>
+          <span class="pill pill-green">Azure Monitor &amp; Advisor</span>
+          <span class="pill pill-green">Compliance &amp; Microsoft Purview</span>
+          <span class="pill pill-green">Service Health</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Key exam tips from the instructor</div>
+    <div class="tip-list">
+      <div class="tip"><strong>You don't need to build anything.</strong> The AZ-900 exam tests whether you can define and describe Azure services — not implement them. Focus on what each service does, when to use it, and how it compares to alternatives.</div>
+      <div class="tip"><strong>Use Microsoft Learn — it's free and official.</strong> The course slides are based directly on Microsoft Learn content. Complete the free AZ-900 learning path at aka.ms/learn for knowledge checks that mirror exam question style.</div>
+      <div class="tip"><strong>Architecture and services is the biggest domain (35–40%).</strong> Spend the most study time here. Know your compute options (VMs vs containers vs serverless), networking, storage tiers, and identity/security tools cold.</div>
+      <div class="tip"><strong>Score 700/1000 to pass.</strong> That's 70%. The exam is scenario-based — understanding the "why" behind each service matters more than memorizing product names.</div>
+    </div>
+  </div>
+</main>
+</body>
+</html>

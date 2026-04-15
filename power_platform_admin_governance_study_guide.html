@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PL-900 — Session 2 — Administration & Governance</title>
+<style>
+
+:root{--blue:#0078D4;--blue-dark:#005A9E;--blue-light:#EFF6FC;--blue-mid:#C7E0F4;--text:#201F1E;--text2:#484644;--muted:#797775;--border:#EDEBE9;--bg:#FAF9F8;--white:#fff;--radius:8px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-text-size-adjust:100%;}
+header{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.25rem;display:flex;align-items:center;gap:10px;height:52px;position:sticky;top:0;z-index:100;}
+.back{font-size:13px;color:var(--blue);text-decoration:none;white-space:nowrap;flex-shrink:0;}
+.back:hover{text-decoration:underline;}
+.htitle{font-size:13px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.hbadge{margin-left:auto;font-size:11px;padding:2px 9px;border-radius:10px;font-weight:600;background:var(--blue-light);color:var(--blue-dark);border:1px solid var(--blue-mid);white-space:nowrap;flex-shrink:0;}
+.content-wrap{max-width:900px;margin:0 auto;padding:1.5rem 1.25rem 4rem;}
+@media(max-width:480px){
+  .htitle{font-size:12px;}
+  .content-wrap{padding:1rem 1rem 3rem;}
+}
+
+</style>
+</head>
+<body>
+<header>
+  <a class="back" href="index.html">← Back</a>
+  <span class="htitle">PL-900 — Session 2 — Administration & Governance</span>
+  <span class="hbadge">Exam weight: 15–20%</span>
+</header>
+<div class="content-wrap">
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.container { padding: 1rem 0; font-family: 'Segoe UI', -apple-system, sans-serif; }
+.header { margin-bottom: 1.5rem; }
+.header h1 { font-size: 20px; font-weight: 500; color: var(--text); }
+.header p { font-size: 13px; color: var(--text2); margin-top: 4px; }
+.progress-bar { height: 4px; background: var(--border); border-radius: 2px; margin-top: 12px; }
+.progress-fill { height: 100%; background: #0078D4; border-radius: 2px; transition: width 0.4s ease; }
+.progress-label { font-size: 12px; color: var(--text2); margin-top: 4px; }
+
+.nav-tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 1.5rem; border-bottom: 0.5px solid var(--border); }
+.tab-btn { padding: 8px 14px; font-size: 13px; font-weight: 400; border: none; background: transparent; cursor: pointer; color: var(--text2); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.15s; border-radius: 0; }
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: #0078D4; border-bottom-color: #0078D4; font-weight: 500; }
+
+.section { display: none; }
+.section.active { display: block; }
+
+.card { background: var(--white); border: 0.5px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 12px; }
+.card-title { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+.card-body { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+.badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; display: inline-block; }
+.badge-blue { background: var(--blue-light); color: var(--blue-dark); }
+.badge-green { background: #EAF3DE; color: #173404; }
+.badge-amber { background: #FAEEDA; color: #412402; }
+.badge-red { background: #FCEBEB; color: #501313; }
+
+.env-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.env-card { border: 0.5px solid var(--border); border-radius: 6px; padding: 12px; }
+.env-card h4 { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+.env-card p { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+.key-terms { display: flex; flex-direction: column; gap: 0; }
+.term { display: flex; gap: 12px; padding: 10px 0; border-bottom: 0.5px solid var(--border); align-items: flex-start; }
+.term:last-child { border-bottom: none; }
+.term-word { font-size: 13px; font-weight: 500; color: var(--text); min-width: 140px; flex-shrink: 0; }
+.term-def { font-size: 13px; color: var(--text2); line-height: 1.5; }
+
+.compare-table { width: 100%; font-size: 13px; border-collapse: collapse; }
+.compare-table th { text-align: left; padding: 8px 12px; font-weight: 500; color: var(--text); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 0.5px solid var(--border); }
+.compare-table td { padding: 8px 12px; color: var(--text2); border-bottom: 0.5px solid var(--border); vertical-align: top; font-size: 13px; }
+.compare-table tr:last-child td { border-bottom: none; }
+
+.accordion-item { border: 0.5px solid var(--border); border-radius: 6px; overflow: hidden; margin-bottom: 8px; }
+.accordion-q { padding: 12px 16px; font-size: 14px; font-weight: 500; color: var(--text); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.15s; }
+.accordion-q:hover { background: var(--bg); }
+.accordion-q .arrow { transition: transform 0.2s; font-size: 12px; color: var(--text2); }
+.accordion-q.open .arrow { transform: rotate(180deg); }
+.accordion-a { display: none; padding: 12px 16px; font-size: 13px; color: var(--text2); line-height: 1.6; background: var(--bg); border-top: 0.5px solid var(--border); }
+.accordion-a.open { display: block; }
+
+.alm-steps { display: flex; flex-direction: column; gap: 0; }
+.alm-step { display: flex; gap: 14px; padding: 12px 0; border-bottom: 0.5px solid var(--border); align-items: flex-start; }
+.alm-step:last-child { border-bottom: none; }
+.step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--blue-light); color: var(--blue-dark); font-size: 13px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-content h4 { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.step-content p { font-size: 13px; color: var(--text2); line-height: 1.5; }
+
+.layer-block { border-radius: 6px; padding: 12px 16px; border: 0.5px solid; margin-bottom: 8px; cursor: pointer; transition: all 0.15s; }
+.layer-block:hover { filter: brightness(0.97); }
+.layer-block .layer-title { font-size: 14px; font-weight: 500; margin-bottom: 3px; }
+.layer-block .layer-sub { font-size: 12px; opacity: 0.75; }
+.layer-detail { display: none; font-size: 13px; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 0.5px solid currentColor; opacity: 0.8; }
+.layer-detail.open { display: block; }
+.l-sec { background: #E6F1FB; border-color: #B5D4F4; color: #042C53; }
+.l-log { background: #EAF3DE; border-color: #C0DD97; color: #173404; }
+.l-dat { background: #FAEEDA; border-color: #FAC775; color: #412402; }
+.l-sto { background: #EEEDFE; border-color: #CECBF6; color: #26215C; }
+.l-int { background: #E1F5EE; border-color: #9FE1CB; color: #04342C; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mini-card { padding: 12px 14px; border: 0.5px solid var(--border); border-radius: 6px; background: var(--white); }
+.mini-card h4 { font-size: 12px; font-weight: 500; color: var(--text2); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+.mini-card ul { padding-left: 14px; font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+  /* ── MOBILE FIXES ── */
+  .nav-tabs { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { white-space: nowrap; flex-shrink: 0; }
+
+  .table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .compare-table { min-width: 500px; }
+
+  @media (max-width: 600px) {
+    .tool-grid { grid-template-columns: 1fr; }
+    .summary-grid { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+    .kv-row, .r { flex-direction: column; gap: 4px; }
+    .kv-key, .rk { min-width: unset; font-size: 12px; }
+    .term { flex-direction: column; gap: 3px; }
+    .term-word { min-width: unset; }
+    .card { padding: 0.875rem 1rem; }
+    .layer { padding: 10px 13px; }
+    .qa-question { padding: 10px 13px; font-size: 13px; }
+    .qa-answer { padding: 10px 13px; }
+    .tab-btn { padding: 7px 11px; font-size: 12px; }
+    .compare-table th, .compare-table td { padding: 7px 10px; font-size: 12px; }
+  }
+  @media (max-width: 400px) {
+    .card-title { font-size: 14px; }
+    .card-body { font-size: 12px; }
+  }
+</style>
+
+<div class="container">
+  <div class="header">
+    <h1>Power Platform Administration & Governance</h1>
+    <p>Session 2 — Based on the course by Barbara Andrews, Lead Microsoft Technical Trainer</p>
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width:17%"></div></div>
+    <div class="progress-label" id="progress-label">1 of 6 sections visited</div>
+  </div>
+
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="showTab('portals',this)">Portals</button>
+    <button class="tab-btn" onclick="showTab('dataverse',this)">Dataverse</button>
+    <button class="tab-btn" onclick="showTab('environments',this)">Environments</button>
+    <button class="tab-btn" onclick="showTab('security',this)">Security & DLP</button>
+    <button class="tab-btn" onclick="showTab('alm',this)">ALM & Solutions</button>
+    <button class="tab-btn" onclick="showTab('review',this)">Review Q&A</button>
+  </div>
+
+  <!-- TAB 1: PORTALS -->
+  <div id="tab-portals" class="section active">
+    <div class="card">
+      <div class="card-title">Power Platform Admin Center</div>
+      <div class="card-body" style="margin-bottom:10px;">The centralized portal for administrators to manage environments, settings, and resources across Power Apps, Power Automate, and Dynamics 365. Single unified interface for health, security, and performance oversight.</div>
+      <div class="key-terms">
+        <div class="term"><div class="term-word">Actions</div><div class="term-def">Recommendations to enhance security and reliability — e.g., optimizing app performance or securing data connections.</div></div>
+        <div class="term"><div class="term-word">Manage</div><div class="term-def">Organize environments and tenant settings across departments.</div></div>
+        <div class="term"><div class="term-word">Monitor</div><div class="term-def">Track operational health metrics to ensure apps and workflows run efficiently.</div></div>
+        <div class="term"><div class="term-word">Security tools</div><div class="term-def">Data loss prevention policies and role-based access controls for compliance and data protection.</div></div>
+        <div class="term"><div class="term-word">Copilot (admin)</div><div class="term-def">Educational resources, usage tracking, and governance controls for responsible AI adoption.</div></div>
+        <div class="term"><div class="term-word">Deployment (ALM)</div><div class="term-def">Manage pipelines, approve deployment requests, and troubleshoot issues at scale.</div></div>
+        <div class="term"><div class="term-word">Licensing</div><div class="term-def">Visibility into license consumption and alerts for environments requiring attention.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Power Apps Maker Portal — <span style="font-weight:400;font-size:13px;color:var(--text2)">make.powerapps.com</span></div>
+      <div class="card-body" style="margin-bottom:10px;">The workspace for building, managing, and monitoring apps. Supports both technical and non-technical users. Central to working with Microsoft Dataverse tables.</div>
+      <div class="key-terms">
+        <div class="term"><div class="term-word">Tables</div><div class="term-def">Create, modify tables, define relationships, customize forms and views — all without code. Core of Dataverse modeling.</div></div>
+        <div class="term"><div class="term-word">Flows</div><div class="term-def">Automate processes via Power Automate flows built directly in the portal.</div></div>
+        <div class="term"><div class="term-word">Solutions</div><div class="term-def">Package and deploy complete, self-contained app solutions.</div></div>
+        <div class="term"><div class="term-word">Websites</div><div class="term-def">Build external-facing sites via Power Pages integration.</div></div>
+        <div class="term"><div class="term-word">Agents</div><div class="term-def">Create AI-powered chatbots via Copilot Studio.</div></div>
+        <div class="term"><div class="term-word">Monitor</div><div class="term-def">Track resource health. Catalog provides templates. Data flows handle transformations and imports.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Other Maker Portals</div>
+      <div class="card-body">
+        <div class="table-wrap"><table class="compare-table">
+          <tr><th>Portal</th><th>URL</th><th>Purpose</th></tr>
+          <tr><td>Power Automate</td><td>make.powerautomate.com</td><td>Build and manage automated workflows; reduce manual tasks</td></tr>
+          <tr><td>Power BI</td><td>app.powerbi.com</td><td>Create interactive dashboards and reports from multiple data sources</td></tr>
+          <tr><td>Power Pages</td><td>make.powerpages.com</td><td>Build secure modern business websites for employees and customers</td></tr>
+          <tr><td>Copilot Studio</td><td>copilotstudio.microsoft.com</td><td>Design intelligent conversational AI agents; embed in apps or websites</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: DATAVERSE -->
+  <div id="tab-dataverse" class="section">
+    <div class="card">
+      <div class="card-title">What is Microsoft Dataverse?</div>
+      <div class="card-body">A cloud-based, low-code data service and app platform. Stores and manages data in structured tables with built-in business logic, security, and compliance. Cloud-native — cannot be hosted on-premises; requires an internet connection. Globally available but deployed geographically for data residency compliance.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Dataverse Architecture — What's in the Box?</div>
+      <div class="card-body" style="margin-bottom:10px;">Five key sections, each with a distinct role. Click to expand ↓</div>
+      <div class="l-sec layer-block" onclick="toggleLayer(this)">
+        <div class="layer-title">🔒 Security</div>
+        <div class="layer-sub">Authentication · Authorization · RBAC · Auditing · Duplicate detection</div>
+        <div class="layer-detail">Ensures data is protected, access is controlled, and compliance is maintained. Role-based access control (RBAC) governs who can do what with which records.</div>
+      </div>
+      <div class="l-log layer-block" onclick="toggleLayer(this)">
+        <div class="layer-title">⚙️ Logic</div>
+        <div class="layer-sub">Calculated/rollup fields · Business rules · Plugins · Workflows · Jobs</div>
+        <div class="layer-detail">Automates business processes and enforces logic without writing extensive code. Business rules validate data entry; plugins trigger custom logic on record updates.</div>
+      </div>
+      <div class="l-dat layer-block" onclick="toggleLayer(this)">
+        <div class="layer-title">📋 Data</div>
+        <div class="layer-sub">Modeling · Cataloging · Reporting · Common Data Model · Multi-language · Multi-currency</div>
+        <div class="layer-detail">Ensures data is structured, discoverable, and globally usable. The Common Data Model (CDM) provides standardized schemas for business concepts like Account and Campaign.</div>
+      </div>
+      <div class="l-sto layer-block" onclick="toggleLayer(this)">
+        <div class="layer-title">🗄️ Storage</div>
+        <div class="layer-sub">SQL (relational) · Blob Storage (files/images) · Cosmos DB (semi-structured) · Data Lake (analytics)</div>
+        <div class="layer-detail">Layered storage optimizes performance and scalability for different data types. SQL handles relational records, Blob handles media, Cosmos DB handles logs, and Data Lake handles large-scale analytics.</div>
+      </div>
+      <div class="l-int layer-block" onclick="toggleLayer(this)">
+        <div class="layer-title">🔗 Integration</div>
+        <div class="layer-sub">Web hooks · ALM (Azure DevOps) · Connectors (GitHub, Azure Synapse)</div>
+        <div class="layer-detail">Enables seamless data exchange and lifecycle management. Web hooks provide real-time notifications. Azure DevOps and GitHub support controlled deployments across the Microsoft ecosystem.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Table Types in Dataverse</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Standard tables</div><div class="term-def">Out-of-the-box entities (Account, Contact, User) aligned with the Common Data Model. Integrated into M365 and Dynamics 365. Always use these first before creating custom tables.</div></div>
+          <div class="term"><div class="term-word">Custom tables</div><div class="term-def">User-defined structures for unique business needs. Example: a logistics company creates a Shipment table to track deliveries and carrier details.</div></div>
+          <div class="term"><div class="term-word">Activity tables</div><div class="term-def">Specialized for tracking time-based interactions: emails, phone calls, appointments. Useful for service industries needing communication history.</div></div>
+          <div class="term"><div class="term-word">Virtual tables</div><div class="term-def">Integrate external data sources without duplicating data in Dataverse. Good for real-time access to external systems like ERP inventory data in a Power App.</div></div>
+          <div class="term"><div class="term-word">Elastic tables</div><div class="term-def">Optimized for high-volume scenarios (tens of millions of rows). Ideal for IoT sensor data or large-scale transaction logs.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Relationships in Dataverse</div>
+      <div class="card-body">
+        <div class="table-wrap"><table class="compare-table">
+          <tr><th>Type</th><th>Description</th><th>Example</th><th>Implementation</th></tr>
+          <tr><td>One-to-many (1:N)</td><td>One parent record links to many child records; each child links to only one parent</td><td>One Invoice → many Line Items</td><td>Primary key (parent) + Foreign key (child)</td></tr>
+          <tr><td>Many-to-many (N:N)</td><td>Records in both tables can associate with multiple records in the other</td><td>Contacts ↔ Events (a contact attends many events; each event has many contacts)</td><td>Intermediary/junction (bridge) table</td></tr>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Business Logic Methods</div>
+      <div class="card-body">
+        <div class="table-wrap"><table class="compare-table">
+          <tr><th>Method</th><th>Type</th><th>Best for</th><th>Example</th></tr>
+          <tr><td>Business Rules</td><td>No-code</td><td>Simple validations, setting column values, showing error messages</td><td>Auto-set order status to "completed" when all items are marked shipped</td></tr>
+          <tr><td>Power Fx</td><td>Low-code</td><td>Dynamic real-time logic, large datasets, offline functionality</td><td>Calculate discounts based on customer loyalty tier, updating totals live</td></tr>
+          <tr><td>Power Automate</td><td>Low/no-code</td><td>Automation across Dataverse and external systems; cloud, instant, and scheduled flows</td><td>Automatically email a customer when their support ticket is updated</td></tr>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Data Import Methods</div>
+      <div class="card-body">
+        <div class="table-wrap"><table class="compare-table">
+          <tr><th>Method</th><th>File types</th><th>Best for</th><th>Limitation</th></tr>
+          <tr><td>Data import wizard</td><td>CSV, TXT, XML, Excel, ZIP (multi-table)</td><td>Diverse sources, multiple tables in one import, column mapping</td><td>No advanced transformation; not ideal for very large imports</td></tr>
+          <tr><td>Import from Excel (model-driven app)</td><td>Excel template only</td><td>Users already in a model-driven app needing to populate a single table</td><td>Single file → single table only</td></tr>
+          <tr><td>Import via Power Apps maker portal</td><td>Excel/CSV (simple)</td><td>Quick flat-data imports (e.g., a product SKU list)</td><td>No support for choice values or relationships</td></tr>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Data Export Methods</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Export to Excel</div><div class="term-def">Up to 100,000 rows. Options: Static, Dynamic, or Dynamic Pivot Table. Ideal for analysis and real-time performance tracking.</div></div>
+          <div class="term"><div class="term-word">Word & Excel templates</div><div class="term-def">Generate structured, presentation-ready documents. Excel: specific columns; Word: data from one or multiple rows. Good for invoices and contracts.</div></div>
+          <div class="term"><div class="term-word">Power Apps maker portal</div><div class="term-def">Export all rows and columns from selected tables as CSV files packaged in a ZIP. Useful for bulk extraction or external system integration.</div></div>
+          <div class="term"><div class="term-word">Power Automate</div><div class="term-def">Automated, event-driven data exports using cloud flows.</div></div>
+          <div class="term"><div class="term-word">Azure Synapse Link</div><div class="term-def">Continuous data replication to Azure for large-scale analytics and real-time sync between operational and analytical systems.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: ENVIRONMENTS -->
+  <div id="tab-environments" class="section">
+    <div class="card">
+      <div class="card-title">What is a Dataverse Environment?</div>
+      <div class="card-body">A structured container within your Microsoft Entra ID tenant (formerly Azure Active Directory) that stores apps, flows, data, and connectors in an isolated space. Each environment can have its own Dataverse database. Environments are tied to a geographic region — critical for data residency and compliance.</div>
+    </div>
+
+    <div class="env-grid">
+      <div class="env-card"><h4>🏭 Production <span class="badge badge-blue">Live</span></h4><p>Hosts live, business-critical apps. Requires at least 1 GB of Dataverse database capacity. Optimized for stability and long-term use.</p></div>
+      <div class="env-card"><h4>⚙️ Default <span class="badge badge-green">Auto-created</span></h4><p>Automatically created for each Entra ID tenant. Accessible to all licensed users. Best for personal productivity or exploration — not for sensitive workloads.</p></div>
+      <div class="env-card"><h4>🧪 Sandbox <span class="badge badge-amber">Non-production</span></h4><p>Used for development, testing, and training. Safe to experiment without affecting production. Can be reset or copied.</p></div>
+      <div class="env-card"><h4>⏱ Trial <span class="badge badge-red">Expires 30 days</span></h4><p>Temporary; expires after 30 days unless converted to production. Ideal for POC projects and evaluating new features.</p></div>
+      <div class="env-card"><h4>👤 Developer</h4><p>Created by users with the Power Apps Developer Plan. For individual use and personal experimentation only.</p></div>
+      <div class="env-card"><h4>💬 Dataverse for Teams</h4><p>Auto-created when apps are built or installed within a Microsoft Teams team. Best for lightweight, team-specific solutions.</p></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Environment Best Practices — ALM Pattern</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Dev environment</div><div class="term-def">Build and iterate on new features. Unmanaged solutions only here.</div></div>
+          <div class="term"><div class="term-word">Test environment</div><div class="term-def">Validate features using representative data before going live.</div></div>
+          <div class="term"><div class="term-word">Prod environment</div><div class="term-def">Host live applications used by employees or customers. Deploy using managed solutions only.</div></div>
+          <div class="term"><div class="term-word">Regional binding</div><div class="term-def">Resources (Dataverse data, apps, flows, connectors) are bound to the environment's geographic region, reducing latency and supporting compliance.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Managed Environments — Premium Governance Features</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Limit sharing</div><div class="term-def">Restrict how broadly users can share Canvas apps — prevents sensitive apps from being shared across the entire org without oversight.</div></div>
+          <div class="term"><div class="term-word">Weekly usage insights</div><div class="term-def">Analytics delivered to admin mailboxes: top apps, inactive resources, most impactful makers.</div></div>
+          <div class="term"><div class="term-word">Data policies</div><div class="term-def">Define which connectors can share data — prevents accidental exposure to unsecured services.</div></div>
+          <div class="term"><div class="term-word">Pipelines</div><div class="term-def">Automate deployment workflows across dev → test → production environments.</div></div>
+          <div class="term"><div class="term-word">Solution checker</div><div class="term-def">Analyzes solutions for problematic patterns before deployment — enforces best practices.</div></div>
+          <div class="term"><div class="term-word">Geo-binding</div><div class="term-def">All items created in a managed environment (connections, gateways, flows) are bound to the environment's geographical location.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 4: SECURITY & DLP -->
+  <div id="tab-security" class="section">
+    <div class="card">
+      <div class="card-title">CRM Security Model — What it Controls</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Record-level access</div><div class="term-def">Defines what actions (read, write, delete, share) a user can perform on records based on identity and record ownership. Example: a sales rep sees only their own leads; a manager sees team-wide records.</div></div>
+          <div class="term"><div class="term-word">UI & feature access</div><div class="term-def">Controls which forms, dashboards, and business process workflows a user can access. Hides irrelevant UI elements to reduce clutter.</div></div>
+          <div class="term"><div class="term-word">Feature controls</div><div class="term-def">Governs actions like exporting to Excel, printing, and using the mobile app — prevents unauthorized data distribution.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Security Roles & RBAC</div>
+      <div class="card-body" style="margin-bottom:10px;">Security roles define what a user or team can do. Every user must be assigned at least one security role to access the system.</div>
+      <div class="two-col">
+        <div class="mini-card">
+          <h4>Privilege structure</h4>
+          <ul><li>Specific actions: read, write, delete</li><li>Access levels: user, business unit, organization</li><li>Granular control over data and features</li></ul>
+        </div>
+        <div class="mini-card">
+          <h4>Three ways to assign roles</h4>
+          <ul><li>Modify a default role before assigning</li><li>Copy a default role as a template</li><li>Create entirely new security roles</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Data Loss Prevention (DLP) Policies</div>
+      <div class="card-body" style="margin-bottom:10px;">Controls how data flows between connectors. Distinguishes between trusted business connectors and third-party non-business connectors.</div>
+      <div class="table-wrap"><table class="compare-table">
+        <tr><th>Category</th><th>Examples</th><th>Treatment</th></tr>
+        <tr><td>Business connectors</td><td>Dataverse, SharePoint, SQL Server</td><td>Trusted; approved for sensitive data</td></tr>
+        <tr><td>Non-business connectors</td><td>X (Twitter), Gmail, social media</td><td>Blocked from accessing sensitive data by DLP rules</td></tr>
+      </table></div>
+      <div style="margin-top:10px;" class="key-terms">
+        <div class="term"><div class="term-word">Environment-level DLP</div><div class="term-def">Applied to specific environments (dev, test, prod). Allows developer flexibility in sandbox while enforcing stricter controls in production.</div></div>
+        <div class="term"><div class="term-word">Tenant-level DLP</div><div class="term-def">Consistent protection across the entire organization — all environments must adhere to a baseline of data security.</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Compliance & Data Security</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Microsoft Trust Center</div><div class="term-def">Central hub for transparency on security, privacy, and compliance. Provides compliance docs, data protection impact assessments, and GDPR support tools.</div></div>
+          <div class="term"><div class="term-word">Service Trust portal</div><div class="term-def">Service-specific compliance details complementing the Trust Center.</div></div>
+          <div class="term"><div class="term-word">Encryption in transit</div><div class="term-def">All data in transit between user devices and Microsoft data centers is secured using TLS 1.2 or higher.</div></div>
+          <div class="term"><div class="term-word">Data location management</div><div class="term-def">Organizations set a default geo at the tenant level and target specific geos for environments. Data is replicated within the same region — never moved outside the designated geo.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 5: ALM & SOLUTIONS -->
+  <div id="tab-alm" class="section">
+    <div class="card">
+      <div class="card-title">Application Lifecycle Management (ALM) — 5 Stages</div>
+      <div class="card-body">
+        <div class="alm-steps">
+          <div class="alm-step"><div class="step-num">1</div><div class="step-content"><h4>Planning</h4><p>Define business requirements, goals, and scope through stakeholder collaboration. Ensures the app aligns with strategic objectives.</p></div></div>
+          <div class="alm-step"><div class="step-num">2</div><div class="step-content"><h4>Development</h4><p>Build using Power Apps, Power Automate, and Dataverse. Collaborative practices, version control, and modular design improve scalability.</p></div></div>
+          <div class="alm-step"><div class="step-num">3</div><div class="step-content"><h4>Testing</h4><p>Validate in a controlled environment. Ensures functional and non-functional requirements are met. Reduces risk of defects reaching production.</p></div></div>
+          <div class="alm-step"><div class="step-num">4</div><div class="step-content"><h4>Deployment</h4><p>Move the app to production using solutions that package all components. Ensures consistency and reduces deployment errors.</p></div></div>
+          <div class="alm-step"><div class="step-num">5</div><div class="step-content"><h4>Maintenance</h4><p>Address bugs, incorporate user feedback, and adapt to evolving business needs. Ensures the app stays relevant over time.</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Solutions — The ALM Container</div>
+      <div class="card-body" style="margin-bottom:10px;">Solutions are structured containers that manage and track customizations within Dataverse. Each environment (dev, test, prod) maintains its own solutions for isolated, controlled deployments.</div>
+      <div class="key-terms">
+        <div class="term"><div class="term-word">What they contain</div><div class="term-def">Entity metadata, forms, views, business rules, workflows, JavaScript plugins, compiled code — any app component.</div></div>
+        <div class="term"><div class="term-word">Who uses them</div><div class="term-def">Internal dev teams, Microsoft (for Dynamics 365), and ISVs (Independent Software Vendors) who distribute products using the same framework.</div></div>
+        <div class="term"><div class="term-word">Managed solutions</div><div class="term-def">Sealed packages for TEST and PRODUCTION environments. Versioned, locked from direct editing, governed through a controlled release. Supports rollback and upgrades. Use for all deployments beyond dev.</div></div>
+        <div class="term"><div class="term-word">Unmanaged solutions</div><div class="term-def">For DEVELOPMENT environments only. Allow full editing of components. Must never be the source of truth — always store in source control (Azure DevOps or GitHub).</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Lab Walkthrough Summary — What Was Built</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Lab 1 — Solution</div><div class="term-def">Created "Event Management1" solution in Power Apps maker portal. Added standard Account and Contact tables from Dataverse. Set a custom publisher prefix (MSLearn1) for the solution schema.</div></div>
+          <div class="term"><div class="term-word">Lab 2 — Data model</div><div class="term-def">Used Copilot to generate Event table (with Event Name, Date, Location, Max Attendees, Details, Event Type choice, Registration Required choice). Created Event Session and Session Registration tables. Added relationships between all four tables using one-to-many (1:N) patterns.</div></div>
+          <div class="term"><div class="term-word">Relationships built</div><div class="term-def">Contact → Event Session (Speaker), Contact → Session Registration (Participant), Event → Event Session, Event Session → Session Registration.</div></div>
+          <div class="term"><div class="term-word">Equipment table</div><div class="term-def">Used Copilot to generate an Equipment Checkout table with fields: Equipment Name, Item Number, Due Date, Status, Equipment Type (choice: Electronics, Furniture, Accessories, Tools), Category.</div></div>
+          <div class="term"><div class="term-word">Rollup field</div><div class="term-def">Added "Total Registrations" as a rollup field on Event Session — counts records from Session Registration table using aggregation: COUNT.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 6: REVIEW Q&A -->
+  <div id="tab-review" class="section">
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-title">Key Terms Flash Reference</div>
+      <div class="card-body">
+        <div class="key-terms">
+          <div class="term"><div class="term-word">Managed environment</div><div class="term-def">Premium governance tier providing enhanced tools: limit sharing, usage insights, DLP, pipelines, solution checker.</div></div>
+          <div class="term"><div class="term-word">Managed solution</div><div class="term-def">Sealed deployment package for test/production. Versioned, locked, governed. Supports rollback.</div></div>
+          <div class="term"><div class="term-word">Unmanaged solution</div><div class="term-def">Development-only. Fully editable. Must be stored in source control — never used as a source of truth.</div></div>
+          <div class="term"><div class="term-word">DLP policy</div><div class="term-def">Data Loss Prevention — controls which connectors can share data together; separates business from non-business connectors.</div></div>
+          <div class="term"><div class="term-word">RBAC</div><div class="term-def">Role-Based Access Control — ensures users only interact with data and features relevant to their role.</div></div>
+          <div class="term"><div class="term-word">Common Data Model (CDM)</div><div class="term-def">Standardized, extensible collection of schemas defining business concepts (Account, Campaign) shared across Power Apps, Power BI, Dynamics 365, and Azure.</div></div>
+          <div class="term"><div class="term-word">ALM</div><div class="term-def">Application Lifecycle Management — the 5-stage process: Plan → Develop → Test → Deploy → Maintain.</div></div>
+          <div class="term"><div class="term-word">Junction table</div><div class="term-def">An intermediary table that implements many-to-many relationships in Dataverse (also called a bridge table).</div></div>
+          <div class="term"><div class="term-word">Rollup field</div><div class="term-def">A calculated field that aggregates data from related records. Example: counting session registrations on an event session record.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:var(--text2);margin-bottom:10px;">Click to reveal answers ↓</p>
+    <div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What is the difference between a managed and unmanaged solution?<span class="arrow">▼</span></div><div class="accordion-a">Managed solutions are sealed packages intended for test and production environments. Components are versioned, locked from direct editing, and deployed through a controlled process — enabling rollback and upgrades. Unmanaged solutions are for development environments only, allow full editing, and must be stored in source control (Azure DevOps or GitHub). Never treat a dev environment as the source of truth.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the six environment types in Power Platform?<span class="arrow">▼</span></div><div class="accordion-a">Production (live apps, requires 1 GB Dataverse capacity), Default (auto-created for each tenant, for personal/exploratory use), Sandbox (non-production for dev and testing), Trial (expires in 30 days, for POC), Developer (individual use with Developer Plan license), and Dataverse for Teams (auto-created when apps are built inside a Teams team).</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What is a DLP policy and at what levels can it be applied?<span class="arrow">▼</span></div><div class="accordion-a">A Data Loss Prevention policy controls how data flows between connectors — separating trusted "business" connectors (Dataverse, SharePoint, SQL Server) from "non-business" connectors (Gmail, Twitter/X). It can be applied at the environment level (for specific dev/test/prod environments) or at the tenant level (organization-wide, ensuring all environments meet a baseline of data security).</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the five architectural sections of Dataverse?<span class="arrow">▼</span></div><div class="accordion-a">Security (authentication, authorization, RBAC, auditing), Logic (business rules, calculated fields, plugins, workflows), Data (modeling, CDM, multi-language, multi-currency), Storage (SQL for relational data, Blob Storage for files, Cosmos DB for semi-structured data, Data Lake for analytics), and Integration (web hooks, ALM tools like Azure DevOps, connectors to GitHub and Azure Synapse).</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">When should you use Business Rules vs Power Fx vs Power Automate for logic?<span class="arrow">▼</span></div><div class="accordion-a">Use Business Rules (no-code) for simple, table-level validations like setting a column value or showing an error message. Use Power Fx (low-code) for dynamic, real-time logic in apps — especially with large datasets or offline scenarios. Use Power Automate for automation that spans multiple systems or involves external services, such as sending emails, syncing data, or triggering approvals.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the five stages of ALM in Power Platform?<span class="arrow">▼</span></div><div class="accordion-a">Planning (define requirements and goals with stakeholders), Development (build using Power Apps, Automate, and Dataverse), Testing (validate in a controlled environment before release), Deployment (move to production using packaged solutions), and Maintenance (address bugs, user feedback, and evolving business needs).</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What are the three methods for importing data into Dataverse, and when should you use each?<span class="arrow">▼</span></div><div class="accordion-a">The Data Import Wizard supports multiple file types (CSV, TXT, XML, Excel, ZIP) and is best for diverse sources or multi-table imports — though it lacks advanced transformation. Import from Excel in a model-driven app uses a template and is best for users already in a model-driven app who need to import into a single table. The Power Apps maker portal import is simplest — use it for quick flat-data imports, but it doesn't support choice values or relationships.</div></div>
+      <div class="accordion-item"><div class="accordion-q" onclick="toggleQ(this)">What is the Common Data Model (CDM) and why does it matter?<span class="arrow">▼</span></div><div class="accordion-a">The CDM is a standardized, extensible collection of schemas (like Account, Contact, Campaign) that provides a shared data language across Power Apps, Power BI, Dynamics 365, and Azure. It ensures consistent data structure across systems — developers can build apps using familiar structures, and integrators can bring in data without redesigning schemas each time. It also supports extensibility so organizations can customize definitions while staying compatible with the broader Microsoft ecosystem.</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const visited = new Set(['portals']);
+const totalTabs = 6;
+
+function showTab(name, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+  visited.add(name);
+  const pct = Math.round((visited.size / totalTabs) * 100);
+  document.getElementById('progress').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = visited.size + ' of ' + totalTabs + ' sections visited';
+}
+
+function toggleLayer(el) {
+  el.querySelector('.layer-detail').classList.toggle('open');
+}
+
+function toggleQ(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}
+</script>
+
+</div>
+</body>
+</html>
